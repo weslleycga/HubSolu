@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hubcontrole - Escolha seu plano</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+<script src="js/tailwind.config.js"></script></head>
+<body class="bg-[#0B0E11] font-body text-slate-50 min-h-screen flex flex-col antialiased selection:bg-purple-500/30 selection:text-white">
+<!-- Shared Component: TopAppBar -->
+<header class="bg-[#0B0E11]/80 backdrop-blur-xl docked full-width top-0 z-50 sticky transition-all no-border bg-[#0B0E11]/50 flat no shadows">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-purple-500 dark:text-purple-400" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-['Manrope'] font-bold tracking-tight text-lg text-white dark:text-slate-50 text-2xl font-black tracking-tighter">Hubcontrole</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<!-- Navigation Links are mostly hidden or limited based on the JSON and Contextual State Logic (Task/Transactional flow) -->
+<a class="text-slate-400 hover:text-slate-200 transition-colors hover:bg-slate-800/50 rounded-full transition-all px-4 py-2 text-sm font-medium" href="selecao_negocio.html">Voltar</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-slate-200 transition-colors hover:bg-slate-800/50 rounded-full transition-all p-2 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-12 md:py-24 max-w-2xl mx-auto w-full">
+<!-- Progress Tracker -->
+<div class="w-full mb-12">
+<div class="flex items-center justify-between relative">
+<!-- Connecting Line -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-800 rounded-full -z-10"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gradient-to-r from-emerald-500 via-emerald-500 to-purple-500 rounded-full -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined text-white text-sm" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined text-white text-sm" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.4)] ring-4 ring-[#0B0E11]">
+<span class="text-white font-bold text-sm font-label">3</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Header Section -->
+<div class="text-center mb-12 w-full">
+<h1 class="font-headline text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Escolha seu plano</h1>
+<p class="font-body text-slate-400 text-lg max-w-md mx-auto">Comece grátis e faça upgrade quando quiser.</p>
+</div>
+<!-- Pricing Cards -->
+<div class="w-full flex flex-col gap-6">
+<!-- Gratuito Plan -->
+<div class="bg-slate-900 rounded-2xl p-6 md:p-8 border border-slate-800 hover:border-slate-700 transition-colors relative overflow-hidden group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex-1">
+<h3 class="font-headline text-xl font-bold text-white mb-2">Gratuito</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-headline text-3xl font-black text-white">R$ 0</span>
+<span class="font-body text-slate-400 text-sm">/para sempre</span>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-300 text-sm">Até 20 produtos</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-300 text-sm">Controle básico de estoque</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-300 text-sm">Registro de vendas</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-300 text-sm">Acesso mobile</span>
+</li>
+</ul>
+</div>
+<div class="w-full md:w-auto mt-4 md:mt-0">
+<button class="w-full md:w-auto px-6 py-3 rounded-full bg-slate-800 text-white font-label font-medium hover:bg-slate-700 transition-colors border border-slate-700">
+               Selecionar
+             </button>
+</div>
+</div>
+</div>
+<!-- Pro Plan (Popular) -->
+<div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 md:p-8 border border-purple-500/30 relative overflow-hidden shadow-[0_0_40px_rgba(168,85,247,0.1)] group">
+<!-- Glow effect -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<!-- Popular Tag -->
+<div class="absolute top-0 right-8 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-b-lg font-label uppercase tracking-wider shadow-sm">
+          Popular
+        </div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+<div class="flex-1">
+<h3 class="font-headline text-xl font-bold text-white mb-2 flex items-center gap-2">
+              Pro
+              <span class="material-symbols-outlined text-purple-400 text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-headline text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">R$ 29</span>
+<span class="font-body text-purple-300/70 text-sm">/por mês</span>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-400 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-200 text-sm font-medium">Produtos ilimitados</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-400 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-200 text-sm font-medium">Assistente com IA</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-400 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-200 text-sm font-medium">Relatórios avançados</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-400 text-sm mt-0.5" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body text-slate-200 text-sm font-medium">Suporte prioritário</span>
+</li>
+</ul>
+</div>
+<div class="w-full md:w-auto mt-4 md:mt-0">
+<div class="w-full md:w-auto px-6 py-3 rounded-full bg-purple-500/20 text-purple-300 font-label font-medium border border-purple-500/30 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+               Selecionado
+             </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="w-full mt-12 pt-8 border-t border-slate-800/50 flex flex-col items-center">
+<button class="w-full max-w-md rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-label font-bold py-4 px-8 shadow-[0_8px_30px_rgba(147,51,234,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 group">
+        Criar minha conta
+        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<p class="font-body text-xs text-slate-500 mt-4 text-center">
+        Ao continuar, você concorda com nossos <a class="text-purple-400 hover:underline" href="#">Termos de Serviço</a>.
+      </p>
+</div>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="bg-[#0B0E11] w-full py-8 border-t border-slate-900 tonal shift via background darken flat flex flex-col items-center gap-4 w-full px-4 mt-auto">
+<nav class="flex items-center gap-6">
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-purple-400 underline decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Termos</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-purple-400 underline decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Privacidade</a>
+<a class="font-['Inter'] text-xs text-slate-500 hover:text-purple-400 underline decoration-2 underline-offset-4 opacity-80 hover:opacity-100 transition-opacity" href="#">Suporte</a>
+</nav>
+<p class="font-['Inter'] text-xs text-slate-500 text-center">© 2024 Hubcontrole. Todos os direitos reservados.</p>
+</footer>
+
+</body></html>
