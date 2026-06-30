@@ -36,6 +36,11 @@ Este projeto é estático e não requer configurações complexas de backend par
    ```
 4. Abra o navegador e acesse: `http://localhost:8080/`
 
-## 📝 Changelog
+## 📝 Últimas Atualizações e Changelog
 
-Consulte o arquivo [CHANGELOG.md](./CHANGELOG.md) para ver o histórico detalhado de alterações, melhorias e correções feitas neste projeto.
+**Última modificação:** 
+- Adição de pasta `images/` com imagens estáticas locais.
+- Atualização da tela `demo_delivery_ui.html` para utilizar imagens locais de produtos ao invés de placeholders online.
+- Definição do tema "BBQ Dark Mode" como o padrão principal para a UI de demonstração.
+
+Consulte o arquivo [CHANGELOG.md](./CHANGELOG.md) para ver o histórico detalhado de todas as alterações, melhorias e correções feitas neste projeto.
