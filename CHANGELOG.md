@@ -5,6 +5,7 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 ## [Unreleased]
 
 ### Adicionado
+- **Sub-telas Interativas no Perfil do Delivery**: A tela de perfil na demonstração `demo_delivery_ui.html` agora possui sub-telas navegáveis para "Meus Endereços", "Formas de Pagamento" e "Meus Pedidos". Os usuários podem visualizar formulários e histórico simulados que se adaptam dinamicamente ao tema selecionado (Fast Food, Vegano, BBQ).
 - **Tela de Perfil no App Delivery**: A tela `demo_delivery_ui.html` foi convertida em um mini-app interativo (Single Page App), onde agora é possível alternar entre o cardápio e a tela de Perfil do cliente através do menu inferior, mantendo a adaptação dinâmica dos temas de cores.
 - **Nova Tela de Perfil do Usuário (`perfil_usuario.html`)**: Desenvolvida a tela de perfil e gerenciamento do lojista, dividida em Dados Pessoais, Dados do Negócio e Configurações (com integração ao layout Dark Mode).
 - **Nova Tela Interativa de Demonstração de UI (`demo_delivery_ui.html`)**: Desenvolvida para demonstrar a aplicação prática da psicologia das cores no design de interfaces de delivery. Inclui três temas dinâmicos via Tailwind e JS puro: Fast Food, Vegano e BBQ Dark Mode.

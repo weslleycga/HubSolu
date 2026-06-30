@@ -40,6 +40,7 @@ Este projeto é estático e não requer configurações complexas de backend par
 ## 📝 Últimas Atualizações e Changelog
 
 **Últimas modificações:** 
+- [30/06/2026 10:00] Adição de sub-telas interativas (Endereços, Pagamentos e Pedidos) na aba de Perfil em `demo_delivery_ui.html`.
 - [30/06/2026 09:50] Atualização da tela `demo_delivery_ui.html` para incluir navegação por abas com uma visão interativa de Perfil.
 - [30/06/2026 09:37] Criação da tela `perfil_usuario.html` com layout em Dark Mode e formulários de gestão.
 - [30/06/2026 08:45] Adição de pasta `images/` com imagens estáticas locais.

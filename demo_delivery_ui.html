@@ -156,7 +156,7 @@
 
                 <!-- Profile Options -->
                 <div class="flex flex-col gap-4">
-                    <button class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
+                    <button onclick="showView('address')" class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 profile-icon-bg transition-colors">
                                 <span class="material-symbols-outlined text-gray-600 profile-icon" style="font-variation-settings: 'FILL' 1;">location_on</span>
@@ -169,7 +169,7 @@
                         <span class="material-symbols-outlined text-gray-400 profile-text-muted">chevron_right</span>
                     </button>
 
-                    <button class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
+                    <button onclick="showView('payment')" class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 profile-icon-bg transition-colors">
                                 <span class="material-symbols-outlined text-gray-600 profile-icon" style="font-variation-settings: 'FILL' 1;">credit_card</span>
@@ -182,7 +182,7 @@
                         <span class="material-symbols-outlined text-gray-400 profile-text-muted">chevron_right</span>
                     </button>
 
-                    <button class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
+                    <button onclick="showView('orders')" class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 profile-icon-bg transition-colors">
                                 <span class="material-symbols-outlined text-gray-600 profile-icon" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
@@ -200,6 +200,98 @@
                     <button class="w-full py-3 rounded-xl font-bold text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors profile-logout-btn border border-transparent">
                         Sair do aplicativo
                     </button>
+                </div>
+            </div>
+
+            <!-- ADDRESS VIEW -->
+            <div id="address-view" class="hidden flex-col h-full">
+                <div class="flex items-center gap-3 mb-6 mt-2">
+                    <button onclick="showProfile()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+                        <span class="material-symbols-outlined text-gray-900 back-icon">arrow_back</span>
+                    </button>
+                    <h2 class="text-lg font-bold profile-text">Meus Endereços</h2>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4 mb-4">
+                    <div class="mb-3">
+                        <label class="block text-xs font-bold profile-text mb-1">Apelido</label>
+                        <input type="text" value="Casa" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-xs font-bold profile-text mb-1">Rua / Avenida</label>
+                        <input type="text" value="Rua das Flores" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-xs font-bold profile-text mb-1">Número</label>
+                            <input type="text" value="123" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold profile-text mb-1">Complemento</label>
+                            <input type="text" value="Apt 42" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
+                        </div>
+                    </div>
+                    <button onclick="showProfile()" class="w-full mt-2 py-3 rounded-xl text-white font-bold text-sm bg-red-600 transition-colors cta-btn shadow-md">Salvar Alterações</button>
+                </div>
+            </div>
+
+            <!-- PAYMENT VIEW -->
+            <div id="payment-view" class="hidden flex-col h-full">
+                <div class="flex items-center gap-3 mb-6 mt-2">
+                    <button onclick="showProfile()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+                        <span class="material-symbols-outlined text-gray-900 back-icon">arrow_back</span>
+                    </button>
+                    <h2 class="text-lg font-bold profile-text">Formas de Pagamento</h2>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4 mb-4">
+                    <div class="mb-3">
+                        <label class="block text-xs font-bold profile-text mb-1">Número do Cartão</label>
+                        <input type="text" value="**** **** **** 4242" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-xs font-bold profile-text mb-1">Validade</label>
+                            <input type="text" value="12/30" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold profile-text mb-1">CVV</label>
+                            <input type="text" value="***" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
+                        </div>
+                    </div>
+                    <button onclick="showProfile()" class="w-full mt-2 py-3 rounded-xl text-white font-bold text-sm bg-red-600 transition-colors cta-btn shadow-md">Salvar Cartão</button>
+                </div>
+            </div>
+
+            <!-- ORDERS VIEW -->
+            <div id="orders-view" class="hidden flex-col h-full">
+                <div class="flex items-center gap-3 mb-6 mt-2">
+                    <button onclick="showProfile()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+                        <span class="material-symbols-outlined text-gray-900 back-icon">arrow_back</span>
+                    </button>
+                    <h2 class="text-lg font-bold profile-text">Meus Pedidos</h2>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded">Entregue</span>
+                            <span class="text-xs profile-text-muted">28/06/2026</span>
+                        </div>
+                        <h4 class="text-sm font-bold profile-text">Combo Monster</h4>
+                        <p class="text-xs profile-text-muted mb-2">1x Burger, 1x Fritas</p>
+                        <span class="text-sm font-bold profile-text">R$ 45,90</span>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded">Entregue</span>
+                            <span class="text-xs profile-text-muted">15/06/2026</span>
+                        </div>
+                        <h4 class="text-sm font-bold profile-text">Salada Verão</h4>
+                        <p class="text-xs profile-text-muted mb-2">1x Salada com molho extra</p>
+                        <span class="text-sm font-bold profile-text">R$ 28,00</span>
+                    </div>
                 </div>
             </div>
 
@@ -236,12 +328,19 @@
         let currentActiveTab = 'home';
         let currentThemeKey = 'bbq';
 
+        function hideAllViews() {
+            const views = ['home-view', 'profile-view', 'address-view', 'payment-view', 'orders-view'];
+            views.forEach(id => {
+                document.getElementById(id).classList.remove('block', 'flex');
+                document.getElementById(id).classList.add('hidden');
+            });
+        }
+
         function showHome() {
             currentActiveTab = 'home';
-            document.getElementById('home-view').classList.remove('hidden');
+            hideAllViews();
             document.getElementById('home-view').classList.add('block');
-            document.getElementById('profile-view').classList.remove('flex');
-            document.getElementById('profile-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
             
             const homeBtn = document.getElementById('nav-home');
             const profileBtn = document.getElementById('nav-profile');
@@ -255,10 +354,9 @@
 
         function showProfile() {
             currentActiveTab = 'profile';
-            document.getElementById('home-view').classList.remove('block');
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById('profile-view').classList.remove('hidden');
+            hideAllViews();
             document.getElementById('profile-view').classList.add('flex');
+            document.getElementById('profile-view').classList.remove('hidden');
             
             const homeBtn = document.getElementById('nav-home');
             const profileBtn = document.getElementById('nav-profile');
@@ -267,6 +365,13 @@
             homeBtn.classList.remove('nav-btn-active');
             homeBtn.classList.add('nav-btn-inactive');
             
+            setTheme(currentThemeKey);
+        }
+
+        function showView(viewId) {
+            hideAllViews();
+            document.getElementById(viewId + '-view').classList.add('flex');
+            document.getElementById(viewId + '-view').classList.remove('hidden');
             setTheme(currentThemeKey);
         }
         const themes = {
@@ -461,6 +566,16 @@
                 removeTailwindColors(logoutBtn);
                 logoutBtn.className = `w-full py-3 rounded-xl font-bold text-sm transition-colors profile-logout-btn border border-transparent ${t.inputBg} ${t.textColor} hover:brightness-110`;
             }
+
+            document.querySelectorAll('.profile-input').forEach(el => {
+                removeTailwindColors(el);
+                el.className = `w-full text-sm rounded-lg py-2 px-3 outline-none profile-input transition-colors ${t.inputBg} ${t.textColor}`;
+            });
+
+            document.querySelectorAll('.back-icon').forEach(el => {
+                removeTailwindColors(el);
+                el.className = `material-symbols-outlined back-icon transition-colors ${t.textColor}`;
+            });
             // Page Background
             const body = document.getElementById('body-bg');
             if(themeKey === 'bbq') {
