@@ -38,9 +38,9 @@ Este projeto é estático e não requer configurações complexas de backend par
 
 ## 📝 Últimas Atualizações e Changelog
 
-**Última modificação:** 
-- Adição de pasta `images/` com imagens estáticas locais.
-- Atualização da tela `demo_delivery_ui.html` para utilizar imagens locais de produtos (Fast Food, Vegan, e BBQ) ao invés de placeholders online.
-- Definição do tema "BBQ Dark Mode" como o padrão principal para a UI de demonstração.
+**Últimas modificações:** 
+- [30/06/2026 08:45] Adição de pasta `images/` com imagens estáticas locais.
+- [30/06/2026 09:11] Atualização da tela `demo_delivery_ui.html` para utilizar imagens locais de produtos (Fast Food, Vegan, e BBQ) ao invés de placeholders online.
+- [30/06/2026 09:13] Definição do tema "BBQ Dark Mode" como o padrão principal para a UI de demonstração.
 
 Consulte o arquivo [CHANGELOG.md](./CHANGELOG.md) para ver o histórico detalhado de todas as alterações, melhorias e correções feitas neste projeto.
