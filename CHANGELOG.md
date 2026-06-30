@@ -5,6 +5,7 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 ## [Unreleased]
 
 ### Adicionado
+- **Nova Tela de Perfil do Usuário (`perfil_usuario.html`)**: Desenvolvida a tela de perfil e gerenciamento do lojista, dividida em Dados Pessoais, Dados do Negócio e Configurações (com integração ao layout Dark Mode).
 - **Nova Tela Interativa de Demonstração de UI (`demo_delivery_ui.html`)**: Desenvolvida para demonstrar a aplicação prática da psicologia das cores no design de interfaces de delivery. Inclui três temas dinâmicos via Tailwind e JS puro: Fast Food, Vegano e BBQ Dark Mode.
 - **Máscara de Telefone**: Adicionado script em `cadastro.html` para formatação automática de telefones fixos (10 dígitos) e celulares (11 dígitos) no padrão brasileiro (ex: `(11) 99999-9999`).
 - **Validação HTML5**: Inclusão de atributos `required` e `pattern` nos campos de nome, e-mail e telefone do formulário em `cadastro.html`.
