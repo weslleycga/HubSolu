@@ -1,614 +1,822 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Demo UX/UI - Psicologia das Cores</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center py-10 font-sans text-gray-900 transition-colors duration-500" id="body-bg">
-    
+    <link rel="stylesheet" href="/css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="flex min-h-screen flex-col items-center bg-gray-100 py-10 font-sans text-gray-900 transition-colors duration-500"
+    id="body-bg"
+  >
     <!-- Controls -->
-    <div class="mb-8 w-full max-w-md bg-white p-4 rounded-2xl shadow-sm border border-gray-200 transition-colors duration-500" id="controls-bg">
-        <h2 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-center" id="controls-title">Escolha o Tema</h2>
-        <div class="grid grid-cols-3 gap-2">
-            <button onclick="setTheme('fastfood')" class="py-2 px-3 text-xs font-semibold rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition-colors">Fast Food</button>
-            <button onclick="setTheme('vegan')" class="py-2 px-3 text-xs font-semibold rounded-lg bg-green-100 text-green-700 hover:bg-green-200 transition-colors">Vegano</button>
-            <button onclick="setTheme('bbq')" class="py-2 px-3 text-xs font-semibold rounded-lg bg-gray-800 text-orange-400 hover:bg-gray-900 transition-colors">BBQ Dark</button>
-        </div>
+    <div
+      class="mb-8 w-full max-w-md rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-colors duration-500"
+      id="controls-bg"
+    >
+      <h2
+        class="mb-3 text-center text-sm font-bold uppercase tracking-wider text-gray-500"
+        id="controls-title"
+      >
+        Escolha o Tema
+      </h2>
+      <div class="grid grid-cols-3 gap-2">
+        <button
+          onclick="setTheme('fastfood')"
+          class="rounded-lg bg-red-100 px-3 py-2 text-xs font-semibold text-red-700 transition-colors hover:bg-red-200"
+        >
+          Fast Food
+        </button>
+        <button
+          onclick="setTheme('vegan')"
+          class="rounded-lg bg-green-100 px-3 py-2 text-xs font-semibold text-green-700 transition-colors hover:bg-green-200"
+        >
+          Vegano
+        </button>
+        <button
+          onclick="setTheme('bbq')"
+          class="rounded-lg bg-gray-800 px-3 py-2 text-xs font-semibold text-orange-400 transition-colors hover:bg-gray-900"
+        >
+          BBQ Dark
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Device Mockup -->
-    <div class="w-full max-w-[375px] h-[812px] bg-white rounded-[40px] shadow-2xl overflow-hidden relative border-[8px] border-gray-900 transition-colors duration-500" id="app-container">
-        
-        <!-- Status Bar Fake -->
-        <div class="h-12 w-full flex justify-between items-center px-6 text-xs font-medium z-50 relative" id="status-bar">
-            <span>9:41</span>
-            <div class="flex gap-1">
-                <span class="material-symbols-outlined text-[16px]">signal_cellular_4_bar</span>
-                <span class="material-symbols-outlined text-[16px]">wifi</span>
-                <span class="material-symbols-outlined text-[16px]">battery_full</span>
+    <div
+      class="relative h-[812px] w-full max-w-[375px] overflow-hidden rounded-[40px] border-[8px] border-gray-900 bg-white shadow-2xl transition-colors duration-500"
+      id="app-container"
+    >
+      <!-- Status Bar Fake -->
+      <div
+        class="relative z-50 flex h-12 w-full items-center justify-between px-6 text-xs font-medium"
+        id="status-bar"
+      >
+        <span>9:41</span>
+        <div class="flex gap-1">
+          <span class="material-symbols-outlined text-[16px]">signal_cellular_4_bar</span>
+          <span class="material-symbols-outlined text-[16px]">wifi</span>
+          <span class="material-symbols-outlined text-[16px]">battery_full</span>
+        </div>
+      </div>
+
+      <!-- Scrollable Content -->
+      <div class="no-scrollbar relative h-full w-full overflow-y-auto px-6 pb-24 pt-4">
+        <!-- HOME VIEW -->
+        <div id="home-view" class="block">
+          <!-- Header -->
+          <header class="mb-6 flex items-center justify-between">
+            <div>
+              <p class="mb-1 text-sm text-gray-500" id="greeting-text">Entregar para</p>
+              <h1 class="flex items-center gap-1 text-lg font-bold" id="location-text">
+                Rua das Flores, 123
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+              </h1>
             </div>
+            <div
+              class="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-gray-200"
+              id="profile-pic"
+            >
+              <img
+                src="https://ui-avatars.com/api/?name=Ana+Souza&background=random"
+                class="h-full w-full object-cover"
+              />
+            </div>
+          </header>
+
+          <!-- Search -->
+          <div class="relative mb-6">
+            <span
+              class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+              >search</span
+            >
+            <input
+              type="text"
+              placeholder="O que você quer comer hoje?"
+              class="w-full rounded-xl bg-gray-100 py-4 pl-12 pr-4 text-sm text-gray-900 outline-none transition-colors duration-300"
+              id="search-input"
+            />
+          </div>
+
+          <!-- Hero Banner -->
+          <div class="relative mb-8 h-40 w-full overflow-hidden rounded-2xl shadow-sm">
+            <img
+              src="https://loremflickr.com/600/400/burger,fries"
+              class="h-full w-full object-cover"
+              id="hero-img"
+            />
+            <div
+              class="absolute inset-0 flex flex-col justify-center bg-gradient-to-r from-black/80 to-transparent p-6 text-left"
+            >
+              <span
+                class="mb-1 w-fit rounded bg-yellow-400 px-1 text-xs font-bold uppercase tracking-wider text-gray-900"
+                id="hero-tag"
+                >DESTAQUE</span
+              >
+              <h2 class="w-2/3 text-2xl font-black leading-tight text-white" id="hero-title">
+                Combo Monster - 30% OFF
+              </h2>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="mb-8 flex justify-between">
+            <div class="flex flex-col items-center gap-2">
+              <div
+                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+              >
+                🍔
+              </div>
+              <span class="profile-text text-xs font-semibold">Burger</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div
+                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+              >
+                🍕
+              </div>
+              <span class="profile-text-muted text-xs font-medium">Pizza</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div
+                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+              >
+                🍣
+              </div>
+              <span class="profile-text-muted text-xs font-medium">Sushi</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div
+                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+              >
+                🥗
+              </div>
+              <span class="profile-text-muted text-xs font-medium">Saudável</span>
+            </div>
+          </div>
+
+          <!-- Products List -->
+          <h3 class="mb-4 text-lg font-bold">Mais Pedidos</h3>
+          <div class="flex flex-col gap-4">
+            <!-- Product 1 -->
+            <div
+              class="profile-card flex gap-4 rounded-xl border border-gray-100 bg-white p-3 shadow-sm transition-colors"
+            >
+              <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-gray-200">
+                <img
+                  src="images/Double Smash Burger.jpg"
+                  class="h-full w-full object-cover"
+                  id="prod1-img"
+                />
+              </div>
+              <div class="flex w-full flex-col justify-between py-1">
+                <h4 class="mb-1 text-base font-bold" id="prod1-title">Double Smash Burger</h4>
+                <p class="mb-2 line-clamp-2 text-xs text-gray-500" id="prod1-desc">
+                  Pão brioche, 2x blend 90g, queijo cheddar, molho da casa e bacon crocante.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-lg font-bold" id="prod1-price">R$ 32,90</span>
+                  <!-- CTA BUTTON -->
+                  <button
+                    class="cta-btn flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/30 transition-colors hover:bg-red-700"
+                  >
+                    <span class="material-symbols-outlined text-sm font-bold">add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div
+              class="profile-card flex gap-4 rounded-xl border border-gray-100 bg-white p-3 shadow-sm transition-colors"
+            >
+              <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-gray-200">
+                <img
+                  src="images/Batata Rústica com Cheddar.jpg"
+                  class="h-full w-full object-cover"
+                  id="prod2-img"
+                />
+              </div>
+              <div class="flex w-full flex-col justify-between py-1">
+                <h4 class="mb-1 text-base font-bold" id="prod2-title">
+                  Batata Rústica com Cheddar
+                </h4>
+                <p class="mb-2 line-clamp-2 text-xs text-gray-500" id="prod2-desc">
+                  Porção de batatas rústicas com nosso exclusivo creme de cheddar.
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-lg font-bold" id="prod2-price">R$ 24,50</span>
+                  <!-- CTA BUTTON -->
+                  <button
+                    class="cta-btn flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/30 transition-colors hover:bg-red-700"
+                  >
+                    <span class="material-symbols-outlined text-sm font-bold">add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Scrollable Content -->
-        <div class="h-full w-full overflow-y-auto pb-24 px-6 pt-4 relative no-scrollbar">
-            
-            <!-- HOME VIEW -->
-            <div id="home-view" class="block">
-                <!-- Header -->
-                <header class="flex justify-between items-center mb-6">
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1" id="greeting-text">Entregar para</p>
-                        <h1 class="text-lg font-bold flex items-center gap-1" id="location-text">
-                            Rua das Flores, 123
-                            <span class="material-symbols-outlined text-sm">expand_more</span>
-                        </h1>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex-shrink-0" id="profile-pic">
-                        <img src="https://ui-avatars.com/api/?name=Ana+Souza&background=random" class="w-full h-full object-cover">
-                    </div>
-                </header>
-
-                <!-- Search -->
-                <div class="relative mb-6">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-                    <input type="text" placeholder="O que você quer comer hoje?" class="w-full bg-gray-100 text-sm rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-300 text-gray-900" id="search-input">
-                </div>
-
-                <!-- Hero Banner -->
-                <div class="w-full h-40 rounded-2xl overflow-hidden relative mb-8 shadow-sm">
-                    <img src="https://loremflickr.com/600/400/burger,fries" class="w-full h-full object-cover" id="hero-img">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center p-6 text-left">
-                        <span class="bg-yellow-400 text-gray-900 text-xs font-bold uppercase tracking-wider mb-1 rounded px-1 w-fit" id="hero-tag">DESTAQUE</span>
-                        <h2 class="text-white text-2xl font-black leading-tight w-2/3" id="hero-title">Combo Monster - 30% OFF</h2>
-                    </div>
-                </div>
-
-                <!-- Categories -->
-                <div class="flex justify-between mb-8">
-                    <div class="flex flex-col items-center gap-2">
-                        <div class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center text-2xl transition-colors profile-icon-bg">🍔</div>
-                        <span class="text-xs font-semibold profile-text">Burger</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2">
-                        <div class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center text-2xl transition-colors profile-icon-bg">🍕</div>
-                        <span class="text-xs font-medium profile-text-muted">Pizza</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2">
-                        <div class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center text-2xl transition-colors profile-icon-bg">🍣</div>
-                        <span class="text-xs font-medium profile-text-muted">Sushi</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2">
-                        <div class="w-14 h-14 rounded-full bg-white shadow-sm flex items-center justify-center text-2xl transition-colors profile-icon-bg">🥗</div>
-                        <span class="text-xs font-medium profile-text-muted">Saudável</span>
-                    </div>
-                </div>
-
-                <!-- Products List -->
-                <h3 class="font-bold text-lg mb-4">Mais Pedidos</h3>
-                <div class="flex flex-col gap-4">
-                    <!-- Product 1 -->
-                    <div class="flex gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
-                        <div class="w-24 h-24 rounded-lg bg-gray-200 overflow-hidden flex-shrink-0">
-                            <img src="images/Double Smash Burger.jpg" class="w-full h-full object-cover" id="prod1-img">
-                        </div>
-                        <div class="flex flex-col justify-between py-1 w-full">
-                            <h4 class="font-bold text-base mb-1" id="prod1-title">Double Smash Burger</h4>
-                            <p class="text-xs text-gray-500 mb-2 line-clamp-2" id="prod1-desc">Pão brioche, 2x blend 90g, queijo cheddar, molho da casa e bacon crocante.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-lg" id="prod1-price">R$ 32,90</span>
-                                <!-- CTA BUTTON -->
-                                <button class="w-8 h-8 rounded-full flex items-center justify-center text-white bg-red-600 hover:bg-red-700 transition-colors cta-btn shadow-md shadow-red-500/30">
-                                    <span class="material-symbols-outlined text-sm font-bold">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="flex gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
-                        <div class="w-24 h-24 rounded-lg bg-gray-200 overflow-hidden flex-shrink-0">
-                            <img src="images/Batata Rústica com Cheddar.jpg" class="w-full h-full object-cover" id="prod2-img">
-                        </div>
-                        <div class="flex flex-col justify-between py-1 w-full">
-                            <h4 class="font-bold text-base mb-1" id="prod2-title">Batata Rústica com Cheddar</h4>
-                            <p class="text-xs text-gray-500 mb-2 line-clamp-2" id="prod2-desc">Porção de batatas rústicas com nosso exclusivo creme de cheddar.</p>
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-lg" id="prod2-price">R$ 24,50</span>
-                                <!-- CTA BUTTON -->
-                                <button class="w-8 h-8 rounded-full flex items-center justify-center text-white bg-red-600 hover:bg-red-700 transition-colors cta-btn shadow-md shadow-red-500/30">
-                                    <span class="material-symbols-outlined text-sm font-bold">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+        <!-- PROFILE VIEW -->
+        <div id="profile-view" class="hidden h-full flex-col">
+          <!-- Profile Header -->
+          <div class="mb-8 mt-2 flex items-center gap-4">
+            <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
+              <img
+                src="https://ui-avatars.com/api/?name=Ana+Souza&background=random"
+                class="h-full w-full object-cover"
+              />
             </div>
-
-            <!-- PROFILE VIEW -->
-            <div id="profile-view" class="hidden flex-col h-full">
-                <!-- Profile Header -->
-                <div class="flex items-center gap-4 mb-8 mt-2">
-                    <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-                        <img src="https://ui-avatars.com/api/?name=Ana+Souza&background=random" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h2 class="text-xl font-bold" id="profile-name">Ana Souza</h2>
-                        <p class="text-xs text-gray-500" id="profile-email">ana.souza@email.com</p>
-                    </div>
-                </div>
-
-                <!-- Profile Options -->
-                <div class="flex flex-col gap-4">
-                    <button onclick="showView('address')" class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 profile-icon-bg transition-colors">
-                                <span class="material-symbols-outlined text-gray-600 profile-icon" style="font-variation-settings: 'FILL' 1;">location_on</span>
-                            </div>
-                            <div class="text-left">
-                                <span class="block text-sm font-bold profile-text">Meus Endereços</span>
-                                <span class="block text-xs text-gray-500 profile-text-muted">Casa, Trabalho</span>
-                            </div>
-                        </div>
-                        <span class="material-symbols-outlined text-gray-400 profile-text-muted">chevron_right</span>
-                    </button>
-
-                    <button onclick="showView('payment')" class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 profile-icon-bg transition-colors">
-                                <span class="material-symbols-outlined text-gray-600 profile-icon" style="font-variation-settings: 'FILL' 1;">credit_card</span>
-                            </div>
-                            <div class="text-left">
-                                <span class="block text-sm font-bold profile-text">Formas de Pagamento</span>
-                                <span class="block text-xs text-gray-500 profile-text-muted">Cartões, Pix</span>
-                            </div>
-                        </div>
-                        <span class="material-symbols-outlined text-gray-400 profile-text-muted">chevron_right</span>
-                    </button>
-
-                    <button onclick="showView('orders')" class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 profile-icon-bg transition-colors">
-                                <span class="material-symbols-outlined text-gray-600 profile-icon" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
-                            </div>
-                            <div class="text-left">
-                                <span class="block text-sm font-bold profile-text">Meus Pedidos</span>
-                                <span class="block text-xs text-gray-500 profile-text-muted">Histórico completo</span>
-                            </div>
-                        </div>
-                        <span class="material-symbols-outlined text-gray-400 profile-text-muted">chevron_right</span>
-                    </button>
-                </div>
-
-                <div class="mt-12 pt-8 pb-4">
-                    <button class="w-full py-3 rounded-xl font-bold text-sm bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors profile-logout-btn border border-transparent">
-                        Sair do aplicativo
-                    </button>
-                </div>
+            <div>
+              <h2 class="text-xl font-bold" id="profile-name">Ana Souza</h2>
+              <p class="text-xs text-gray-500" id="profile-email">ana.souza@email.com</p>
             </div>
+          </div>
 
-            <!-- ADDRESS VIEW -->
-            <div id="address-view" class="hidden flex-col h-full">
-                <div class="flex items-center gap-3 mb-6 mt-2">
-                    <button onclick="showProfile()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
-                        <span class="material-symbols-outlined text-gray-900 back-icon">arrow_back</span>
-                    </button>
-                    <h2 class="text-lg font-bold profile-text">Meus Endereços</h2>
+          <!-- Profile Options -->
+          <div class="flex flex-col gap-4">
+            <button
+              onclick="showView('address')"
+              class="profile-card flex items-center justify-between rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="profile-icon-bg flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors"
+                >
+                  <span
+                    class="material-symbols-outlined profile-icon text-gray-600"
+                    style="font-variation-settings: 'FILL' 1"
+                    >location_on</span
+                  >
                 </div>
-                
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4 mb-4">
-                    <div class="mb-3">
-                        <label class="block text-xs font-bold profile-text mb-1">Apelido</label>
-                        <input type="text" value="Casa" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-xs font-bold profile-text mb-1">Rua / Avenida</label>
-                        <input type="text" value="Rua das Flores" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 mb-3">
-                        <div>
-                            <label class="block text-xs font-bold profile-text mb-1">Número</label>
-                            <input type="text" value="123" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold profile-text mb-1">Complemento</label>
-                            <input type="text" value="Apt 42" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
-                        </div>
-                    </div>
-                    <button onclick="showProfile()" class="w-full mt-2 py-3 rounded-xl text-white font-bold text-sm bg-red-600 transition-colors cta-btn shadow-md">Salvar Alterações</button>
+                <div class="text-left">
+                  <span class="profile-text block text-sm font-bold">Meus Endereços</span>
+                  <span class="profile-text-muted block text-xs text-gray-500">Casa, Trabalho</span>
                 </div>
-            </div>
+              </div>
+              <span class="material-symbols-outlined profile-text-muted text-gray-400"
+                >chevron_right</span
+              >
+            </button>
 
-            <!-- PAYMENT VIEW -->
-            <div id="payment-view" class="hidden flex-col h-full">
-                <div class="flex items-center gap-3 mb-6 mt-2">
-                    <button onclick="showProfile()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
-                        <span class="material-symbols-outlined text-gray-900 back-icon">arrow_back</span>
-                    </button>
-                    <h2 class="text-lg font-bold profile-text">Formas de Pagamento</h2>
+            <button
+              onclick="showView('payment')"
+              class="profile-card flex items-center justify-between rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="profile-icon-bg flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors"
+                >
+                  <span
+                    class="material-symbols-outlined profile-icon text-gray-600"
+                    style="font-variation-settings: 'FILL' 1"
+                    >credit_card</span
+                  >
                 </div>
-
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4 mb-4">
-                    <div class="mb-3">
-                        <label class="block text-xs font-bold profile-text mb-1">Número do Cartão</label>
-                        <input type="text" value="**** **** **** 4242" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 mb-3">
-                        <div>
-                            <label class="block text-xs font-bold profile-text mb-1">Validade</label>
-                            <input type="text" value="12/30" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold profile-text mb-1">CVV</label>
-                            <input type="text" value="***" class="w-full bg-gray-100 text-sm rounded-lg py-2 px-3 outline-none profile-input text-gray-900">
-                        </div>
-                    </div>
-                    <button onclick="showProfile()" class="w-full mt-2 py-3 rounded-xl text-white font-bold text-sm bg-red-600 transition-colors cta-btn shadow-md">Salvar Cartão</button>
+                <div class="text-left">
+                  <span class="profile-text block text-sm font-bold">Formas de Pagamento</span>
+                  <span class="profile-text-muted block text-xs text-gray-500">Cartões, Pix</span>
                 </div>
-            </div>
+              </div>
+              <span class="material-symbols-outlined profile-text-muted text-gray-400"
+                >chevron_right</span
+              >
+            </button>
 
-            <!-- ORDERS VIEW -->
-            <div id="orders-view" class="hidden flex-col h-full">
-                <div class="flex items-center gap-3 mb-6 mt-2">
-                    <button onclick="showProfile()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
-                        <span class="material-symbols-outlined text-gray-900 back-icon">arrow_back</span>
-                    </button>
-                    <h2 class="text-lg font-bold profile-text">Meus Pedidos</h2>
+            <button
+              onclick="showView('orders')"
+              class="profile-card flex items-center justify-between rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="profile-icon-bg flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors"
+                >
+                  <span
+                    class="material-symbols-outlined profile-icon text-gray-600"
+                    style="font-variation-settings: 'FILL' 1"
+                    >receipt_long</span
+                  >
                 </div>
-
-                <div class="flex flex-col gap-3">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded">Entregue</span>
-                            <span class="text-xs profile-text-muted">28/06/2026</span>
-                        </div>
-                        <h4 class="text-sm font-bold profile-text">Combo Monster</h4>
-                        <p class="text-xs profile-text-muted mb-2">1x Burger, 1x Fritas</p>
-                        <span class="text-sm font-bold profile-text">R$ 45,90</span>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 profile-card transition-colors p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs font-bold px-2 py-1 bg-green-100 text-green-700 rounded">Entregue</span>
-                            <span class="text-xs profile-text-muted">15/06/2026</span>
-                        </div>
-                        <h4 class="text-sm font-bold profile-text">Salada Verão</h4>
-                        <p class="text-xs profile-text-muted mb-2">1x Salada com molho extra</p>
-                        <span class="text-sm font-bold profile-text">R$ 28,00</span>
-                    </div>
+                <div class="text-left">
+                  <span class="profile-text block text-sm font-bold">Meus Pedidos</span>
+                  <span class="profile-text-muted block text-xs text-gray-500"
+                    >Histórico completo</span
+                  >
                 </div>
-            </div>
+              </div>
+              <span class="material-symbols-outlined profile-text-muted text-gray-400"
+                >chevron_right</span
+              >
+            </button>
+          </div>
 
+          <div class="mt-12 pb-4 pt-8">
+            <button
+              class="profile-logout-btn w-full rounded-xl border border-transparent bg-gray-100 py-3 text-sm font-bold text-gray-600 transition-colors hover:bg-gray-200"
+            >
+              Sair do aplicativo
+            </button>
+          </div>
         </div>
 
-        <!-- Bottom Navigation -->
-        <div class="absolute bottom-0 left-0 w-full h-20 bg-white border-t border-gray-100 flex justify-around items-center px-2 pb-4 transition-colors duration-300" id="bottom-nav">
-            <button onclick="showHome()" id="nav-home" class="flex flex-col items-center gap-1 text-red-600 nav-btn-active">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
-                <span class="text-[10px] font-semibold">Início</span>
+        <!-- ADDRESS VIEW -->
+        <div id="address-view" class="hidden h-full flex-col">
+          <div class="mb-6 mt-2 flex items-center gap-3">
+            <button
+              onclick="showProfile()"
+              class="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-black/5"
+            >
+              <span class="material-symbols-outlined back-icon text-gray-900">arrow_back</span>
             </button>
-            <button class="flex flex-col items-center gap-1 text-gray-400 nav-btn-inactive relative">
-                <span class="material-symbols-outlined">search</span>
-                <span class="text-[10px] font-medium">Busca</span>
-            </button>
-            <button class="flex flex-col items-center gap-1 text-gray-400 relative nav-btn-inactive">
-                <span class="material-symbols-outlined">shopping_bag</span>
-                <span class="text-[10px] font-medium">Pedidos</span>
-                <span class="absolute top-0 right-1 w-2 h-2 rounded-full bg-red-500 badge-color"></span>
-            </button>
-            <button onclick="showProfile()" id="nav-profile" class="flex flex-col items-center gap-1 text-gray-400 nav-btn-inactive relative">
-                <span class="material-symbols-outlined">person</span>
-                <span class="text-[10px] font-medium">Perfil</span>
-            </button>
-        </div>
-        
-        <!-- Home Indicator -->
-        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-gray-300 rounded-full" id="home-indicator"></div>
+            <h2 class="profile-text text-lg font-bold">Meus Endereços</h2>
+          </div>
 
+          <div
+            class="profile-card mb-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+          >
+            <div class="mb-3">
+              <label class="profile-text mb-1 block text-xs font-bold">Apelido</label>
+              <input
+                type="text"
+                value="Casa"
+                class="profile-input w-full rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-900 outline-none"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="profile-text mb-1 block text-xs font-bold">Rua / Avenida</label>
+              <input
+                type="text"
+                value="Rua das Flores"
+                class="profile-input w-full rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-900 outline-none"
+              />
+            </div>
+            <div class="mb-3 grid grid-cols-2 gap-3">
+              <div>
+                <label class="profile-text mb-1 block text-xs font-bold">Número</label>
+                <input
+                  type="text"
+                  value="123"
+                  class="profile-input w-full rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-900 outline-none"
+                />
+              </div>
+              <div>
+                <label class="profile-text mb-1 block text-xs font-bold">Complemento</label>
+                <input
+                  type="text"
+                  value="Apt 42"
+                  class="profile-input w-full rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-900 outline-none"
+                />
+              </div>
+            </div>
+            <button
+              onclick="showProfile()"
+              class="cta-btn mt-2 w-full rounded-xl bg-red-600 py-3 text-sm font-bold text-white shadow-md transition-colors"
+            >
+              Salvar Alterações
+            </button>
+          </div>
+        </div>
+
+        <!-- PAYMENT VIEW -->
+        <div id="payment-view" class="hidden h-full flex-col">
+          <div class="mb-6 mt-2 flex items-center gap-3">
+            <button
+              onclick="showProfile()"
+              class="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-black/5"
+            >
+              <span class="material-symbols-outlined back-icon text-gray-900">arrow_back</span>
+            </button>
+            <h2 class="profile-text text-lg font-bold">Formas de Pagamento</h2>
+          </div>
+
+          <div
+            class="profile-card mb-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+          >
+            <div class="mb-3">
+              <label class="profile-text mb-1 block text-xs font-bold">Número do Cartão</label>
+              <input
+                type="text"
+                value="**** **** **** 4242"
+                class="profile-input w-full rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-900 outline-none"
+              />
+            </div>
+            <div class="mb-3 grid grid-cols-2 gap-3">
+              <div>
+                <label class="profile-text mb-1 block text-xs font-bold">Validade</label>
+                <input
+                  type="text"
+                  value="12/30"
+                  class="profile-input w-full rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-900 outline-none"
+                />
+              </div>
+              <div>
+                <label class="profile-text mb-1 block text-xs font-bold">CVV</label>
+                <input
+                  type="text"
+                  value="***"
+                  class="profile-input w-full rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-900 outline-none"
+                />
+              </div>
+            </div>
+            <button
+              onclick="showProfile()"
+              class="cta-btn mt-2 w-full rounded-xl bg-red-600 py-3 text-sm font-bold text-white shadow-md transition-colors"
+            >
+              Salvar Cartão
+            </button>
+          </div>
+        </div>
+
+        <!-- ORDERS VIEW -->
+        <div id="orders-view" class="hidden h-full flex-col">
+          <div class="mb-6 mt-2 flex items-center gap-3">
+            <button
+              onclick="showProfile()"
+              class="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-black/5"
+            >
+              <span class="material-symbols-outlined back-icon text-gray-900">arrow_back</span>
+            </button>
+            <h2 class="profile-text text-lg font-bold">Meus Pedidos</h2>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <div
+              class="profile-card rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+            >
+              <div class="mb-2 flex items-start justify-between">
+                <span class="rounded bg-green-100 px-2 py-1 text-xs font-bold text-green-700"
+                  >Entregue</span
+                >
+                <span class="profile-text-muted text-xs">28/06/2026</span>
+              </div>
+              <h4 class="profile-text text-sm font-bold">Combo Monster</h4>
+              <p class="profile-text-muted mb-2 text-xs">1x Burger, 1x Fritas</p>
+              <span class="profile-text text-sm font-bold">R$ 45,90</span>
+            </div>
+
+            <div
+              class="profile-card rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+            >
+              <div class="mb-2 flex items-start justify-between">
+                <span class="rounded bg-green-100 px-2 py-1 text-xs font-bold text-green-700"
+                  >Entregue</span
+                >
+                <span class="profile-text-muted text-xs">15/06/2026</span>
+              </div>
+              <h4 class="profile-text text-sm font-bold">Salada Verão</h4>
+              <p class="profile-text-muted mb-2 text-xs">1x Salada com molho extra</p>
+              <span class="profile-text text-sm font-bold">R$ 28,00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <div
+        class="absolute bottom-0 left-0 flex h-20 w-full items-center justify-around border-t border-gray-100 bg-white px-2 pb-4 transition-colors duration-300"
+        id="bottom-nav"
+      >
+        <button
+          onclick="showHome()"
+          id="nav-home"
+          class="nav-btn-active flex flex-col items-center gap-1 text-red-600"
+        >
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1"
+            >home</span
+          >
+          <span class="text-[10px] font-semibold">Início</span>
+        </button>
+        <button class="nav-btn-inactive relative flex flex-col items-center gap-1 text-gray-400">
+          <span class="material-symbols-outlined">search</span>
+          <span class="text-[10px] font-medium">Busca</span>
+        </button>
+        <button class="nav-btn-inactive relative flex flex-col items-center gap-1 text-gray-400">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span class="text-[10px] font-medium">Pedidos</span>
+          <span class="badge-color absolute right-1 top-0 h-2 w-2 rounded-full bg-red-500"></span>
+        </button>
+        <button
+          onclick="showProfile()"
+          id="nav-profile"
+          class="nav-btn-inactive relative flex flex-col items-center gap-1 text-gray-400"
+        >
+          <span class="material-symbols-outlined">person</span>
+          <span class="text-[10px] font-medium">Perfil</span>
+        </button>
+      </div>
+
+      <!-- Home Indicator -->
+      <div
+        class="absolute bottom-2 left-1/2 h-1 w-32 -translate-x-1/2 rounded-full bg-gray-300"
+        id="home-indicator"
+      ></div>
     </div>
 
     <!-- JS LOGIC -->
     <script>
-        let currentActiveTab = 'home';
-        let currentThemeKey = 'bbq';
+      let currentActiveTab = 'home';
+      let currentThemeKey = 'bbq';
 
-        function hideAllViews() {
-            const views = ['home-view', 'profile-view', 'address-view', 'payment-view', 'orders-view'];
-            views.forEach(id => {
-                document.getElementById(id).classList.remove('block', 'flex');
-                document.getElementById(id).classList.add('hidden');
-            });
-        }
-
-        function showHome() {
-            currentActiveTab = 'home';
-            hideAllViews();
-            document.getElementById('home-view').classList.add('block');
-            document.getElementById('home-view').classList.remove('hidden');
-            
-            const homeBtn = document.getElementById('nav-home');
-            const profileBtn = document.getElementById('nav-profile');
-            homeBtn.classList.remove('nav-btn-inactive');
-            homeBtn.classList.add('nav-btn-active');
-            profileBtn.classList.remove('nav-btn-active');
-            profileBtn.classList.add('nav-btn-inactive');
-            
-            setTheme(currentThemeKey);
-        }
-
-        function showProfile() {
-            currentActiveTab = 'profile';
-            hideAllViews();
-            document.getElementById('profile-view').classList.add('flex');
-            document.getElementById('profile-view').classList.remove('hidden');
-            
-            const homeBtn = document.getElementById('nav-home');
-            const profileBtn = document.getElementById('nav-profile');
-            profileBtn.classList.remove('nav-btn-inactive');
-            profileBtn.classList.add('nav-btn-active');
-            homeBtn.classList.remove('nav-btn-active');
-            homeBtn.classList.add('nav-btn-inactive');
-            
-            setTheme(currentThemeKey);
-        }
-
-        function showView(viewId) {
-            hideAllViews();
-            document.getElementById(viewId + '-view').classList.add('flex');
-            document.getElementById(viewId + '-view').classList.remove('hidden');
-            setTheme(currentThemeKey);
-        }
-        const themes = {
-            fastfood: {
-                appBg: 'bg-white',
-                textColor: 'text-gray-900',
-                textMuted: 'text-gray-500',
-                inputBg: 'bg-gray-100',
-                navBg: 'bg-white',
-                navBorder: 'border-gray-100',
-                ctaColor: 'bg-red-600',
-                ctaHover: 'hover:bg-red-700',
-                ctaShadow: 'shadow-red-500/30',
-                activeNav: 'text-red-600',
-                badgeBg: 'bg-red-500',
-                heroTag: 'bg-yellow-400 text-gray-900',
-                heroTitle: 'Combo Monster - 30% OFF',
-                heroImg: 'https://loremflickr.com/600/400/burger,fries',
-                prod1Title: 'Double Smash Burger',
-                prod1Desc: 'Pão brioche, 2x blend 90g, queijo cheddar, molho da casa e bacon crocante.',
-                prod1Img: 'images/Double Smash Burger.jpg',
-                prod2Title: 'Batata Rústica com Cheddar',
-                prod2Desc: 'Porção de batatas rústicas com nosso exclusivo creme de cheddar.',
-                prod2Img: 'images/Batata Rústica com Cheddar.jpg'
-            },
-            vegan: {
-                appBg: 'bg-[#faf9f6]', // Off-white
-                textColor: 'text-[#3e4033]', // Earthy dark green
-                textMuted: 'text-[#878a73]', // Earthy muted
-                inputBg: 'bg-[#f0efe9]',
-                navBg: 'bg-[#faf9f6]',
-                navBorder: 'border-[#eae8e1]',
-                ctaColor: 'bg-[#4ade80]', // Vibrant fresh green
-                ctaHover: 'hover:bg-[#22c55e]',
-                ctaShadow: 'shadow-green-500/20',
-                activeNav: 'text-[#22c55e]',
-                badgeBg: 'bg-[#f59e0b]', // Subtle orange warning
-                heroTag: 'bg-[#d9f99d] text-[#3f6212]',
-                heroTitle: 'Saladas Frescas da Estação',
-                heroImg: 'https://loremflickr.com/600/400/salad',
-                prod1Title: 'Bowl de Quinoa Orgânica',
-                prod1Desc: 'Quinoa, abacate, tomate cereja, grão de bico crocante e molho tahine.',
-                prod1Img: 'images/Bowl de Quinoa Orgânica.jpeg',
-                prod2Title: 'Salada Verão Refrescante',
-                prod2Desc: 'Mix de folhas, morangos, amêndoas e queijo feta vegano com vinagrete.',
-                prod2Img: 'images/Salada Verão Refrescante.jpg'
-            },
-            bbq: {
-                appBg: 'bg-[#121212]', // Dark Mode
-                textColor: 'text-[#f5f5f5]', // Off white text
-                textMuted: 'text-[#a3a3a3]', // Dark muted
-                inputBg: 'bg-[#262626]', // Dark surface
-                navBg: 'bg-[#1c1c1c]',
-                navBorder: 'border-[#2d2d2d]',
-                ctaColor: 'bg-orange-500', // Vibrant orange
-                ctaHover: 'hover:bg-orange-600',
-                ctaShadow: 'shadow-orange-500/20',
-                activeNav: 'text-orange-500',
-                badgeBg: 'bg-orange-500',
-                heroTag: 'bg-red-600 text-white',
-                heroTitle: 'Texas Brisket Defumado',
-                heroImg: 'images/costelinha-de-porco-ao-barbecue-1657229553564_v2_4x3.jpg',
-                prod1Title: 'Costelinha BBQ Premium',
-                prod1Desc: 'Costelinha de porco defumada por 12 horas em lenha de macieira com BBQ caseiro.',
-                prod1Img: 'images/costelinha-de-porco-ao-barbecue-1657229553564_v2_4x3.jpg',
-                prod2Title: 'Smoked Sausage',
-                prod2Desc: 'Linguiça artesanal defumada recheada com queijo provolone e jalapeño.',
-                prod2Img: 'images/Smoke%20Sausage.jpg'
-            }
-        };
-
-        function removeTailwindColors(el) {
-            if(!el) return;
-            const classesToRemove = Array.from(el.classList).filter(c => 
-                c.startsWith('bg-') || c.startsWith('text-') || c.startsWith('border-') || 
-                c.startsWith('hover:bg-') || c.startsWith('shadow-')
-            );
-            classesToRemove.forEach(c => el.classList.remove(c));
-        }
-
-        function setTheme(themeKey) {
-            currentThemeKey = themeKey;
-            const t = themes[themeKey];
-            
-            // App Container Background & Text
-            const app = document.getElementById('app-container');
-            app.className = `w-full max-w-[375px] h-[812px] rounded-[40px] shadow-2xl overflow-hidden relative border-[8px] border-gray-900 transition-colors duration-500 ${t.appBg} ${t.textColor}`;
-
-            // Status Bar Text
-            const statusBar = document.getElementById('status-bar');
-            removeTailwindColors(statusBar);
-            statusBar.className = `h-12 w-full flex justify-between items-center px-6 text-xs font-medium z-50 relative ${t.textColor}`;
-
-            // Texts
-            const mutedTexts = document.querySelectorAll('#greeting-text, #prod1-desc, #prod2-desc, #location-text span');
-            mutedTexts.forEach(el => {
-                el.classList.remove('text-gray-500', 'text-[#878a73]', 'text-[#a3a3a3]');
-                el.classList.add(t.textMuted);
-            });
-
-            // Input
-            const search = document.getElementById('search-input');
-            removeTailwindColors(search);
-            search.className = `w-full text-sm rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-300 ${t.inputBg} ${t.textColor}`;
-
-            // CTA Buttons
-            const ctas = document.querySelectorAll('.cta-btn');
-            ctas.forEach(btn => {
-                removeTailwindColors(btn);
-                btn.className = `w-8 h-8 rounded-full flex items-center justify-center text-white transition-colors cta-btn shadow-md ${t.ctaColor} ${t.ctaHover} ${t.ctaShadow}`;
-            });
-
-            // Bottom Nav
-            const nav = document.getElementById('bottom-nav');
-            removeTailwindColors(nav);
-            nav.className = `absolute bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-4 transition-colors duration-300 border-t ${t.navBg} ${t.navBorder}`;
-            
-            const activeNav = document.querySelector('.nav-btn-active');
-            removeTailwindColors(activeNav);
-            activeNav.className = `flex flex-col items-center gap-1 nav-btn-active ${t.activeNav}`;
-
-            const inactiveNavs = document.querySelectorAll('.nav-btn-inactive');
-            inactiveNavs.forEach(n => {
-                removeTailwindColors(n);
-                n.className = `flex flex-col items-center gap-1 nav-btn-inactive relative ${t.textMuted}`;
-            });
-
-            // Badge
-            const badge = document.querySelector('.badge-color');
-            if(badge) {
-                removeTailwindColors(badge);
-                badge.className = `absolute top-0 right-1 w-2 h-2 rounded-full badge-color ${t.badgeBg}`;
-            }
-
-            // Hero
-            const heroTag = document.getElementById('hero-tag');
-            removeTailwindColors(heroTag);
-            heroTag.className = `text-xs font-bold uppercase tracking-wider mb-1 rounded px-1 w-fit ${t.heroTag}`;
-            
-            document.getElementById('hero-title').textContent = t.heroTitle;
-            document.getElementById('hero-img').src = t.heroImg;
-
-            // Products
-            document.getElementById('prod1-title').textContent = t.prod1Title;
-            document.getElementById('prod1-desc').textContent = t.prod1Desc;
-            document.getElementById('prod1-img').src = t.prod1Img;
-
-            document.getElementById('prod2-title').textContent = t.prod2Title;
-            document.getElementById('prod2-desc').textContent = t.prod2Desc;
-            document.getElementById('prod2-img').src = t.prod2Img;
-            // Products & Categories & Cards
-            const cardsAndCats = document.querySelectorAll('#prod1-card, #prod2-card, #cat1-bg, #cat2-bg, #cat3-bg, #cat4-bg, .profile-card, .profile-icon-bg');
-            cardsAndCats.forEach(el => {
-                removeTailwindColors(el);
-                el.className = el.className.includes('profile-card') 
-                    ? `flex items-center justify-between p-4 rounded-xl shadow-sm border profile-card transition-colors ${t.appBg} ${t.navBorder}`
-                    : el.className.includes('profile-icon-bg')
-                        ? `w-10 h-10 rounded-full flex items-center justify-center profile-icon-bg transition-colors ${t.inputBg}`
-                        : `flex gap-4 p-3 rounded-xl shadow-sm border transition-colors ${t.appBg} ${t.navBorder}`;
-            });
-
-            // Profile specific typography
-            const profileName = document.getElementById('profile-name');
-            if (profileName) {
-                removeTailwindColors(profileName);
-                profileName.className = `text-xl font-bold ${t.textColor}`;
-            }
-
-            const profileEmail = document.getElementById('profile-email');
-            if (profileEmail) {
-                removeTailwindColors(profileEmail);
-                profileEmail.className = `text-xs ${t.textMuted}`;
-            }
-
-            document.querySelectorAll('.profile-text').forEach(el => {
-                removeTailwindColors(el);
-                el.className = `block text-sm font-bold profile-text ${t.textColor}`;
-            });
-
-            document.querySelectorAll('.profile-icon').forEach(el => {
-                removeTailwindColors(el);
-                el.className = `material-symbols-outlined profile-icon ${t.textColor}`;
-            });
-
-            document.querySelectorAll('.profile-text-muted').forEach(el => {
-                removeTailwindColors(el);
-                el.className = `block text-xs profile-text-muted ${t.textMuted}`;
-            });
-
-            const logoutBtn = document.querySelector('.profile-logout-btn');
-            if (logoutBtn) {
-                removeTailwindColors(logoutBtn);
-                logoutBtn.className = `w-full py-3 rounded-xl font-bold text-sm transition-colors profile-logout-btn border border-transparent ${t.inputBg} ${t.textColor} hover:brightness-110`;
-            }
-
-            document.querySelectorAll('.profile-input').forEach(el => {
-                removeTailwindColors(el);
-                el.className = `w-full text-sm rounded-lg py-2 px-3 outline-none profile-input transition-colors ${t.inputBg} ${t.textColor}`;
-            });
-
-            document.querySelectorAll('.back-icon').forEach(el => {
-                removeTailwindColors(el);
-                el.className = `material-symbols-outlined back-icon transition-colors ${t.textColor}`;
-            });
-            // Page Background
-            const body = document.getElementById('body-bg');
-            if(themeKey === 'bbq') {
-                body.classList.remove('bg-gray-100');
-                body.classList.add('bg-[#0a0a0a]');
-                document.getElementById('controls-bg').classList.remove('bg-white', 'border-gray-200');
-                document.getElementById('controls-bg').classList.add('bg-gray-800', 'border-gray-700');
-                document.getElementById('controls-title').classList.remove('text-gray-500');
-                document.getElementById('controls-title').classList.add('text-gray-300');
-            } else {
-                body.classList.remove('bg-[#0a0a0a]');
-                body.classList.add('bg-gray-100');
-                document.getElementById('controls-bg').classList.add('bg-white', 'border-gray-200');
-                document.getElementById('controls-bg').classList.remove('bg-gray-800', 'border-gray-700');
-                document.getElementById('controls-title').classList.add('text-gray-500');
-                document.getElementById('controls-title').classList.remove('text-gray-300');
-            }
-        }
-
-        // Set default theme (BBQ Dark)
-        document.addEventListener('DOMContentLoaded', () => {
-            setTheme('bbq');
+      function hideAllViews() {
+        const views = ['home-view', 'profile-view', 'address-view', 'payment-view', 'orders-view'];
+        views.forEach((id) => {
+          document.getElementById(id).classList.remove('block', 'flex');
+          document.getElementById(id).classList.add('hidden');
         });
+      }
+
+      function showHome() {
+        currentActiveTab = 'home';
+        hideAllViews();
+        document.getElementById('home-view').classList.add('block');
+        document.getElementById('home-view').classList.remove('hidden');
+
+        const homeBtn = document.getElementById('nav-home');
+        const profileBtn = document.getElementById('nav-profile');
+        homeBtn.classList.remove('nav-btn-inactive');
+        homeBtn.classList.add('nav-btn-active');
+        profileBtn.classList.remove('nav-btn-active');
+        profileBtn.classList.add('nav-btn-inactive');
+
+        setTheme(currentThemeKey);
+      }
+
+      function showProfile() {
+        currentActiveTab = 'profile';
+        hideAllViews();
+        document.getElementById('profile-view').classList.add('flex');
+        document.getElementById('profile-view').classList.remove('hidden');
+
+        const homeBtn = document.getElementById('nav-home');
+        const profileBtn = document.getElementById('nav-profile');
+        profileBtn.classList.remove('nav-btn-inactive');
+        profileBtn.classList.add('nav-btn-active');
+        homeBtn.classList.remove('nav-btn-active');
+        homeBtn.classList.add('nav-btn-inactive');
+
+        setTheme(currentThemeKey);
+      }
+
+      function showView(viewId) {
+        hideAllViews();
+        document.getElementById(viewId + '-view').classList.add('flex');
+        document.getElementById(viewId + '-view').classList.remove('hidden');
+        setTheme(currentThemeKey);
+      }
+      const themes = {
+        fastfood: {
+          appBg: 'bg-white',
+          textColor: 'text-gray-900',
+          textMuted: 'text-gray-500',
+          inputBg: 'bg-gray-100',
+          navBg: 'bg-white',
+          navBorder: 'border-gray-100',
+          ctaColor: 'bg-red-600',
+          ctaHover: 'hover:bg-red-700',
+          ctaShadow: 'shadow-red-500/30',
+          activeNav: 'text-red-600',
+          badgeBg: 'bg-red-500',
+          heroTag: 'bg-yellow-400 text-gray-900',
+          heroTitle: 'Combo Monster - 30% OFF',
+          heroImg: 'https://loremflickr.com/600/400/burger,fries',
+          prod1Title: 'Double Smash Burger',
+          prod1Desc: 'Pão brioche, 2x blend 90g, queijo cheddar, molho da casa e bacon crocante.',
+          prod1Img: 'images/Double Smash Burger.jpg',
+          prod2Title: 'Batata Rústica com Cheddar',
+          prod2Desc: 'Porção de batatas rústicas com nosso exclusivo creme de cheddar.',
+          prod2Img: 'images/Batata Rústica com Cheddar.jpg',
+        },
+        vegan: {
+          appBg: 'bg-[#faf9f6]', // Off-white
+          textColor: 'text-[#3e4033]', // Earthy dark green
+          textMuted: 'text-[#878a73]', // Earthy muted
+          inputBg: 'bg-[#f0efe9]',
+          navBg: 'bg-[#faf9f6]',
+          navBorder: 'border-[#eae8e1]',
+          ctaColor: 'bg-[#4ade80]', // Vibrant fresh green
+          ctaHover: 'hover:bg-[#22c55e]',
+          ctaShadow: 'shadow-green-500/20',
+          activeNav: 'text-[#22c55e]',
+          badgeBg: 'bg-[#f59e0b]', // Subtle orange warning
+          heroTag: 'bg-[#d9f99d] text-[#3f6212]',
+          heroTitle: 'Saladas Frescas da Estação',
+          heroImg: 'https://loremflickr.com/600/400/salad',
+          prod1Title: 'Bowl de Quinoa Orgânica',
+          prod1Desc: 'Quinoa, abacate, tomate cereja, grão de bico crocante e molho tahine.',
+          prod1Img: 'images/Bowl de Quinoa Orgânica.jpeg',
+          prod2Title: 'Salada Verão Refrescante',
+          prod2Desc: 'Mix de folhas, morangos, amêndoas e queijo feta vegano com vinagrete.',
+          prod2Img: 'images/Salada Verão Refrescante.jpg',
+        },
+        bbq: {
+          appBg: 'bg-[#121212]', // Dark Mode
+          textColor: 'text-[#f5f5f5]', // Off white text
+          textMuted: 'text-[#a3a3a3]', // Dark muted
+          inputBg: 'bg-[#262626]', // Dark surface
+          navBg: 'bg-[#1c1c1c]',
+          navBorder: 'border-[#2d2d2d]',
+          ctaColor: 'bg-orange-500', // Vibrant orange
+          ctaHover: 'hover:bg-orange-600',
+          ctaShadow: 'shadow-orange-500/20',
+          activeNav: 'text-orange-500',
+          badgeBg: 'bg-orange-500',
+          heroTag: 'bg-red-600 text-white',
+          heroTitle: 'Texas Brisket Defumado',
+          heroImg: 'images/costelinha-de-porco-ao-barbecue-1657229553564_v2_4x3.jpg',
+          prod1Title: 'Costelinha BBQ Premium',
+          prod1Desc:
+            'Costelinha de porco defumada por 12 horas em lenha de macieira com BBQ caseiro.',
+          prod1Img: 'images/costelinha-de-porco-ao-barbecue-1657229553564_v2_4x3.jpg',
+          prod2Title: 'Smoked Sausage',
+          prod2Desc: 'Linguiça artesanal defumada recheada com queijo provolone e jalapeño.',
+          prod2Img: 'images/Smoke%20Sausage.jpg',
+        },
+      };
+
+      function removeTailwindColors(el) {
+        if (!el) return;
+        const classesToRemove = Array.from(el.classList).filter(
+          (c) =>
+            c.startsWith('bg-') ||
+            c.startsWith('text-') ||
+            c.startsWith('border-') ||
+            c.startsWith('hover:bg-') ||
+            c.startsWith('shadow-'),
+        );
+        classesToRemove.forEach((c) => el.classList.remove(c));
+      }
+
+      function setTheme(themeKey) {
+        currentThemeKey = themeKey;
+        const t = themes[themeKey];
+
+        // App Container Background & Text
+        const app = document.getElementById('app-container');
+        app.className = `w-full max-w-[375px] h-[812px] rounded-[40px] shadow-2xl overflow-hidden relative border-[8px] border-gray-900 transition-colors duration-500 ${t.appBg} ${t.textColor}`;
+
+        // Status Bar Text
+        const statusBar = document.getElementById('status-bar');
+        removeTailwindColors(statusBar);
+        statusBar.className = `h-12 w-full flex justify-between items-center px-6 text-xs font-medium z-50 relative ${t.textColor}`;
+
+        // Texts
+        const mutedTexts = document.querySelectorAll(
+          '#greeting-text, #prod1-desc, #prod2-desc, #location-text span',
+        );
+        mutedTexts.forEach((el) => {
+          el.classList.remove('text-gray-500', 'text-[#878a73]', 'text-[#a3a3a3]');
+          el.classList.add(t.textMuted);
+        });
+
+        // Input
+        const search = document.getElementById('search-input');
+        removeTailwindColors(search);
+        search.className = `w-full text-sm rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-300 ${t.inputBg} ${t.textColor}`;
+
+        // CTA Buttons
+        const ctas = document.querySelectorAll('.cta-btn');
+        ctas.forEach((btn) => {
+          removeTailwindColors(btn);
+          btn.className = `w-8 h-8 rounded-full flex items-center justify-center text-white transition-colors cta-btn shadow-md ${t.ctaColor} ${t.ctaHover} ${t.ctaShadow}`;
+        });
+
+        // Bottom Nav
+        const nav = document.getElementById('bottom-nav');
+        removeTailwindColors(nav);
+        nav.className = `absolute bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-4 transition-colors duration-300 border-t ${t.navBg} ${t.navBorder}`;
+
+        const activeNav = document.querySelector('.nav-btn-active');
+        removeTailwindColors(activeNav);
+        activeNav.className = `flex flex-col items-center gap-1 nav-btn-active ${t.activeNav}`;
+
+        const inactiveNavs = document.querySelectorAll('.nav-btn-inactive');
+        inactiveNavs.forEach((n) => {
+          removeTailwindColors(n);
+          n.className = `flex flex-col items-center gap-1 nav-btn-inactive relative ${t.textMuted}`;
+        });
+
+        // Badge
+        const badge = document.querySelector('.badge-color');
+        if (badge) {
+          removeTailwindColors(badge);
+          badge.className = `absolute top-0 right-1 w-2 h-2 rounded-full badge-color ${t.badgeBg}`;
+        }
+
+        // Hero
+        const heroTag = document.getElementById('hero-tag');
+        removeTailwindColors(heroTag);
+        heroTag.className = `text-xs font-bold uppercase tracking-wider mb-1 rounded px-1 w-fit ${t.heroTag}`;
+
+        document.getElementById('hero-title').textContent = t.heroTitle;
+        document.getElementById('hero-img').src = t.heroImg;
+
+        // Products
+        document.getElementById('prod1-title').textContent = t.prod1Title;
+        document.getElementById('prod1-desc').textContent = t.prod1Desc;
+        document.getElementById('prod1-img').src = t.prod1Img;
+
+        document.getElementById('prod2-title').textContent = t.prod2Title;
+        document.getElementById('prod2-desc').textContent = t.prod2Desc;
+        document.getElementById('prod2-img').src = t.prod2Img;
+        // Products & Categories & Cards
+        const cardsAndCats = document.querySelectorAll(
+          '#prod1-card, #prod2-card, #cat1-bg, #cat2-bg, #cat3-bg, #cat4-bg, .profile-card, .profile-icon-bg',
+        );
+        cardsAndCats.forEach((el) => {
+          removeTailwindColors(el);
+          el.className = el.className.includes('profile-card')
+            ? `flex items-center justify-between p-4 rounded-xl shadow-sm border profile-card transition-colors ${t.appBg} ${t.navBorder}`
+            : el.className.includes('profile-icon-bg')
+              ? `w-10 h-10 rounded-full flex items-center justify-center profile-icon-bg transition-colors ${t.inputBg}`
+              : `flex gap-4 p-3 rounded-xl shadow-sm border transition-colors ${t.appBg} ${t.navBorder}`;
+        });
+
+        // Profile specific typography
+        const profileName = document.getElementById('profile-name');
+        if (profileName) {
+          removeTailwindColors(profileName);
+          profileName.className = `text-xl font-bold ${t.textColor}`;
+        }
+
+        const profileEmail = document.getElementById('profile-email');
+        if (profileEmail) {
+          removeTailwindColors(profileEmail);
+          profileEmail.className = `text-xs ${t.textMuted}`;
+        }
+
+        document.querySelectorAll('.profile-text').forEach((el) => {
+          removeTailwindColors(el);
+          el.className = `block text-sm font-bold profile-text ${t.textColor}`;
+        });
+
+        document.querySelectorAll('.profile-icon').forEach((el) => {
+          removeTailwindColors(el);
+          el.className = `material-symbols-outlined profile-icon ${t.textColor}`;
+        });
+
+        document.querySelectorAll('.profile-text-muted').forEach((el) => {
+          removeTailwindColors(el);
+          el.className = `block text-xs profile-text-muted ${t.textMuted}`;
+        });
+
+        const logoutBtn = document.querySelector('.profile-logout-btn');
+        if (logoutBtn) {
+          removeTailwindColors(logoutBtn);
+          logoutBtn.className = `w-full py-3 rounded-xl font-bold text-sm transition-colors profile-logout-btn border border-transparent ${t.inputBg} ${t.textColor} hover:brightness-110`;
+        }
+
+        document.querySelectorAll('.profile-input').forEach((el) => {
+          removeTailwindColors(el);
+          el.className = `w-full text-sm rounded-lg py-2 px-3 outline-none profile-input transition-colors ${t.inputBg} ${t.textColor}`;
+        });
+
+        document.querySelectorAll('.back-icon').forEach((el) => {
+          removeTailwindColors(el);
+          el.className = `material-symbols-outlined back-icon transition-colors ${t.textColor}`;
+        });
+        // Page Background
+        const body = document.getElementById('body-bg');
+        if (themeKey === 'bbq') {
+          body.classList.remove('bg-gray-100');
+          body.classList.add('bg-[#0a0a0a]');
+          document.getElementById('controls-bg').classList.remove('bg-white', 'border-gray-200');
+          document.getElementById('controls-bg').classList.add('bg-gray-800', 'border-gray-700');
+          document.getElementById('controls-title').classList.remove('text-gray-500');
+          document.getElementById('controls-title').classList.add('text-gray-300');
+        } else {
+          body.classList.remove('bg-[#0a0a0a]');
+          body.classList.add('bg-gray-100');
+          document.getElementById('controls-bg').classList.add('bg-white', 'border-gray-200');
+          document.getElementById('controls-bg').classList.remove('bg-gray-800', 'border-gray-700');
+          document.getElementById('controls-title').classList.add('text-gray-500');
+          document.getElementById('controls-title').classList.remove('text-gray-300');
+        }
+      }
+
+      // Set default theme (BBQ Dark)
+      document.addEventListener('DOMContentLoaded', () => {
+        setTheme('bbq');
+      });
     </script>
 
     <style>
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
     </style>
-</body>
+  </body>
 </html>

@@ -15,13 +15,14 @@ O projeto possui um fluxo completo de apresentação e cadastro do usuário, div
 
 ## 🛠 Tecnologias Utilizadas
 
+- **Node.js & Vite**: Ferramentas modernas de build e servidor de desenvolvimento para otimizar os assets e entregar alta performance.
 - **HTML5**: Estruturação semântica e acessível.
-- **Tailwind CSS**: Framework utilitário utilizado via CDN e scripts de configuração customizados (`tailwind.config.js`) para estilização rápida, responsiva e alinhada ao design system moderno.
-- **Vanilla JavaScript**: Lógica de interface, formatação de máscaras de input e alternância dinâmica de temas, sem a necessidade de frameworks pesados adicionais.
+- **Tailwind CSS**: Framework utilitário configurado localmente via Node.js para estilização rápida, responsiva e alinhada ao design system moderno (com CSS compilado e otimizado).
+- **Vanilla JavaScript**: Lógica de interface, formatação de máscaras de input e alternância dinâmica de temas.
 
 ## 🚀 Como Executar Localmente
 
-Este projeto é estático e não requer configurações complexas de backend para a visualização inicial.
+Este projeto utiliza Node.js e Vite para gerenciar dependências e servir as páginas com recarregamento instantâneo.
 
 1. Clone este repositório:
    ```bash
@@ -31,15 +32,23 @@ Este projeto é estático e não requer configurações complexas de backend par
    ```bash
    cd HubSolu
    ```
-3. Inicie um servidor local simples (recomendado para carregar scripts externos e módulos corretamente). Se tiver o Python instalado, você pode usar:
+3. Instale as dependências:
    ```bash
-   python -m http.server 8080
+   npm install
    ```
-4. Abra o navegador e acesse: `http://localhost:8080/`
+4. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+5. Abra o navegador no endereço exibido no terminal (geralmente `http://localhost:5173/`).
+
+Para gerar a versão otimizada de produção, utilize `npm run build`.
 
 ## 📝 Últimas Atualizações e Changelog
 
-**Últimas modificações:** 
+**Últimas modificações:**
+
+- [30/06/2026 11:55] Refatoração do projeto para utilizar Node.js, Vite e TailwindCSS local, substituindo o uso de CDN por um fluxo de build profissional.
 - [30/06/2026 10:00] Adição de sub-telas interativas (Endereços, Pagamentos e Pedidos) na aba de Perfil em `demo_delivery_ui.html`.
 - [30/06/2026 09:50] Atualização da tela `demo_delivery_ui.html` para incluir navegação por abas com uma visão interativa de Perfil.
 - [30/06/2026 09:37] Criação da tela `perfil_usuario.html` com layout em Dark Mode e formulários de gestão.

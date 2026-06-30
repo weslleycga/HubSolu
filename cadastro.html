@@ -1,139 +1,259 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html lang="pt-BR"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Hubcontrole - Crie sua conta</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-
-
-<link rel="stylesheet" href="css/cadastro.css" />
-<script src="js/tailwind.config.js"></script></head>
-<body class="bg-hub-bg text-hub-text-primary min-h-screen flex flex-col relative overflow-hidden">
-<!-- Background Glow -->
-<div aria-hidden="true" class="absolute inset-0 bg-glow-radial pointer-events-none"></div>
-<!-- BEGIN: Header -->
-<header class="w-full py-6 px-8 flex justify-between items-center relative z-10">
-<div class="flex items-center gap-2">
-<!-- Logo Icon -->
-<div class="w-8 h-8 bg-hub-primary rounded flex items-center justify-center">
-<svg class="text-white" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-</svg>
-</div>
-<!-- Logo Text -->
-<span class="text-xl font-bold tracking-tight">Hubcontrole</span>
-</div>
-<a class="text-hub-text-secondary hover:text-white flex items-center gap-2 text-sm font-medium transition-colors" href="index.html">
-      Voltar
-      <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
-<line x1="5" x2="19" y1="12" y2="12"></line>
-<polyline points="12 5 19 12 12 19"></polyline>
-</svg>
-</a>
-</header>
-<!-- END: Header -->
-<!-- BEGIN: Main Content -->
-<main class="flex-grow flex items-center justify-center p-4 relative z-10">
-<div class="w-full max-w-md">
-<!-- Stepper -->
-<div class="flex items-center justify-center mb-10 relative">
-<div class="absolute w-[60%] h-[1px] bg-hub-border top-1/2 -translate-y-1/2 -z-10"></div>
-<div class="flex justify-between w-full max-w-[200px]">
-<div class="w-8 h-8 rounded-full bg-hub-primary text-white flex items-center justify-center text-sm font-bold shadow-[0_0_15px_rgba(99,102,241,0.5)]">
-            1
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Hubcontrole - Crie sua conta</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/cadastro.css" />
+  </head>
+  <body class="relative flex min-h-screen flex-col overflow-hidden bg-hub-bg text-hub-text-primary">
+    <!-- Background Glow -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-glow-radial"></div>
+    <!-- BEGIN: Header -->
+    <header class="relative z-10 flex w-full items-center justify-between px-8 py-6">
+      <div class="flex items-center gap-2">
+        <!-- Logo Icon -->
+        <div class="flex h-8 w-8 items-center justify-center rounded bg-hub-primary">
+          <svg
+            class="text-white"
+            fill="none"
+            height="20"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewbox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+        </div>
+        <!-- Logo Text -->
+        <span class="text-xl font-bold tracking-tight">Hubcontrole</span>
+      </div>
+      <a
+        class="flex items-center gap-2 text-sm font-medium text-hub-text-secondary transition-colors hover:text-white"
+        href="index.html"
+      >
+        Voltar
+        <svg
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewbox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line x1="5" x2="19" y1="12" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </header>
+    <!-- END: Header -->
+    <!-- BEGIN: Main Content -->
+    <main class="relative z-10 flex flex-grow items-center justify-center p-4">
+      <div class="w-full max-w-md">
+        <!-- Stepper -->
+        <div class="relative mb-10 flex items-center justify-center">
+          <div class="absolute top-1/2 -z-10 h-[1px] w-[60%] -translate-y-1/2 bg-hub-border"></div>
+          <div class="flex w-full max-w-[200px] justify-between">
+            <div
+              class="flex h-8 w-8 items-center justify-center rounded-full bg-hub-primary text-sm font-bold text-white shadow-[0_0_15px_rgba(99,102,241,0.5)]"
+            >
+              1
+            </div>
+            <div
+              class="flex h-8 w-8 items-center justify-center rounded-full bg-hub-border text-sm font-bold text-hub-text-secondary"
+            >
+              2
+            </div>
+            <div
+              class="flex h-8 w-8 items-center justify-center rounded-full bg-hub-border text-sm font-bold text-hub-text-secondary"
+            >
+              3
+            </div>
           </div>
-<div class="w-8 h-8 rounded-full bg-hub-border text-hub-text-secondary flex items-center justify-center text-sm font-bold">
-            2
+        </div>
+        <!-- Header -->
+        <div class="mb-8">
+          <h1 class="mb-2 text-3xl font-bold">Crie sua conta</h1>
+          <p class="font-medium text-hub-text-secondary">Seus dados de contato para começar.</p>
+        </div>
+        <!-- Form -->
+        <form
+          class="space-y-5"
+          onsubmit="
+            event.preventDefault();
+            window.location.href = 'selecao_negocio.html';
+          "
+        >
+          <!-- Name Input -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-hub-text-secondary" for="name"
+              >Nome completo *</label
+            >
+            <div class="relative">
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg
+                  class="text-hub-text-secondary"
+                  fill="none"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewbox="0 0 24 24"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <input
+                class="w-full rounded-lg border border-hub-border bg-hub-input-bg py-3 pl-10 pr-4 text-white placeholder-hub-text-secondary/50 transition-colors focus:border-hub-primary focus:outline-none focus:ring-1 focus:ring-hub-primary"
+                id="name"
+                placeholder="Seu nome completo"
+                type="text"
+                required
+                pattern="^[a-zA-ZÀ-ÿ]+(?:\s+[a-zA-ZÀ-ÿ]+)+$"
+                title="Digite seu nome completo (nome e sobrenome)"
+              />
+            </div>
           </div>
-<div class="w-8 h-8 rounded-full bg-hub-border text-hub-text-secondary flex items-center justify-center text-sm font-bold">
-            3
+          <!-- Email Input -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-hub-text-secondary" for="email"
+              >E-mail *</label
+            >
+            <div class="relative">
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg
+                  class="text-hub-text-secondary"
+                  fill="none"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewbox="0 0 24 24"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <input
+                class="w-full rounded-lg border border-hub-border bg-hub-input-bg py-3 pl-10 pr-4 text-white placeholder-hub-text-secondary/50 transition-colors focus:border-hub-primary focus:outline-none focus:ring-1 focus:ring-hub-primary"
+                id="email"
+                placeholder="seu@email.com"
+                type="email"
+                required
+              />
+            </div>
           </div>
-</div>
-</div>
-<!-- Header -->
-<div class="mb-8">
-<h1 class="text-3xl font-bold mb-2">Crie sua conta</h1>
-<p class="text-hub-text-secondary font-medium">Seus dados de contato para começar.</p>
-</div>
-<!-- Form -->
-<form class="space-y-5" onsubmit="event.preventDefault(); window.location.href='selecao_negocio.html';">
-<!-- Name Input -->
-<div class="space-y-2">
-<label class="block text-sm font-semibold text-hub-text-secondary" for="name">Nome completo *</label>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<svg class="text-hub-text-secondary" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-<circle cx="12" cy="7" r="4"></circle>
-</svg>
-</div>
-<input class="w-full bg-hub-input-bg border border-hub-border text-white rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:border-hub-primary focus:ring-1 focus:ring-hub-primary transition-colors placeholder-hub-text-secondary/50" id="name" placeholder="Seu nome completo" type="text" required pattern="^[a-zA-ZÀ-ÿ]+(?:\s+[a-zA-ZÀ-ÿ]+)+$" title="Digite seu nome completo (nome e sobrenome)"/>
-</div>
-</div>
-<!-- Email Input -->
-<div class="space-y-2">
-<label class="block text-sm font-semibold text-hub-text-secondary" for="email">E-mail *</label>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<svg class="text-hub-text-secondary" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-<polyline points="22,6 12,13 2,6"></polyline>
-</svg>
-</div>
-<input class="w-full bg-hub-input-bg border border-hub-border text-white rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:border-hub-primary focus:ring-1 focus:ring-hub-primary transition-colors placeholder-hub-text-secondary/50" id="email" placeholder="seu@email.com" type="email" required/>
-</div>
-</div>
-<!-- Phone Input -->
-<div class="space-y-2">
-<label class="block text-sm font-semibold text-hub-text-secondary" for="phone">Celular / WhatsApp *</label>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<svg class="text-hub-text-secondary" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-</svg>
-</div>
-<input class="w-full bg-hub-input-bg border border-hub-border text-white rounded-lg pl-10 pr-4 py-3 focus:outline-none focus:border-hub-primary focus:ring-1 focus:ring-hub-primary transition-colors placeholder-hub-text-secondary/50" id="phone" placeholder="(11) 99999-9999" type="tel" maxlength="15" required pattern="^\(\d{2}\)\s\d{4,5}-\d{4}$" title="Digite um telefone válido no formato (DDD) XXXXX-XXXX"/>
-</div>
-</div>
-<!-- Submit Button -->
-<div class="pt-4">
-<button class="w-full bg-gradient-primary hover:opacity-90 text-white font-bold py-3.5 px-4 rounded-lg flex items-center justify-center gap-2 transition-opacity" type="submit">
-            Continuar
-            <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-<line x1="5" x2="19" y1="12" y2="12"></line>
-<polyline points="12 5 19 12 12 19"></polyline>
-</svg>
-</button>
-</div>
-</form>
-<!-- Footer Link -->
-<div class="mt-6 text-center">
-<p class="text-sm text-hub-text-secondary">
-          Já tem conta? <a class="text-[#a78bfa] hover:text-[#c4b5fd] font-semibold transition-colors" href="cadastro.html">Entrar</a>
-</p>
-</div>
-</div>
-</main>
-<!-- END: Main Content -->
+          <!-- Phone Input -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-hub-text-secondary" for="phone"
+              >Celular / WhatsApp *</label
+            >
+            <div class="relative">
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg
+                  class="text-hub-text-secondary"
+                  fill="none"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewbox="0 0 24 24"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                class="w-full rounded-lg border border-hub-border bg-hub-input-bg py-3 pl-10 pr-4 text-white placeholder-hub-text-secondary/50 transition-colors focus:border-hub-primary focus:outline-none focus:ring-1 focus:ring-hub-primary"
+                id="phone"
+                placeholder="(11) 99999-9999"
+                type="tel"
+                maxlength="15"
+                required
+                pattern="^\(\d{2}\)\s\d{4,5}-\d{4}$"
+                title="Digite um telefone válido no formato (DDD) XXXXX-XXXX"
+              />
+            </div>
+          </div>
+          <!-- Submit Button -->
+          <div class="pt-4">
+            <button
+              class="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-primary px-4 py-3.5 font-bold text-white transition-opacity hover:opacity-90"
+              type="submit"
+            >
+              Continuar
+              <svg
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewbox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1="5" x2="19" y1="12" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </form>
+        <!-- Footer Link -->
+        <div class="mt-6 text-center">
+          <p class="text-sm text-hub-text-secondary">
+            Já tem conta?
+            <a
+              class="font-semibold text-[#a78bfa] transition-colors hover:text-[#c4b5fd]"
+              href="cadastro.html"
+              >Entrar</a
+            >
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- END: Main Content -->
 
-<script>
-  const phoneInput = document.getElementById('phone');
-  if (phoneInput) {
-    phoneInput.addEventListener('input', function (e) {
-      let v = e.target.value.replace(/\D/g, '');
-      if (v.length > 11) v = v.slice(0, 11);
-      
-      if (v.length > 10) {
-        v = v.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
-      } else if (v.length > 5) {
-        v = v.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-      } else if (v.length > 2) {
-        v = v.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+    <script>
+      const phoneInput = document.getElementById('phone');
+      if (phoneInput) {
+        phoneInput.addEventListener('input', function (e) {
+          let v = e.target.value.replace(/\D/g, '');
+          if (v.length > 11) v = v.slice(0, 11);
+
+          if (v.length > 10) {
+            v = v.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
+          } else if (v.length > 5) {
+            v = v.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+          } else if (v.length > 2) {
+            v = v.replace(/^(\d\d)(\d{0,5})/, '($1) $2');
+          }
+          e.target.value = v;
+        });
       }
-      e.target.value = v;
-    });
-  }
-</script>
-</body></html>
+    </script>
+  </body>
+</html>
