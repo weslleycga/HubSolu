@@ -2,11 +2,7 @@
 export default {
   content: [
     './index.html',
-    './cadastro.html',
-    './escolha_plano.html',
-    './selecao_negocio.html',
-    './demo_delivery_ui.html',
-    './perfil_usuario.html',
+    './src/pages/**/*.html',
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class',
