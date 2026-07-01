@@ -188,7 +188,7 @@
                   <span class="text-lg font-bold" id="prod1-price">R$ 32,90</span>
                   <!-- CTA BUTTON -->
                   <button
-                    class="cta-btn flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/30 transition-colors hover:bg-red-700"
+                    class="cta-btn-round flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/30 transition-colors hover:bg-red-700"
                   >
                     <span class="material-symbols-outlined text-sm font-bold">add</span>
                   </button>
@@ -218,7 +218,7 @@
                   <span class="text-lg font-bold" id="prod2-price">R$ 24,50</span>
                   <!-- CTA BUTTON -->
                   <button
-                    class="cta-btn flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/30 transition-colors hover:bg-red-700"
+                    class="cta-btn-round flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white shadow-md shadow-red-500/30 transition-colors hover:bg-red-700"
                   >
                     <span class="material-symbols-outlined text-sm font-bold">add</span>
                   </button>
@@ -343,7 +343,7 @@
           </div>
 
           <div
-            class="profile-card mb-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+            class="content-card mb-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
           >
             <div class="mb-3">
               <label class="profile-text mb-1 block text-xs font-bold">Apelido</label>
@@ -381,7 +381,7 @@
             </div>
             <button
               onclick="showProfile()"
-              class="cta-btn mt-2 w-full rounded-xl bg-red-600 py-3 text-sm font-bold text-white shadow-md transition-colors"
+              class="cta-btn-block mt-2 w-full rounded-xl bg-red-600 py-3 text-sm font-bold text-white shadow-md transition-colors"
             >
               Salvar Alterações
             </button>
@@ -401,7 +401,7 @@
           </div>
 
           <div
-            class="profile-card mb-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+            class="content-card mb-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
           >
             <div class="mb-3">
               <label class="profile-text mb-1 block text-xs font-bold">Número do Cartão</label>
@@ -431,7 +431,7 @@
             </div>
             <button
               onclick="showProfile()"
-              class="cta-btn mt-2 w-full rounded-xl bg-red-600 py-3 text-sm font-bold text-white shadow-md transition-colors"
+              class="cta-btn-block mt-2 w-full rounded-xl bg-red-600 py-3 text-sm font-bold text-white shadow-md transition-colors"
             >
               Salvar Cartão
             </button>
@@ -452,7 +452,7 @@
 
           <div class="flex flex-col gap-3">
             <div
-              class="profile-card rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+              class="content-card rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
             >
               <div class="mb-2 flex items-start justify-between">
                 <span class="rounded bg-green-100 px-2 py-1 text-xs font-bold text-green-700"
@@ -466,7 +466,7 @@
             </div>
 
             <div
-              class="profile-card rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
+              class="content-card rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition-colors"
             >
               <div class="mb-2 flex items-start justify-between">
                 <span class="rounded bg-green-100 px-2 py-1 text-xs font-bold text-green-700"
@@ -606,6 +606,8 @@
           const icon = item.querySelector('.category-icon');
           const text = item.querySelector('.category-text');
           
+          if (!icon || !text) return;
+          
           let ringClass = 'ring-red-600';
           if(currentThemeKey === 'vegan') ringClass = 'ring-[#4ade80]';
           if(currentThemeKey === 'bbq') ringClass = 'ring-orange-500';
@@ -734,11 +736,32 @@
         removeTailwindColors(search);
         search.className = `w-full text-sm rounded-xl py-4 pl-12 pr-4 outline-none transition-colors duration-300 ${t.inputBg} ${t.textColor}`;
 
-        // CTA Buttons
-        const ctas = document.querySelectorAll('.cta-btn');
-        ctas.forEach((btn) => {
+        // Round CTA Buttons
+        const roundCtas = document.querySelectorAll('.cta-btn-round');
+        roundCtas.forEach((btn) => {
           removeTailwindColors(btn);
-          btn.className = `w-8 h-8 rounded-full flex items-center justify-center text-white transition-colors cta-btn shadow-md ${t.ctaColor} ${t.ctaHover} ${t.ctaShadow}`;
+          btn.className = `w-8 h-8 rounded-full flex items-center justify-center text-white transition-colors cta-btn-round shadow-md ${t.ctaColor} ${t.ctaHover} ${t.ctaShadow}`;
+        });
+
+        // Block CTA Buttons
+        const blockCtas = document.querySelectorAll('.cta-btn-block');
+        blockCtas.forEach((btn) => {
+          removeTailwindColors(btn);
+          btn.className = `mt-2 w-full rounded-xl py-3 text-sm font-bold text-white shadow-md transition-colors cta-btn-block ${t.ctaColor} ${t.ctaHover} ${t.ctaShadow}`;
+        });
+
+        // Menu Cards (Horizontal layout)
+        const profileCards = document.querySelectorAll('.profile-card');
+        profileCards.forEach((card) => {
+          removeTailwindColors(card);
+          card.className = `profile-card mb-4 rounded-xl border p-4 shadow-sm transition-colors flex items-center justify-between cursor-pointer ${t.inputBg} ${t.navBorder}`;
+        });
+
+        // Content Cards (Form & Order layout)
+        const contentCards = document.querySelectorAll('.content-card');
+        contentCards.forEach((card) => {
+          removeTailwindColors(card);
+          card.className = `content-card mb-4 rounded-xl border p-4 shadow-sm transition-colors flex flex-col ${t.inputBg} ${t.navBorder}`;
         });
 
         // Bottom Nav
@@ -756,15 +779,17 @@
         document.querySelectorAll('.category-item').forEach((item) => {
            const icon = item.querySelector('.category-icon');
            const text = item.querySelector('.category-text');
-           if (icon.classList.contains('ring-2')) {
+           if (icon && icon.classList.contains('ring-2')) {
               let ringClass = 'ring-red-600';
               if(themeKey === 'vegan') ringClass = 'ring-[#4ade80]';
               if(themeKey === 'bbq') ringClass = 'ring-orange-500';
               icon.classList.remove('ring-red-600', 'ring-[#4ade80]', 'ring-orange-500');
               icon.classList.add(ringClass);
               
-              text.classList.remove('text-gray-500', 'text-[#878a73]', 'text-[#a3a3a3]');
-              text.classList.add(t.textColor);
+              if(text) {
+                 text.classList.remove('text-gray-500', 'text-[#878a73]', 'text-[#a3a3a3]');
+                 text.classList.add(t.textColor);
+              }
            }
         });
 
