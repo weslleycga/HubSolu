@@ -75,7 +75,7 @@
         <div id="home-view" class="block">
           <!-- Header -->
           <header class="mb-6 flex items-center justify-between">
-            <div>
+            <div class="cursor-pointer" onclick="showView('address')">
               <p class="mb-1 text-sm text-gray-500" id="greeting-text">Entregar para</p>
               <h1 class="flex items-center gap-1 text-lg font-bold" id="location-text">
                 Rua das Flores, 123
@@ -83,8 +83,9 @@
               </h1>
             </div>
             <div
-              class="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-gray-200"
+              class="h-10 w-10 flex-shrink-0 cursor-pointer overflow-hidden rounded-full bg-gray-200"
               id="profile-pic"
+              onclick="showProfile()"
             >
               <img
                 src="https://ui-avatars.com/api/?name=Ana+Souza&background=random"
@@ -130,37 +131,37 @@
 
           <!-- Categories -->
           <div class="mb-8 flex justify-between">
-            <div class="flex flex-col items-center gap-2">
+            <div class="category-item flex cursor-pointer flex-col items-center gap-2" onclick="selectCategory(this)">
               <div
-                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+                class="category-icon profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors ring-2 ring-red-600"
               >
                 🍔
               </div>
-              <span class="profile-text text-xs font-semibold">Burger</span>
+              <span class="category-text profile-text text-xs font-semibold">Burger</span>
             </div>
-            <div class="flex flex-col items-center gap-2">
+            <div class="category-item flex cursor-pointer flex-col items-center gap-2" onclick="selectCategory(this)">
               <div
-                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+                class="category-icon profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
               >
                 🍕
               </div>
-              <span class="profile-text-muted text-xs font-medium">Pizza</span>
+              <span class="category-text profile-text-muted text-xs font-medium">Pizza</span>
             </div>
-            <div class="flex flex-col items-center gap-2">
+            <div class="category-item flex cursor-pointer flex-col items-center gap-2" onclick="selectCategory(this)">
               <div
-                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+                class="category-icon profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
               >
                 🍣
               </div>
-              <span class="profile-text-muted text-xs font-medium">Sushi</span>
+              <span class="category-text profile-text-muted text-xs font-medium">Sushi</span>
             </div>
-            <div class="flex flex-col items-center gap-2">
+            <div class="category-item flex cursor-pointer flex-col items-center gap-2" onclick="selectCategory(this)">
               <div
-                class="profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
+                class="category-icon profile-icon-bg flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl shadow-sm transition-colors"
               >
                 🥗
               </div>
-              <span class="profile-text-muted text-xs font-medium">Saudável</span>
+              <span class="category-text profile-text-muted text-xs font-medium">Saudável</span>
             </div>
           </div>
 
@@ -496,11 +497,19 @@
           >
           <span class="text-[10px] font-semibold">Início</span>
         </button>
-        <button class="nav-btn-inactive relative flex flex-col items-center gap-1 text-gray-400">
+        <button
+          onclick="showSearch()"
+          id="nav-search"
+          class="nav-btn-inactive relative flex flex-col items-center gap-1 text-gray-400"
+        >
           <span class="material-symbols-outlined">search</span>
           <span class="text-[10px] font-medium">Busca</span>
         </button>
-        <button class="nav-btn-inactive relative flex flex-col items-center gap-1 text-gray-400">
+        <button
+          onclick="showOrders()"
+          id="nav-orders"
+          class="nav-btn-inactive relative flex flex-col items-center gap-1 text-gray-400"
+        >
           <span class="material-symbols-outlined">shopping_bag</span>
           <span class="text-[10px] font-medium">Pedidos</span>
           <span class="badge-color absolute right-1 top-0 h-2 w-2 rounded-full bg-red-500"></span>
@@ -535,19 +544,44 @@
         });
       }
 
+      function updateNavActiveState(activeId) {
+        const btns = ['nav-home', 'nav-search', 'nav-orders', 'nav-profile'];
+        btns.forEach(id => {
+          const btn = document.getElementById(id);
+          if (!btn) return;
+          if(id === activeId) {
+             btn.classList.remove('nav-btn-inactive');
+             btn.classList.add('nav-btn-active');
+          } else {
+             btn.classList.remove('nav-btn-active');
+             btn.classList.add('nav-btn-inactive');
+          }
+        });
+      }
+
       function showHome() {
         currentActiveTab = 'home';
         hideAllViews();
         document.getElementById('home-view').classList.add('block');
         document.getElementById('home-view').classList.remove('hidden');
+        updateNavActiveState('nav-home');
+        setTheme(currentThemeKey);
+      }
 
-        const homeBtn = document.getElementById('nav-home');
-        const profileBtn = document.getElementById('nav-profile');
-        homeBtn.classList.remove('nav-btn-inactive');
-        homeBtn.classList.add('nav-btn-active');
-        profileBtn.classList.remove('nav-btn-active');
-        profileBtn.classList.add('nav-btn-inactive');
+      function showSearch() {
+        showHome(); // Voltar pra home e focar no input
+        setTimeout(() => {
+          document.getElementById('search-input').focus();
+        }, 100);
+        updateNavActiveState('nav-search');
+      }
 
+      function showOrders() {
+        currentActiveTab = 'orders';
+        hideAllViews();
+        document.getElementById('orders-view').classList.add('flex');
+        document.getElementById('orders-view').classList.remove('hidden');
+        updateNavActiveState('nav-orders');
         setTheme(currentThemeKey);
       }
 
@@ -556,14 +590,7 @@
         hideAllViews();
         document.getElementById('profile-view').classList.add('flex');
         document.getElementById('profile-view').classList.remove('hidden');
-
-        const homeBtn = document.getElementById('nav-home');
-        const profileBtn = document.getElementById('nav-profile');
-        profileBtn.classList.remove('nav-btn-inactive');
-        profileBtn.classList.add('nav-btn-active');
-        homeBtn.classList.remove('nav-btn-active');
-        homeBtn.classList.add('nav-btn-inactive');
-
+        updateNavActiveState('nav-profile');
         setTheme(currentThemeKey);
       }
 
@@ -572,6 +599,30 @@
         document.getElementById(viewId + '-view').classList.add('flex');
         document.getElementById(viewId + '-view').classList.remove('hidden');
         setTheme(currentThemeKey);
+      }
+
+      function selectCategory(el) {
+        document.querySelectorAll('.category-item').forEach((item) => {
+          const icon = item.querySelector('.category-icon');
+          const text = item.querySelector('.category-text');
+          
+          let ringClass = 'ring-red-600';
+          if(currentThemeKey === 'vegan') ringClass = 'ring-[#4ade80]';
+          if(currentThemeKey === 'bbq') ringClass = 'ring-orange-500';
+
+          icon.classList.remove('ring-2', 'ring-red-600', 'ring-[#4ade80]', 'ring-orange-500', 'ring-transparent');
+
+          if (item === el) {
+             icon.classList.add('ring-2', ringClass);
+             text.classList.remove(themes[currentThemeKey].textMuted);
+             text.classList.add(themes[currentThemeKey].textColor, 'font-semibold');
+             text.classList.remove('font-medium');
+          } else {
+             icon.classList.add('ring-transparent');
+             text.classList.add(themes[currentThemeKey].textMuted, 'font-medium');
+             text.classList.remove(themes[currentThemeKey].textColor, 'font-semibold');
+          }
+        });
       }
       const themes = {
         fastfood: {
@@ -696,8 +747,26 @@
         nav.className = `absolute bottom-0 left-0 w-full h-20 flex justify-around items-center px-2 pb-4 transition-colors duration-300 border-t ${t.navBg} ${t.navBorder}`;
 
         const activeNav = document.querySelector('.nav-btn-active');
-        removeTailwindColors(activeNav);
-        activeNav.className = `flex flex-col items-center gap-1 nav-btn-active ${t.activeNav}`;
+        if (activeNav) {
+           removeTailwindColors(activeNav);
+           activeNav.className = `flex flex-col items-center gap-1 nav-btn-active ${t.activeNav}`;
+        }
+        
+        // Re-apply category active color if any is selected
+        document.querySelectorAll('.category-item').forEach((item) => {
+           const icon = item.querySelector('.category-icon');
+           const text = item.querySelector('.category-text');
+           if (icon.classList.contains('ring-2')) {
+              let ringClass = 'ring-red-600';
+              if(themeKey === 'vegan') ringClass = 'ring-[#4ade80]';
+              if(themeKey === 'bbq') ringClass = 'ring-orange-500';
+              icon.classList.remove('ring-red-600', 'ring-[#4ade80]', 'ring-orange-500');
+              icon.classList.add(ringClass);
+              
+              text.classList.remove('text-gray-500', 'text-[#878a73]', 'text-[#a3a3a3]');
+              text.classList.add(t.textColor);
+           }
+        });
 
         const inactiveNavs = document.querySelectorAll('.nav-btn-inactive');
         inactiveNavs.forEach((n) => {
