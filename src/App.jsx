@@ -8,6 +8,7 @@ import PlanosPage from './pages/PlanosPage';
 import SelecaoNegocioPage from './pages/SelecaoNegocioPage';
 import EstoquePage from './pages/EstoquePage';
 import FinanceiroPage from './pages/FinanceiroPage';
+import DemoDeliveryPage from './pages/DemoDeliveryPage';
 
 function BottomNav() {
   const location = useLocation();
@@ -55,6 +56,7 @@ export default function App() {
         <Route path="/cadastro" element={<CadastroPage />} />
         <Route path="/selecao-negocio" element={<SelecaoNegocioPage />} />
         <Route path="/planos" element={<PlanosPage />} />
+        <Route path="/demo-delivery" element={<DemoDeliveryPage />} />
         <Route path="/*" element={
           <MobileLayout>
             <Routes>
