@@ -49,6 +49,9 @@ Para gerar a versão otimizada de produção, utilize `npm run build`.
 **Últimas modificações:**
 
 - [03/07/2026 08:43] Criação do arquivo `tecnologias_e_roteiro_de_estudos.md` detalhando as tecnologias utilizadas e contendo um roteiro de estudos passo a passo.
+- [02/07/2026 16:30] Migração das páginas HTML legadas para componentes React (SPA) com arquitetura mobile-first, incluindo a interface de demonstração de delivery.
+- [01/07/2026 14:00] Adição de interatividade à interface de delivery (categorias, cabeçalho e navegação) e correção de layouts de formulários.
+- [01/07/2026 10:00] Refatoração da estrutura do projeto (migração de páginas para a pasta `src`), atualização de configurações do Tailwind e correção de assets/imagens.
 - [30/06/2026 11:55] Refatoração do projeto para utilizar Node.js, Vite e TailwindCSS local, substituindo o uso de CDN por um fluxo de build profissional.
 - [30/06/2026 10:00] Adição de sub-telas interativas (Endereços, Pagamentos e Pedidos) na aba de Perfil em `demo_delivery_ui.html`.
 - [30/06/2026 09:50] Atualização da tela `demo_delivery_ui.html` para incluir navegação por abas com uma visão interativa de Perfil.
