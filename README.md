@@ -48,6 +48,7 @@ Para gerar a versão otimizada de produção, utilize `npm run build`.
 
 **Últimas modificações:**
 
+- [08/07/2026 08:30] Criação de três novas telas para o Marketplace (`MarketplaceHome`, `MarketplaceCategory`, `MarketplaceStore`) conforme referências solicitadas, com design moderno e premium utilizando TailwindCSS e React.
 - [03/07/2026 08:43] Criação do arquivo `tecnologias_e_roteiro_de_estudos.md` detalhando as tecnologias utilizadas e contendo um roteiro de estudos passo a passo.
 - [02/07/2026 16:30] Migração das páginas HTML legadas para componentes React (SPA) com arquitetura mobile-first, incluindo a interface de demonstração de delivery.
 - [01/07/2026 14:00] Adição de interatividade à interface de delivery (categorias, cabeçalho e navegação) e correção de layouts de formulários.

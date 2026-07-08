@@ -9,6 +9,9 @@ import SelecaoNegocioPage from './pages/SelecaoNegocioPage';
 import EstoquePage from './pages/EstoquePage';
 import FinanceiroPage from './pages/FinanceiroPage';
 import DemoDeliveryPage from './pages/DemoDeliveryPage';
+import MarketplaceHome from './pages/MarketplaceHome';
+import MarketplaceCategory from './pages/MarketplaceCategory';
+import MarketplaceStore from './pages/MarketplaceStore';
 
 function BottomNav() {
   const location = useLocation();
@@ -57,6 +60,9 @@ export default function App() {
         <Route path="/selecao-negocio" element={<SelecaoNegocioPage />} />
         <Route path="/planos" element={<PlanosPage />} />
         <Route path="/demo-delivery" element={<DemoDeliveryPage />} />
+        <Route path="/marketplace" element={<MarketplaceHome />} />
+        <Route path="/marketplace/category" element={<MarketplaceCategory />} />
+        <Route path="/marketplace/store" element={<MarketplaceStore />} />
         <Route path="/*" element={
           <MobileLayout>
             <Routes>
