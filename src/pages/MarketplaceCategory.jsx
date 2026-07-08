@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function MarketplaceCategory() {
+  const location = useLocation();
+  const categoryName = location.state?.categoryName || 'Categoria';
+  const categoryImg = location.state?.categoryImg || 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80';
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="min-h-screen bg-hub-bg text-hub-text-primary font-body flex flex-col">
       {/* Header Banner */}
       <div className="relative w-full h-[200px] overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80" 
-          alt="Alimentação" 
+          src={categoryImg} 
+          alt={categoryName} 
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-5xl font-bold text-white tracking-widest uppercase">Alimentação</h1>
+          <h1 className="text-5xl font-bold text-white tracking-widest uppercase">{categoryName}</h1>
         </div>
       </div>
 

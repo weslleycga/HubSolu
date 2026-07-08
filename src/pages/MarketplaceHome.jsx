@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, ShoppingCart, ChevronLeft, ChevronRight, Menu, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function MarketplaceHome() {
-  const categories = [
-    { name: 'Pizzaria', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80' },
-    { name: 'Bar', img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500&q=80' },
-    { name: 'Sorveteria', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=500&q=80' },
-    { name: 'Confeitaria', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=500&q=80' },
-    { name: 'Hamburgueria', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80' },
-    { name: 'Padaria', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80' },
-    { name: 'Galeteria', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80' },
-    { name: 'Mercadinho', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=500&q=80' }
-  ];
+  const navigate = useNavigate();
+  const [activeMainCategory, setActiveMainCategory] = useState('Alimentação');
+
+  const allCategories = {
+    'Alimentação': [
+      { name: 'Pizzaria', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80' },
+      { name: 'Bar', img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500&q=80' },
+      { name: 'Sorveteria', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=500&q=80' },
+      { name: 'Confeitaria', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=500&q=80' },
+      { name: 'Hamburgueria', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80' },
+      { name: 'Padaria', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80' },
+      { name: 'Galeteria', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80' },
+      { name: 'Mercadinho', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=500&q=80' }
+    ],
+    'Roupas': [
+      { name: 'Moda Masculina', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&q=80' },
+      { name: 'Moda Feminina', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80' },
+      { name: 'Infantil', img: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80' },
+      { name: 'Calçados', img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80' },
+    ],
+    'Cosméticos': [
+      { name: 'Maquiagem', img: 'https://images.unsplash.com/photo-1596462502278-27bf85033e5a?w=500&q=80' },
+      { name: 'Perfumaria', img: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&q=80' },
+      { name: 'Skincare', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80' },
+      { name: 'Cabelos', img: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500&q=80' },
+    ]
+  };
+
+  const currentCategories = allCategories[activeMainCategory] || [];
 
   return (
     <div className="min-h-screen bg-hub-bg text-hub-text-primary font-body pb-20">
@@ -25,10 +44,16 @@ export default function MarketplaceHome() {
           <span className="font-semibold hidden sm:block">Olá, Visitante</span>
         </div>
         <div className="flex gap-4">
-          <button className="px-6 py-2 rounded-full font-medium text-hub-text-secondary hover:text-white transition-colors">
+          <button 
+            onClick={() => navigate('/cadastro')}
+            className="px-6 py-2 rounded-full font-medium text-hub-text-secondary hover:text-white transition-colors"
+          >
             Entrar
           </button>
-          <button className="px-6 py-2 rounded-full font-medium bg-hub-primary text-white hover:bg-hub-primary-hover transition-colors shadow-[0_0_15px_rgba(99,102,241,0.4)]">
+          <button 
+            onClick={() => navigate('/planos')}
+            className="px-6 py-2 rounded-full font-medium bg-hub-primary text-white hover:bg-hub-primary-hover transition-colors shadow-[0_0_15px_rgba(99,102,241,0.4)]"
+          >
             Contrate
           </button>
         </div>
@@ -54,26 +79,27 @@ export default function MarketplaceHome() {
 
         {/* Categories Navigation */}
         <div className="flex justify-center gap-4 mb-12 overflow-x-auto pb-4 hide-scrollbar">
-          {['Alimentação', 'Roupas', 'Cosméticos'].map((cat, idx) => (
-            <Link 
+          {['Alimentação', 'Roupas', 'Cosméticos'].map((cat) => (
+            <button 
               key={cat}
-              to="/marketplace/category"
+              onClick={() => setActiveMainCategory(cat)}
               className={`px-8 py-3 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
-                idx === 0 
+                activeMainCategory === cat 
                   ? 'bg-white text-black shadow-lg hover:bg-gray-100' 
                   : 'bg-hub-card text-hub-text-secondary hover:bg-hub-border hover:text-white'
               }`}
             >
               {cat}
-            </Link>
+            </button>
           ))}
         </div>
 
         {/* Grid Categories */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {categories.map((cat, idx) => (
+          {currentCategories.map((cat, idx) => (
             <Link 
-              to="/marketplace/store"
+              to="/marketplace/category"
+              state={{ categoryName: cat.name, categoryImg: cat.img }}
               key={idx} 
               className="group bg-hub-card border border-hub-border rounded-2xl overflow-hidden hover:border-hub-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:-translate-y-1"
             >
