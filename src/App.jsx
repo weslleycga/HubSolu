@@ -12,6 +12,7 @@ import DemoDeliveryPage from './pages/DemoDeliveryPage';
 import MarketplaceHome from './pages/MarketplaceHome';
 import MarketplaceCategory from './pages/MarketplaceCategory';
 import MarketplaceStore from './pages/MarketplaceStore';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function BottomNav() {
   const location = useLocation();
@@ -42,7 +43,7 @@ function BottomNav() {
 function MobileLayout({ children }) {
   return (
     <div className="flex justify-center bg-black min-h-screen">
-      <div className="w-full max-w-[480px] bg-background relative min-h-screen flex flex-col shadow-2xl overflow-hidden">
+      <div className="w-full max-w-[480px] bg-background relative min-h-screen flex flex-col shadow-2xl overflow-hidden transition-colors duration-300">
         <main className="flex-1 overflow-y-auto pb-20">
           {children}
         </main>
@@ -54,26 +55,28 @@ function MobileLayout({ children }) {
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/cadastro" element={<CadastroPage />} />
-        <Route path="/selecao-negocio" element={<SelecaoNegocioPage />} />
-        <Route path="/planos" element={<PlanosPage />} />
-        <Route path="/demo-delivery" element={<DemoDeliveryPage />} />
-        <Route path="/marketplace" element={<MarketplaceHome />} />
-        <Route path="/marketplace/category" element={<MarketplaceCategory />} />
-        <Route path="/marketplace/store" element={<MarketplaceStore />} />
-        <Route path="/*" element={
-          <MobileLayout>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/estoque" element={<EstoquePage />} />
-              <Route path="/financeiro" element={<FinanceiroPage />} />
-              <Route path="/perfil" element={<PerfilPage />} />
-            </Routes>
-          </MobileLayout>
-        } />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/cadastro" element={<CadastroPage />} />
+          <Route path="/selecao-negocio" element={<SelecaoNegocioPage />} />
+          <Route path="/planos" element={<PlanosPage />} />
+          <Route path="/demo-delivery" element={<DemoDeliveryPage />} />
+          <Route path="/marketplace" element={<MarketplaceHome />} />
+          <Route path="/marketplace/category" element={<MarketplaceCategory />} />
+          <Route path="/marketplace/store" element={<MarketplaceStore />} />
+          <Route path="/*" element={
+            <MobileLayout>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/estoque" element={<EstoquePage />} />
+                <Route path="/financeiro" element={<FinanceiroPage />} />
+                <Route path="/perfil" element={<PerfilPage />} />
+              </Routes>
+            </MobileLayout>
+          } />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }

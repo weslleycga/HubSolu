@@ -24,10 +24,10 @@ export default function MarketplaceHome() {
       { name: 'Calçados', img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80' },
     ],
     'Cosméticos': [
-      { name: 'Maquiagem', img: 'https://images.unsplash.com/photo-1596462502278-27bf85033e5a?w=500&q=80' },
+      { name: 'Maquiagem', img: 'https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=500' },
       { name: 'Perfumaria', img: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&q=80' },
       { name: 'Skincare', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80' },
-      { name: 'Cabelos', img: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500&q=80' },
+      { name: 'Cabelos', img: 'https://images.pexels.com/photos/973401/pexels-photo-973401.jpeg?auto=compress&cs=tinysrgb&w=500' },
     ]
   };
 

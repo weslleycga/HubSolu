@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
-import { Camera, User, Store, Settings, LogOut, ChevronRight } from 'lucide-react';
+import { Camera, User, Store, Settings, LogOut, ChevronRight, Sun, Moon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 
 export default function PerfilPage() {
   const [activeTab, setActiveTab] = useState('dados');
+  const { isDark, toggleTheme } = useTheme();
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background transition-colors duration-300">
       {/* Header */}
-      <header className="px-6 pt-12 pb-6 bg-[#0e0e11] border-b border-outline-variant/10">
-        <h1 className="text-on-surface font-headline font-bold text-2xl">Meu Perfil</h1>
-        <p className="text-on-surface-variant text-sm mt-1">Gerencie sua conta e negócio.</p>
+      <header className="px-6 pt-12 pb-6 bg-surface border-b border-outline-variant/10 flex justify-between items-center">
+        <div>
+          <h1 className="text-on-surface font-headline font-bold text-2xl">Meu Perfil</h1>
+          <p className="text-on-surface-variant text-sm mt-1">Gerencie sua conta e negócio.</p>
+        </div>
+        <button 
+          onClick={toggleTheme}
+          className="p-3 rounded-full bg-surface-container-high border border-outline-variant/20 text-on-surface hover:bg-surface-container-highest transition-colors shadow-sm"
+          title={isDark ? "Mudar para Modo Claro" : "Mudar para Modo Escuro"}
+        >
+          {isDark ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
       </header>
 
       <div className="px-6 py-6 space-y-6">
