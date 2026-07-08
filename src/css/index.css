@@ -166,3 +166,85 @@
 .glow-effect {
   box-shadow: 0 0 30px rgba(189, 157, 255, 0.2);
 }
+
+/* =========================================
+   THEMES - HUB CONTROLE MARKETPLACE
+========================================= */
+
+/* BASE VARIABLES (Default/Fallback - Minimalist Chic) */
+:root {
+  --theme-primary: #171717;
+  --theme-secondary: #e5e5e5;
+  --theme-bg: #ffffff;
+  --theme-text-primary: #000000;
+  --theme-text-secondary: #525252;
+}
+
+/* --- ALIMENTAÇÃO --- */
+.theme-food-fresh-organic {
+  --theme-primary: #4ade80;
+  --theme-secondary: #fef08a;
+  --theme-bg: #f8fafc;
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #475569;
+}
+.theme-food-spicy-bite {
+  --theme-primary: #ef4444;
+  --theme-secondary: #f97316;
+  --theme-bg: #fffbeb;
+  --theme-text-primary: #451a03;
+  --theme-text-secondary: #78350f;
+}
+.theme-food-dark-bbq {
+  --theme-primary: #f59e0b;
+  --theme-secondary: #dc2626;
+  --theme-bg: #171717;
+  --theme-text-primary: #fafafa;
+  --theme-text-secondary: #a3a3a3;
+}
+
+/* --- ROUPAS --- */
+.theme-fashion-minimalist {
+  --theme-primary: #171717;
+  --theme-secondary: #e5e5e5;
+  --theme-bg: #ffffff;
+  --theme-text-primary: #000000;
+  --theme-text-secondary: #525252;
+}
+.theme-fashion-pastel-vibe {
+  --theme-primary: #c084fc;
+  --theme-secondary: #f472b6;
+  --theme-bg: #faf5ff;
+  --theme-text-primary: #4c1d95;
+  --theme-text-secondary: #7e22ce;
+}
+.theme-fashion-streetwear {
+  --theme-primary: #2563eb;
+  --theme-secondary: #fbbf24;
+  --theme-bg: #f1f5f9;
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #334155;
+}
+
+/* --- COSMÉTICOS E BELEZA --- */
+.theme-beauty-nude-elegance {
+  --theme-primary: #d97757;
+  --theme-secondary: #f3d2c1;
+  --theme-bg: #fffbf9;
+  --theme-text-primary: #2b1b17;
+  --theme-text-secondary: #5c4033;
+}
+.theme-beauty-luxury-gold {
+  --theme-primary: #d4af37;
+  --theme-secondary: #1a1a1a;
+  --theme-bg: #0a0a0a;
+  --theme-text-primary: #f3f4f6;
+  --theme-text-secondary: #9ca3af;
+}
+.theme-beauty-rose-water {
+  --theme-primary: #fb7185;
+  --theme-secondary: #fecdd3;
+  --theme-bg: #fff1f2;
+  --theme-text-primary: #881337;
+  --theme-text-secondary: #be123c;
+}

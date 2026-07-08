@@ -34,9 +34,9 @@ export default function MarketplaceHome() {
   const currentCategories = allCategories[activeMainCategory] || [];
 
   return (
-    <div className="min-h-screen bg-hub-bg text-hub-text-primary font-body pb-20">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-body pb-20">
       {/* Header */}
-      <header className="flex justify-between items-center p-6 border-b border-hub-border bg-hub-card sticky top-0 z-50">
+      <header className="flex justify-between items-center p-6 border-b border-slate-200 bg-white sticky top-0 z-50">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full bg-hub-primary/20 flex items-center justify-center">
             <User size={20} className="text-hub-primary" />
@@ -46,7 +46,7 @@ export default function MarketplaceHome() {
         <div className="flex gap-4">
           <button 
             onClick={() => navigate('/cadastro')}
-            className="px-6 py-2 rounded-full font-medium text-hub-text-secondary hover:text-white transition-colors"
+            className="px-6 py-2 rounded-full font-medium text-slate-600 hover:text-slate-900 transition-colors"
           >
             Entrar
           </button>
@@ -83,10 +83,10 @@ export default function MarketplaceHome() {
             <button 
               key={cat}
               onClick={() => setActiveMainCategory(cat)}
-              className={`px-8 py-3 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
+              className={`px-8 py-3 rounded-full font-medium whitespace-nowrap transition-all duration-300 border ${
                 activeMainCategory === cat 
-                  ? 'bg-white text-black shadow-lg hover:bg-gray-100' 
-                  : 'bg-hub-card text-hub-text-secondary hover:bg-hub-border hover:text-white'
+                  ? 'bg-hub-primary text-white border-hub-primary shadow-lg' 
+                  : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
               }`}
             >
               {cat}
@@ -101,7 +101,7 @@ export default function MarketplaceHome() {
               to="/marketplace/category"
               state={{ categoryName: cat.name, categoryImg: cat.img }}
               key={idx} 
-              className="group bg-hub-card border border-hub-border rounded-2xl overflow-hidden hover:border-hub-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] hover:-translate-y-1"
+              className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-hub-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-sm"
             >
               <div className="aspect-square overflow-hidden relative">
                 <img 
@@ -120,15 +120,15 @@ export default function MarketplaceHome() {
 
         {/* Pagination Dots */}
         <div className="flex justify-center items-center gap-4 mt-12">
-          <button className="p-2 rounded-full bg-hub-card hover:bg-hub-border transition-colors">
+          <button className="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors text-slate-700">
             <ChevronLeft size={20} />
           </button>
           <div className="flex gap-2">
             <div className="w-2 h-2 rounded-full bg-hub-primary"></div>
-            <div className="w-2 h-2 rounded-full bg-hub-border"></div>
-            <div className="w-2 h-2 rounded-full bg-hub-border"></div>
+            <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+            <div className="w-2 h-2 rounded-full bg-slate-300"></div>
           </div>
-          <button className="p-2 rounded-full bg-hub-card hover:bg-hub-border transition-colors">
+          <button className="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors text-slate-700">
             <ChevronRight size={20} />
           </button>
         </div>

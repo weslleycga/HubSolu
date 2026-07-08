@@ -12,7 +12,7 @@ export default function MarketplaceCategory() {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-hub-bg text-hub-text-primary font-body flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-body flex flex-col">
       {/* Header Banner */}
       <div className="relative w-full h-[200px] overflow-hidden">
         <img 
@@ -33,14 +33,14 @@ export default function MarketplaceCategory() {
             {Array(9).fill(null).map((_, idx) => (
               <div 
                 key={idx} 
-                className="bg-hub-card border border-hub-border rounded-2xl p-6 flex flex-col items-center justify-center gap-6 group hover:border-hub-primary/50 transition-all duration-300 hover:shadow-lg"
+                className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col items-center justify-center gap-6 group hover:border-hub-primary/50 transition-all duration-300 hover:shadow-lg shadow-sm"
               >
-                <div className="w-24 h-24 rounded-full bg-hub-border flex items-center justify-center overflow-hidden border-2 border-transparent group-hover:border-hub-primary transition-all duration-300">
-                  <span className="text-hub-text-secondary font-medium">Sua Logo</span>
+                <div className="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center overflow-hidden border-2 border-transparent group-hover:border-hub-primary transition-all duration-300">
+                  <span className="text-slate-500 font-medium">Sua Logo</span>
                 </div>
                 <Link 
                   to="/marketplace/store"
-                  className="w-full py-2.5 rounded-xl bg-hub-border text-center font-medium hover:bg-hub-primary hover:text-white transition-colors duration-300"
+                  className="w-full py-2.5 rounded-xl bg-slate-100 text-slate-700 text-center font-medium hover:bg-hub-primary hover:text-white transition-colors duration-300"
                 >
                   Entrar
                 </Link>
@@ -50,15 +50,15 @@ export default function MarketplaceCategory() {
 
           {/* Pagination */}
           <div className="flex justify-center items-center gap-4 mt-12">
-            <button className="p-2 rounded-full bg-hub-card hover:bg-hub-border transition-colors">
+            <button className="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors text-slate-700">
               <ChevronLeft size={20} />
             </button>
             <div className="flex gap-2">
               <div className="w-2 h-2 rounded-full bg-hub-primary"></div>
-              <div className="w-2 h-2 rounded-full bg-hub-border"></div>
-              <div className="w-2 h-2 rounded-full bg-hub-border"></div>
+              <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+              <div className="w-2 h-2 rounded-full bg-slate-300"></div>
             </div>
-            <button className="p-2 rounded-full bg-hub-card hover:bg-hub-border transition-colors">
+            <button className="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors text-slate-700">
               <ChevronRight size={20} />
             </button>
           </div>
@@ -66,7 +66,7 @@ export default function MarketplaceCategory() {
           <div className="mt-12">
             <Link 
               to="/marketplace" 
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-hub-card hover:bg-hub-border transition-colors text-hub-text-secondary hover:text-white"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors text-slate-600 hover:text-slate-900 shadow-sm"
             >
               <ArrowLeft size={20} />
               <span>Voltar</span>

@@ -68,6 +68,13 @@ export default {
         'surface-bright': 'var(--color-surface-bright)',
         'on-background': 'var(--color-on-background)',
         surface: 'var(--color-surface)',
+        store: {
+          primary: 'var(--theme-primary)',
+          secondary: 'var(--theme-secondary)',
+          bg: 'var(--theme-bg)',
+          text: 'var(--theme-text-primary)',
+          muted: 'var(--theme-text-secondary)',
+        },
       },
       backgroundImage: {
         'gradient-primary': 'linear-gradient(90deg, #8b5cf6 0%, #3b82f6 100%)',

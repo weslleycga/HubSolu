@@ -13,6 +13,7 @@ import MarketplaceHome from './pages/MarketplaceHome';
 import MarketplaceCategory from './pages/MarketplaceCategory';
 import MarketplaceStore from './pages/MarketplaceStore';
 import { ThemeProvider } from './contexts/ThemeContext';
+import ThemeSelectorPage from './pages/ThemeSelectorPage';
 
 function BottomNav() {
   const location = useLocation();
@@ -72,6 +73,7 @@ export default function App() {
                 <Route path="/estoque" element={<EstoquePage />} />
                 <Route path="/financeiro" element={<FinanceiroPage />} />
                 <Route path="/perfil" element={<PerfilPage />} />
+                <Route path="/tema" element={<ThemeSelectorPage />} />
               </Routes>
             </MobileLayout>
           } />

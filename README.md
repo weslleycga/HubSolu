@@ -48,6 +48,8 @@ Para gerar a versão otimizada de produção, utilize `npm run build`.
 
 **Últimas modificações:**
 
+- [08/07/2026 11:13] Transformação do carrinho de compras em drawer (pop-up interativo) na MarketplaceStore, adição de interatividade nos itens/filtros, e conversão das páginas MarketplaceHome e MarketplaceCategory para o Modo Claro.
+- [08/07/2026 10:13] Implementação do motor de temas customizáveis (`ThemeSelectorPage`) e aplicação dinâmica de cores nas lojas do Marketplace via CSS Variables e Tailwind.
 - [08/07/2026 08:30] Criação de três novas telas para o Marketplace (`MarketplaceHome`, `MarketplaceCategory`, `MarketplaceStore`) conforme referências solicitadas, com design moderno e premium utilizando TailwindCSS e React.
 - [03/07/2026 08:43] Criação do arquivo `tecnologias_e_roteiro_de_estudos.md` detalhando as tecnologias utilizadas e contendo um roteiro de estudos passo a passo.
 - [02/07/2026 16:30] Migração das páginas HTML legadas para componentes React (SPA) com arquitetura mobile-first, incluindo a interface de demonstração de delivery.
