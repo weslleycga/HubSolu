@@ -48,6 +48,7 @@ Para gerar a versão otimizada de produção, utilize `npm run build`.
 
 **Últimas modificações:**
 
+- [10/07/2026 13:58] Padronização arquitetural Mobile-First: Telas de onboarding (`CadastroPage`, `PlanosPage`, `SelecaoNegocioPage`) adaptadas ao wrapper restrito de `max-w-[480px]` centralizado. Adição formal de regras de interface (Design Tokens, botões, modais) ao arquivo de persistência do assistente (`AGENTS.md`).
 - [10/07/2026 13:19] Refatoração visual (MarketplaceHome): Categorias organizadas em 2 colunas com texto sobreposto às imagens em overlay escuro. (MarketplaceStore): Gaveta lateral do carrinho transformada em um pop-up (modal) dinâmico e centralizado.
 - [10/07/2026 13:01] Conclusão da auditoria UI/UX com foco Mobile-First nas 3 telas do Marketplace (remoção de paginação e adoção de scroll natural vertical/horizontal, ajustes de contraste em botões de oferta/entrar, refatoração estrutural com max-w-[480px] e correção de erros de build no React JSX).
 - [10/07/2026 12:35] Implementação da Arquitetura do Design System (Design Tokens) com Tailwind e CSS, criação da página de Fundamentos para Styleguide e refatoração das 3 telas de Marketplace (diminuição e organização de grids, imagens de alimentos e botões).

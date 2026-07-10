@@ -6,12 +6,13 @@ export default function CadastroPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0e0e11] px-6 py-12 relative overflow-hidden">
-      {/* Decorative */}
-      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[80px] pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-secondary/20 rounded-full blur-[60px] pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
-
-      <div className="flex-1 flex flex-col justify-center relative z-10">
+    <div className="flex justify-center bg-black min-h-screen">
+      <div className="w-full max-w-[480px] bg-[#0e0e11] relative min-h-screen flex flex-col px-6 py-12 overflow-hidden shadow-2xl">
+        {/* Decorative */}
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[80px] pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-secondary/20 rounded-full blur-[60px] pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
+        
+        <div className="flex-1 flex flex-col justify-center relative z-10">
         <div className="mb-10">
           <h1 className="text-3xl font-extrabold font-headline text-on-surface mb-2">Bem-vindo de volta!</h1>
           <p className="text-on-surface-variant font-body">Faça login para acessar seu negócio.</p>
@@ -63,6 +64,7 @@ export default function CadastroPage() {
           <p className="text-sm text-on-surface-variant">
             Não tem uma conta? <Link to="/selecao-negocio" className="text-primary font-semibold">Crie agora</Link>
           </p>
+        </div>
         </div>
       </div>
     </div>

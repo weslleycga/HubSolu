@@ -7,7 +7,8 @@ export default function PlanosPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex justify-center bg-black min-h-screen">
+      <div className="w-full max-w-[480px] bg-background relative min-h-screen flex flex-col shadow-2xl overflow-hidden">
       {/* Header */}
       <header className="px-6 pt-12 pb-6 bg-[#0e0e11] border-b border-outline-variant/10 relative">
         <button 
@@ -112,6 +113,7 @@ export default function PlanosPage() {
         <p className="text-center font-body text-[10px] text-on-surface-variant mt-3">
           Cancele quando quiser. Sem taxas escondidas.
         </p>
+      </div>
       </div>
     </div>
   );

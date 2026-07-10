@@ -16,8 +16,9 @@ export default function SelecaoNegocioPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      {/* Header */}
+    <div className="flex justify-center bg-black min-h-screen">
+      <div className="w-full max-w-[480px] bg-background relative min-h-screen flex flex-col shadow-2xl overflow-hidden">
+        {/* Header */}
       <header className="px-6 py-4 flex items-center justify-between">
         <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-on-surface-variant hover:text-on-surface">
           <ArrowLeft size={20} />
@@ -87,6 +88,7 @@ export default function SelecaoNegocioPage() {
             <ArrowRight size={20} />
           </button>
         </div>
+      </div>
       </div>
     </div>
   );
