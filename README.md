@@ -48,6 +48,9 @@ Para gerar a versão otimizada de produção, utilize `npm run build`.
 
 **Últimas modificações:**
 
+- [10/07/2026 13:19] Refatoração visual (MarketplaceHome): Categorias organizadas em 2 colunas com texto sobreposto às imagens em overlay escuro. (MarketplaceStore): Gaveta lateral do carrinho transformada em um pop-up (modal) dinâmico e centralizado.
+- [10/07/2026 13:01] Conclusão da auditoria UI/UX com foco Mobile-First nas 3 telas do Marketplace (remoção de paginação e adoção de scroll natural vertical/horizontal, ajustes de contraste em botões de oferta/entrar, refatoração estrutural com max-w-[480px] e correção de erros de build no React JSX).
+- [10/07/2026 12:35] Implementação da Arquitetura do Design System (Design Tokens) com Tailwind e CSS, criação da página de Fundamentos para Styleguide e refatoração das 3 telas de Marketplace (diminuição e organização de grids, imagens de alimentos e botões).
 - [08/07/2026 11:13] Transformação do carrinho de compras em drawer (pop-up interativo) na MarketplaceStore, adição de interatividade nos itens/filtros, e conversão das páginas MarketplaceHome e MarketplaceCategory para o Modo Claro.
 - [08/07/2026 10:13] Implementação do motor de temas customizáveis (`ThemeSelectorPage`) e aplicação dinâmica de cores nas lojas do Marketplace via CSS Variables e Tailwind.
 - [08/07/2026 08:30] Criação de três novas telas para o Marketplace (`MarketplaceHome`, `MarketplaceCategory`, `MarketplaceStore`) conforme referências solicitadas, com design moderno e premium utilizando TailwindCSS e React.

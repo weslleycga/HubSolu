@@ -14,6 +14,7 @@ import MarketplaceCategory from './pages/MarketplaceCategory';
 import MarketplaceStore from './pages/MarketplaceStore';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ThemeSelectorPage from './pages/ThemeSelectorPage';
+import Fundamentos from './pages/Fundamentos';
 
 function BottomNav() {
   const location = useLocation();
@@ -74,6 +75,7 @@ export default function App() {
                 <Route path="/financeiro" element={<FinanceiroPage />} />
                 <Route path="/perfil" element={<PerfilPage />} />
                 <Route path="/tema" element={<ThemeSelectorPage />} />
+                <Route path="/fundamentos" element={<Fundamentos />} />
               </Routes>
             </MobileLayout>
           } />

@@ -34,7 +34,8 @@ export default function MarketplaceHome() {
   const currentCategories = allCategories[activeMainCategory] || [];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-body pb-20">
+    <div className="flex justify-center bg-black min-h-screen">
+      <div className="w-full max-w-[480px] bg-background relative min-h-screen flex flex-col shadow-2xl overflow-hidden font-body pb-20">
       {/* Header */}
       <header className="flex justify-between items-center p-6 border-b border-slate-200 bg-white sticky top-0 z-50">
         <div className="flex items-center gap-4">
@@ -43,23 +44,23 @@ export default function MarketplaceHome() {
           </div>
           <span className="font-semibold hidden sm:block">Olá, Visitante</span>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-space-3">
           <button 
             onClick={() => navigate('/cadastro')}
-            className="px-6 py-2 rounded-full font-medium text-slate-600 hover:text-slate-900 transition-colors"
+            className="px-space-4 py-space-2 rounded-pill text-button text-on-surface-variant hover:bg-surface-variant transition-colors"
           >
             Entrar
           </button>
           <button 
             onClick={() => navigate('/planos')}
-            className="px-6 py-2 rounded-full font-medium bg-hub-primary text-white hover:bg-hub-primary-hover transition-colors shadow-[0_0_15px_rgba(99,102,241,0.4)]"
+            className="px-space-4 py-space-2 rounded-pill text-button bg-primary text-on-primary hover:bg-primary-dim transition-colors shadow-md"
           >
             Contrate
           </button>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <main className="w-full px-4 pt-space-4 flex-1 overflow-y-auto">
         {/* Hero Section */}
         <div className="relative w-full h-[400px] rounded-3xl overflow-hidden mb-12 shadow-2xl group">
           <img 
@@ -71,22 +72,22 @@ export default function MarketplaceHome() {
           <div className="absolute inset-0 flex flex-col justify-center px-12">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
               CUPOM<br />
-              <span className="text-hub-primary">15% OFF</span>
+              <span className="text-[#a5b4fc] text-4xl mt-2 block">15% OFF</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-md">Aproveite os melhores restaurantes da cidade com desconto exclusivo.</p>
           </div>
         </div>
 
         {/* Categories Navigation */}
-        <div className="flex justify-center gap-4 mb-12 overflow-x-auto pb-4 hide-scrollbar">
+        <div className="flex justify-center gap-space-3 mb-space-6 overflow-x-auto pb-space-2 hide-scrollbar">
           {['Alimentação', 'Roupas', 'Cosméticos'].map((cat) => (
             <button 
               key={cat}
               onClick={() => setActiveMainCategory(cat)}
-              className={`px-8 py-3 rounded-full font-medium whitespace-nowrap transition-all duration-300 border ${
+              className={`px-space-4 py-space-2 rounded-pill text-button whitespace-nowrap transition-all duration-300 border ${
                 activeMainCategory === cat 
-                  ? 'bg-hub-primary text-white border-hub-primary shadow-lg' 
-                  : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
+                  ? 'bg-primary text-on-primary border-primary shadow-md' 
+                  : 'bg-surface text-on-surface-variant border-outline-variant hover:bg-surface-variant hover:text-on-surface'
               }`}
             >
               {cat}
@@ -95,44 +96,34 @@ export default function MarketplaceHome() {
         </div>
 
         {/* Grid Categories */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 gap-space-4">
           {currentCategories.map((cat, idx) => (
             <Link 
               to="/marketplace/category"
               state={{ categoryName: cat.name, categoryImg: cat.img }}
               key={idx} 
-              className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-hub-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-sm"
+              className="group relative rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 shadow-sm border border-outline-variant/30"
             >
-              <div className="aspect-square overflow-hidden relative">
+              <div className="aspect-[4/3] w-full">
                 <img 
                   src={cat.img} 
                   alt={cat.name} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-4 text-center">
-                <h3 className="font-semibold text-lg">{cat.name}</h3>
+                {/* Gradiente permanente para garantir a leitura do texto */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Texto sobreposto na parte inferior */}
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <h3 className="text-white font-bold text-lg md:text-xl drop-shadow-lg leading-tight">{cat.name}</h3>
+                </div>
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center items-center gap-4 mt-12">
-          <button className="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors text-slate-700">
-            <ChevronLeft size={20} />
-          </button>
-          <div className="flex gap-2">
-            <div className="w-2 h-2 rounded-full bg-hub-primary"></div>
-            <div className="w-2 h-2 rounded-full bg-slate-300"></div>
-            <div className="w-2 h-2 rounded-full bg-slate-300"></div>
-          </div>
-          <button className="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors text-slate-700">
-            <ChevronRight size={20} />
-          </button>
-        </div>
       </main>
+      </div>
     </div>
   );
 }

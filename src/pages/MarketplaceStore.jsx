@@ -60,10 +60,8 @@ export default function MarketplaceStore() {
     ? products 
     : products.filter(p => p.category === activeCategory);
 
-  // Paginação
-  const itemsPerPage = 8;
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-  const displayedProducts = filteredProducts.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+  // Removida Paginação
+  const displayedProducts = filteredProducts;
 
   const nextPage = () => setCurrentPage(p => Math.min(totalPages - 1, p + 1));
   const prevPage = () => setCurrentPage(p => Math.max(0, p - 1));
@@ -72,16 +70,19 @@ export default function MarketplaceStore() {
   useEffect(() => {
     setCurrentPage(0);
   }, [activeCategory]);
-
   return (
-    <div className={`min-h-screen font-body flex flex-col ${activeTheme} bg-store-bg text-store-text transition-colors duration-500`}>
+    <div className={`flex justify-center bg-black min-h-screen ${activeTheme}`}>
+      <div className="w-full max-w-[480px] bg-store-bg relative min-h-screen flex flex-col shadow-2xl overflow-hidden font-body pb-20 text-store-text transition-colors duration-500">
       {/* Header */}
       <header className="flex justify-between items-center p-6 border-b border-store-secondary/30 bg-store-bg/80 backdrop-blur-md sticky top-0 z-40">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full border border-store-secondary/30 flex items-center justify-center overflow-hidden bg-store-secondary/20">
+          <Link to="/marketplace/category" className="p-2 -ml-2 rounded-full hover:bg-store-primary/10 transition-colors text-store-text">
+            <ArrowLeft size={24} />
+          </Link>
+          <div className="w-10 h-10 rounded-full border border-store-secondary/30 flex items-center justify-center overflow-hidden bg-store-secondary/20">
             <img src="/images/double_smash_burger.jpg" alt="Logo" className="w-full h-full object-cover"/>
           </div>
-          <h1 className="text-xl font-bold">Nome da empresa</h1>
+          <h1 className="text-lg font-bold">Nome da empresa</h1>
         </div>
         <div className="relative">
           <button 
@@ -98,7 +99,7 @@ export default function MarketplaceStore() {
         </div>
       </header>
 
-      <div className="flex-1 max-w-[1600px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex gap-8">
+      <div className="flex-1 w-full px-4 py-6 flex-col overflow-y-auto">
         {/* Main Content */}
         <div className="flex-1">
           {/* Search Bar */}
@@ -114,14 +115,14 @@ export default function MarketplaceStore() {
           </div>
 
           {/* Categories */}
-          <div className="flex gap-4 mb-8 overflow-x-auto pb-4 hide-scrollbar">
+          <div className="flex gap-space-3 mb-space-6 overflow-x-auto pb-space-2 hide-scrollbar">
             {categories.map((cat, idx) => (
               <button 
                 key={idx}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-8 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-300 ${
+                className={`px-space-4 py-space-2 rounded-pill text-button whitespace-nowrap transition-all duration-300 ${
                   activeCategory === cat 
-                    ? 'bg-store-primary text-store-bg shadow-lg scale-105' 
+                    ? 'bg-store-primary text-store-bg shadow-md scale-105' 
                     : 'bg-store-bg border border-store-secondary/50 text-store-muted hover:text-store-text hover:border-store-primary/50 hover:bg-store-primary/5'
                 }`}
               >
@@ -131,16 +132,16 @@ export default function MarketplaceStore() {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 min-h-[400px] content-start">
+          <div className="grid grid-cols-2 gap-space-4 min-h-[400px] content-start">
             {displayedProducts.map((prod) => (
-              <div key={prod.id} className="group bg-store-bg border border-store-secondary/30 rounded-2xl overflow-hidden hover:border-store-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col shadow-sm">
-                <div className="aspect-square overflow-hidden relative">
+              <div key={prod.id} className="group bg-store-bg border border-store-secondary/30 rounded-md overflow-hidden hover:border-store-primary/50 transition-all duration-300 hover:shadow-md hover:-translate-y-1 flex flex-col shadow-sm">
+                <div className="aspect-[4/3] overflow-hidden relative">
                   <img 
                     src={prod.img} 
                     alt={prod.name} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-space-3">
                     <button 
                       onClick={() => {
                         const exists = cart.find(i => i.id === prod.id);
@@ -151,15 +152,15 @@ export default function MarketplaceStore() {
                         }
                         setIsCartOpen(true);
                       }}
-                      className="bg-store-primary text-store-bg px-6 py-2 rounded-full font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg border border-store-secondary/20"
+                      className="bg-store-primary text-store-bg px-space-4 py-space-2 rounded-pill text-button transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-md border border-store-secondary/20"
                     >
                       Adicionar
                     </button>
                   </div>
                 </div>
-                <div className="p-4 flex flex-col items-center flex-1 justify-between">
-                  <h3 className="font-semibold text-center mb-2 text-store-text">{prod.name}</h3>
-                  <span className="text-store-primary font-bold">R$ {prod.price.toFixed(2).replace('.', ',')}</span>
+                <div className="p-space-3 flex flex-col items-center flex-1 justify-between">
+                  <h3 className="text-body-2 font-semibold text-center mb-1 text-store-text">{prod.name}</h3>
+                  <span className="text-store-primary font-bold text-body-1">R$ {prod.price.toFixed(2).replace('.', ',')}</span>
                 </div>
               </div>
             ))}
@@ -170,57 +171,18 @@ export default function MarketplaceStore() {
               </div>
             )}
           </div>
-
-          {/* Pagination & Back */}
-          <div className="flex justify-between items-center mt-12 mb-8">
-            <Link 
-              to="/marketplace/category" 
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-store-bg border border-store-secondary/30 hover:border-store-primary/50 transition-colors text-store-muted hover:text-store-text"
-            >
-              <ArrowLeft size={20} />
-              <span>Voltar</span>
-            </Link>
-
-            {totalPages > 1 && (
-              <div className="flex items-center gap-4">
-                <button 
-                  onClick={prevPage}
-                  disabled={currentPage === 0}
-                  className="p-2 rounded-full bg-store-bg border border-store-secondary/30 hover:border-store-primary/50 transition-colors text-store-text disabled:opacity-30 disabled:hover:border-store-secondary/30"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <div className="flex gap-2">
-                  {Array.from({ length: totalPages }).map((_, i) => (
-                    <button 
-                      key={i}
-                      onClick={() => setCurrentPage(i)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentPage === i ? 'bg-store-primary scale-125' : 'bg-store-secondary/50 hover:bg-store-secondary'}`}
-                    ></button>
-                  ))}
-                </div>
-                <button 
-                  onClick={nextPage}
-                  disabled={currentPage === totalPages - 1}
-                  className="p-2 rounded-full bg-store-bg border border-store-secondary/30 hover:border-store-primary/50 transition-colors text-store-text disabled:opacity-30 disabled:hover:border-store-secondary/30"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            )}
-          </div>
         </div>
       </div>
 
       {/* Cart Drawer / Pop-up */}
       {isCartOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div 
             className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300" 
             onClick={() => setIsCartOpen(false)}
           ></div>
           
-          <div className="w-full max-w-md bg-store-bg h-full shadow-2xl relative z-10 flex flex-col animate-in slide-in-from-right duration-300">
+          <div className="w-full max-w-[440px] max-h-[85vh] bg-store-bg rounded-2xl shadow-2xl relative z-10 flex flex-col animate-in zoom-in-95 duration-300 overflow-hidden">
             <div className="p-6 border-b border-store-secondary/30 bg-store-secondary/10 flex justify-between items-center">
               <h2 className="text-xl font-bold flex items-center gap-2 text-store-text">
                 <ShoppingCart className="text-store-primary" />
@@ -295,6 +257,7 @@ export default function MarketplaceStore() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

@@ -70,6 +70,29 @@
 
     --color-inverse-surface: #1e293b;
     --color-inverse-on-surface: #f8fafc;
+
+    /* Design Tokens - Typography */
+    --font-family-base: 'Inter', sans-serif;
+    --font-family-headline: 'Plus Jakarta Sans', sans-serif;
+
+    /* Design Tokens - Spacing (Multiplos de 4/8) */
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem;  /* 8px */
+    --space-3: 1rem;    /* 16px */
+    --space-4: 1.5rem;  /* 24px */
+    --space-5: 2rem;    /* 32px */
+    --space-6: 3rem;    /* 48px */
+
+    /* Design Tokens - Elevation & Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    /* Design Tokens - Shapes (Border Radius) */
+    --border-radius-sm: 0.25rem; /* 4px */
+    --border-radius-md: 0.5rem;  /* 8px */
+    --border-radius-lg: 1rem;    /* 16px */
+    --border-radius-pill: 9999px;
   }
 
   .dark {
@@ -139,6 +162,11 @@
 
     --color-inverse-surface: #fcf8fd;
     --color-inverse-on-surface: #555458;
+
+    /* Elevacoes no Dark Mode - Sombras um pouco mais densas se necessario, mas usando as mesmas por simplicidade */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
   }
 }
 
