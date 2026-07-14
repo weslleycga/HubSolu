@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, ChevronLeft, ChevronRight, ArrowLeft, Minus, Plus, Trash2, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function MarketplaceStore() {
+  const location = useLocation();
+  const storeCategory = location.state?.storeCategory || 'Hamburgueria';
   const [activeTheme, setActiveTheme] = useState('theme-fashion-minimalist');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('Todos');
@@ -40,20 +42,115 @@ export default function MarketplaceStore() {
 
   const categories = ['Todos', 'Mais Vendidos', 'Promoções', 'Lançamentos', 'Kits'];
 
-  const products = [
-    { id: 101, name: 'Costela BBQ', img: '/images/costelinha-de-porco-ao-barbecue-1657229553564_v2_4x3.jpg', price: 85.00, category: 'Mais Vendidos' },
-    { id: 102, name: 'Burger Clássico', img: '/images/double_smash_burger.jpg', price: 32.50, category: 'Mais Vendidos' },
-    { id: 103, name: 'Batata Rústica', img: '/images/batata_rustica_com_cheddar.jpg', price: 28.00, category: 'Promoções' },
-    { id: 104, name: 'Salada Verão', img: '/images/salada_verao_refrescante.jpg', price: 38.90, category: 'Lançamentos' },
-    { id: 105, name: 'Bowl Quinoa', img: '/images/bowl_de_quinoa_organica.jpeg', price: 24.90, category: 'Promoções' },
-    { id: 106, name: 'Smoke Sausage', img: '/images/smoke_sausage.jpg', price: 65.00, category: 'Kits' },
-    { id: 107, name: 'Combo Família', img: '/images/double_smash_burger.jpg', price: 89.90, category: 'Kits' },
-    { id: 108, name: 'Costelinha Suína', img: '/images/costelinha-de-porco-ao-barbecue-1657229553564_v2_4x3.jpg', price: 54.00, category: 'Lançamentos' },
-    { id: 109, name: 'Porção Batata', img: '/images/batata_rustica_com_cheddar.jpg', price: 72.00, category: 'Lançamentos' },
-    { id: 110, name: 'Salada Fit', img: '/images/salada_verao_refrescante.jpg', price: 85.00, category: 'Mais Vendidos' },
-    { id: 111, name: 'Mix Quinoa', img: '/images/bowl_de_quinoa_organica.jpeg', price: 18.00, category: 'Promoções' },
-    { id: 112, name: 'Porção Salsicha', img: '/images/smoke_sausage.jpg', price: 68.00, category: 'Mais Vendidos' }
-  ];
+  const getProductsForCategory = (cat) => {
+    switch(cat) {
+      case 'Sorveteria':
+        return [
+          { id: 101, name: 'Sorvete de Baunilha', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=500&q=80', price: 15.00, category: 'Mais Vendidos' },
+          { id: 102, name: 'Sundae de Chocolate', img: 'https://images.unsplash.com/photo-1563805042-7684c8a9e9ce?w=500&q=80', price: 22.50, category: 'Mais Vendidos' },
+          { id: 103, name: 'Casquinha Mista', img: 'https://images.unsplash.com/photo-1558742569-ceca02abbf6b?w=500&q=80', price: 8.00, category: 'Promoções' },
+          { id: 104, name: 'Pote 2L Morango', img: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500&q=80', price: 45.90, category: 'Kits' },
+          { id: 105, name: 'Milkshake', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80', price: 18.00, category: 'Lançamentos' },
+          { id: 106, name: 'Banana Split', img: 'https://images.unsplash.com/photo-1526434426615-1abe81efcb0b?w=500&q=80', price: 28.50, category: 'Mais Vendidos' },
+        ];
+      case 'Pizzaria':
+        return [
+          { id: 101, name: 'Pizza Calabresa', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80', price: 45.00, category: 'Mais Vendidos' },
+          { id: 102, name: 'Pizza Margherita', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&q=80', price: 42.00, category: 'Mais Vendidos' },
+          { id: 103, name: 'Pizza 4 Queijos', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80', price: 50.00, category: 'Promoções' },
+          { id: 104, name: 'Combo 2 Pizzas', img: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=500&q=80', price: 85.00, category: 'Kits' },
+        ];
+      case 'Maquiagem':
+      case 'Cosméticos':
+        return [
+          { id: 101, name: 'Batom Vermelho', img: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500&q=80', price: 35.00, category: 'Mais Vendidos' },
+          { id: 102, name: 'Base Líquida', img: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?w=500&q=80', price: 89.90, category: 'Mais Vendidos' },
+          { id: 103, name: 'Kit Pincéis', img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80', price: 120.00, category: 'Kits' },
+          { id: 104, name: 'Paleta Sombras', img: 'https://images.unsplash.com/photo-1596462502278-27bf84033005?w=500&q=80', price: 150.00, category: 'Lançamentos' },
+        ];
+      case 'Moda Masculina':
+      case 'Moda Feminina':
+      case 'Roupas':
+        return [
+          { id: 101, name: 'Camiseta Básica', img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80', price: 49.90, category: 'Mais Vendidos' },
+          { id: 102, name: 'Jaqueta Jeans', img: 'https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?w=500&q=80', price: 199.90, category: 'Lançamentos' },
+          { id: 103, name: 'Calça Chino', img: 'https://images.unsplash.com/photo-1624378439575-d1ead6bb240e?w=500&q=80', price: 129.90, category: 'Mais Vendidos' },
+          { id: 104, name: 'Kit 3 Peças', img: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500&q=80', price: 120.00, category: 'Kits' },
+        ];
+      case 'Hamburgueria':
+        return [
+          { id: 101, name: 'Costela BBQ', img: '/images/costelinha-de-porco-ao-barbecue-1657229553564_v2_4x3.jpg', price: 85.00, category: 'Mais Vendidos' },
+          { id: 102, name: 'Burger Clássico', img: '/images/double_smash_burger.jpg', price: 32.50, category: 'Mais Vendidos' },
+          { id: 103, name: 'Batata Rústica', img: '/images/batata_rustica_com_cheddar.jpg', price: 28.00, category: 'Promoções' },
+          { id: 104, name: 'Combo Família', img: '/images/double_smash_burger.jpg', price: 89.90, category: 'Kits' },
+        ];
+      case 'Bar':
+        return [
+          { id: 101, name: 'Cerveja Artesanal IPA', img: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=500&q=80', price: 25.00, category: 'Mais Vendidos' },
+          { id: 102, name: 'Porção de Fritas', img: 'https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500&q=80', price: 35.00, category: 'Mais Vendidos' },
+          { id: 103, name: 'Caipirinha de Limão', img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=500&q=80', price: 18.00, category: 'Promoções' },
+          { id: 104, name: 'Combo Boteco', img: 'https://images.unsplash.com/photo-1616489953149-74facafeb81a?w=500&q=80', price: 89.90, category: 'Kits' },
+        ];
+      case 'Confeitaria':
+        return [
+          { id: 101, name: 'Bolo de Morango', img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&q=80', price: 85.00, category: 'Mais Vendidos' },
+          { id: 102, name: 'Cupcake de Chocolate', img: 'https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=500&q=80', price: 12.50, category: 'Mais Vendidos' },
+          { id: 103, name: 'Macarons Sortidos', img: 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=500&q=80', price: 45.00, category: 'Promoções' },
+          { id: 104, name: 'Kit Festa Doce', img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&q=80', price: 150.00, category: 'Kits' },
+        ];
+      case 'Padaria':
+        return [
+          { id: 101, name: 'Pão Francês', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80', price: 0.80, category: 'Mais Vendidos' },
+          { id: 102, name: 'Pão de Queijo', img: 'https://images.unsplash.com/photo-1598142980894-6b9432f831b8?w=500&q=80', price: 3.50, category: 'Mais Vendidos' },
+          { id: 103, name: 'Baguete', img: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=500&q=80', price: 8.90, category: 'Promoções' },
+          { id: 104, name: 'Cesta Café da Manhã', img: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=500&q=80', price: 85.00, category: 'Kits' },
+        ];
+      case 'Galeteria':
+        return [
+          { id: 101, name: 'Galeto Assado', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80', price: 45.00, category: 'Mais Vendidos' },
+          { id: 102, name: 'Frango Frito', img: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500&q=80', price: 38.00, category: 'Mais Vendidos' },
+          { id: 103, name: 'Polenta Frita', img: 'https://images.unsplash.com/photo-1605333398740-410a70f3f2dd?w=500&q=80', price: 22.00, category: 'Promoções' },
+          { id: 104, name: 'Combo Família', img: 'https://images.unsplash.com/photo-1598515320509-f6b0f14d9b62?w=500&q=80', price: 110.00, category: 'Kits' },
+        ];
+      case 'Mercadinho':
+        return [
+          { id: 101, name: 'Arroz 5kg', img: 'https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=500&q=80', price: 25.90, category: 'Mais Vendidos' },
+          { id: 102, name: 'Feijão 1kg', img: 'https://images.unsplash.com/photo-1551326844-4df70f78d0e9?w=500&q=80', price: 8.50, category: 'Mais Vendidos' },
+          { id: 103, name: 'Leite Integral 1L', img: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500&q=80', price: 5.90, category: 'Promoções' },
+          { id: 104, name: 'Cesta Básica', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=500&q=80', price: 150.00, category: 'Kits' },
+        ];
+      default:
+        return [
+          { id: 101, name: `Especial 1 - ${cat}`, img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&q=80', price: 29.90, category: 'Mais Vendidos' },
+          { id: 102, name: `Especial 2 - ${cat}`, img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&q=80', price: 39.90, category: 'Lançamentos' },
+          { id: 103, name: `Especial 3 - ${cat}`, img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&q=80', price: 49.90, category: 'Promoções' },
+          { id: 104, name: `Kit Exclusivo`, img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&q=80', price: 99.90, category: 'Kits' },
+        ];
+    }
+  };
+
+  const products = getProductsForCategory(storeCategory);
+
+  const getStoreProfileInfo = (cat) => {
+    switch(cat) {
+      case 'Sorveteria': return { name: 'Gelato & Cia', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=200&q=80' };
+      case 'Pizzaria': return { name: 'Bella Pizza', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&q=80' };
+      case 'Hamburgueria': return { name: 'Burger & Co', img: '/images/double_smash_burger.jpg' };
+      case 'Bar': return { name: 'Boteco do Zé', img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=200&q=80' };
+      case 'Confeitaria': return { name: 'Doce Sonho', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=200&q=80' };
+      case 'Padaria': return { name: 'Pão Quente', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&q=80' };
+      case 'Galeteria': return { name: 'Galeto na Brasa', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=200&q=80' };
+      case 'Mercadinho': return { name: 'Mercadão Central', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=200&q=80' };
+      case 'Maquiagem':
+      case 'Cosméticos': return { name: 'Beleza & Cia', img: 'https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=200' };
+      case 'Moda Masculina':
+      case 'Moda Feminina':
+      case 'Roupas': return { name: 'Moda Fashion', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=80' };
+      default: return { name: `Loja de ${cat}`, img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=200&q=80' };
+    }
+  };
+  
+  const storeInfo = getStoreProfileInfo(storeCategory);
 
   // Filtragem por Categoria
   const filteredProducts = activeCategory === 'Todos' 
@@ -80,9 +177,9 @@ export default function MarketplaceStore() {
             <ArrowLeft size={24} />
           </Link>
           <div className="w-10 h-10 rounded-full border border-store-secondary/30 flex items-center justify-center overflow-hidden bg-store-secondary/20">
-            <img src="/images/double_smash_burger.jpg" alt="Logo" className="w-full h-full object-cover"/>
+            <img src={storeInfo.img} alt={storeInfo.name} className="w-full h-full object-cover"/>
           </div>
-          <h1 className="text-lg font-bold">Nome da empresa</h1>
+          <h1 className="text-lg font-bold">{storeInfo.name}</h1>
         </div>
         <div className="relative">
           <button 

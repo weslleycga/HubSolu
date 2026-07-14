@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Home, Package, DollarSign, Settings, User } from 'lucide-react';
+import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
 import CadastroPage from './pages/CadastroPage';
 import PerfilPage from './pages/PerfilPage';
@@ -22,7 +23,7 @@ function BottomNav() {
 
   return (
     <div className="fixed bottom-0 w-full max-w-[480px] bg-surface border-t border-outline-variant/10 pb-safe pt-2 px-6 flex justify-between items-center z-50">
-      <Link to="/" className={`flex flex-col items-center gap-1 p-2 ${isActive('/')}`}>
+      <Link to="/dashboard" className={`flex flex-col items-center gap-1 p-2 ${isActive('/dashboard')}`}>
         <Home size={24} />
         <span className="text-[10px] font-medium">Início</span>
       </Link>
@@ -60,6 +61,7 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/cadastro" element={<CadastroPage />} />
           <Route path="/selecao-negocio" element={<SelecaoNegocioPage />} />
           <Route path="/planos" element={<PlanosPage />} />
@@ -70,7 +72,7 @@ export default function App() {
           <Route path="/*" element={
             <MobileLayout>
               <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/dashboard" element={<HomePage />} />
                 <Route path="/estoque" element={<EstoquePage />} />
                 <Route path="/financeiro" element={<FinanceiroPage />} />
                 <Route path="/perfil" element={<PerfilPage />} />

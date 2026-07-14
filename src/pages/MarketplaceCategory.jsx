@@ -49,6 +49,7 @@ export default function MarketplaceCategory() {
                 </div>
                 <Link 
                   to="/marketplace/store"
+                  state={{ storeCategory: categoryName }}
                   className="w-full py-space-2 rounded-md bg-primary text-on-primary text-center text-button hover:bg-primary-dim transition-colors duration-300 shadow-sm"
                 >
                   Entrar

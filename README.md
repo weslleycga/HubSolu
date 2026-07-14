@@ -48,6 +48,7 @@ Para gerar a versão otimizada de produção, utilize `npm run build`.
 
 **Últimas modificações:**
 
+- [14/07/2026 09:40] Reconstrução e migração da página inicial (Landing Page) original do site para um componente React (`LandingPage.jsx`) integrado às rotas. Ajuste das rotas no `App.jsx` de modo que a Landing Page fique acessível no caminho `/` e o painel administrativo (dashboard mobile) seja movido para `/dashboard`, mantendo a navegação do rodapé alinhada.
 - [10/07/2026 13:58] Padronização arquitetural Mobile-First: Telas de onboarding (`CadastroPage`, `PlanosPage`, `SelecaoNegocioPage`) adaptadas ao wrapper restrito de `max-w-[480px]` centralizado. Adição formal de regras de interface (Design Tokens, botões, modais) ao arquivo de persistência do assistente (`AGENTS.md`).
 - [10/07/2026 13:19] Refatoração visual (MarketplaceHome): Categorias organizadas em 2 colunas com texto sobreposto às imagens em overlay escuro. (MarketplaceStore): Gaveta lateral do carrinho transformada em um pop-up (modal) dinâmico e centralizado.
 - [10/07/2026 13:01] Conclusão da auditoria UI/UX com foco Mobile-First nas 3 telas do Marketplace (remoção de paginação e adoção de scroll natural vertical/horizontal, ajustes de contraste em botões de oferta/entrar, refatoração estrutural com max-w-[480px] e correção de erros de build no React JSX).

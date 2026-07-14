@@ -106,7 +106,10 @@ export default function PlanosPage() {
 
       {/* Action Bottom */}
       <div className="p-6 border-t border-outline-variant/10 bg-surface pb-10">
-        <button className="w-full bg-gradient-primary text-on-primary-fixed font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(189,157,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
+        <button 
+          onClick={() => navigate('/dashboard')}
+          className="w-full bg-gradient-primary text-on-primary-fixed font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-[0_10px_20px_rgba(189,157,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+        >
           {selectedPlan === 'pro' ? 'Assinar Plano Pro' : 'Continuar com Gratuito'}
           <ArrowRight size={18} />
         </button>
