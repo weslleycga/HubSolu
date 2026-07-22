@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, ChevronLeft, ChevronRight, ArrowLeft, Minus, Plus, Trash2, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function MarketplaceStore() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
   const storeCategory = location.state?.storeCategory || 'Hamburgueria';
   const [activeTheme, setActiveTheme] = useState('theme-fashion-minimalist');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [currentPage, setCurrentPage] = useState(0);
+  
+  // Checkout Form State
+  const [address, setAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('PIX');
   
   useEffect(() => {
     const savedTheme = localStorage.getItem('store_theme');
@@ -167,6 +174,37 @@ export default function MarketplaceStore() {
   useEffect(() => {
     setCurrentPage(0);
   }, [activeCategory]);
+  
+  const handleCheckout = () => {
+    if (!isAuthenticated) {
+      navigate('/cadastro', { state: { from: location } });
+      return;
+    }
+    
+    if (!address) {
+      alert("Por favor, preencha o endereço de entrega.");
+      return;
+    }
+
+    const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0).toFixed(2).replace('.', ',');
+    
+    let message = `*NOVO PEDIDO - ${storeInfo.name}*\n`;
+    message += `Cliente: ${user.name}\n`;
+    message += `Endereço: ${address}\n`;
+    message += `Pagamento: ${paymentMethod}\n\n`;
+    message += `*Itens:*\n`;
+    
+    cart.forEach(item => {
+      message += `${item.quantity}x ${item.name} (R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')})\n`;
+    });
+    
+    message += `\n*Total: R$ ${total}*`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const mockWhatsAppNumber = "5511999999999"; 
+    window.open(`https://wa.me/${mockWhatsAppNumber}?text=${encodedMessage}`, '_blank');
+  };
+
   return (
     <div className={`flex justify-center bg-black min-h-screen ${activeTheme}`}>
       <div className="w-full max-w-[480px] bg-store-bg relative min-h-screen flex flex-col shadow-2xl overflow-hidden font-body pb-20 text-store-text transition-colors duration-500">
@@ -338,6 +376,34 @@ export default function MarketplaceStore() {
             </div>
 
             <div className="p-6 border-t border-store-secondary/30 bg-store-secondary/5 mt-auto">
+              {cart.length > 0 && (
+                <div className="mb-4 space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium text-store-text mb-1">Endereço de Entrega</label>
+                    <input 
+                      type="text" 
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="Rua, Número, Bairro, Cidade"
+                      className="w-full bg-store-bg border border-store-secondary/50 rounded-lg p-3 focus:outline-none focus:border-store-primary focus:ring-1 focus:ring-store-primary text-store-text placeholder-store-muted"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-store-text mb-1">Forma de Pagamento</label>
+                    <select 
+                      value={paymentMethod}
+                      onChange={(e) => setPaymentMethod(e.target.value)}
+                      className="w-full bg-store-bg border border-store-secondary/50 rounded-lg p-3 focus:outline-none focus:border-store-primary focus:ring-1 focus:ring-store-primary text-store-text appearance-none"
+                    >
+                      <option value="PIX">PIX</option>
+                      <option value="Cartão de Crédito">Cartão de Crédito</option>
+                      <option value="Cartão de Débito">Cartão de Débito</option>
+                      <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
               <div className="flex justify-between items-center mb-6">
                 <span className="text-store-muted font-medium">Total</span>
                 <span className="text-2xl font-bold text-store-text">
@@ -346,9 +412,10 @@ export default function MarketplaceStore() {
               </div>
               <button 
                 disabled={cart.length === 0}
+                onClick={handleCheckout}
                 className="w-full py-4 rounded-xl bg-store-primary text-store-bg font-bold text-lg hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
               >
-                Finalizar Compra
+                {isAuthenticated ? 'Finalizar Compra no WhatsApp' : 'Fazer Login para Finalizar'}
               </button>
             </div>
           </div>

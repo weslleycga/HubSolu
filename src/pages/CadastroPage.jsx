@@ -1,9 +1,26 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function CadastroPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    login(email, password);
+    
+    // Redirect back to where they came from, or to selecao-negocio
+    const from = location.state?.from?.pathname || '/selecao-negocio';
+    navigate(from, { replace: true });
+  };
 
   return (
     <div className="flex justify-center bg-black min-h-screen">
@@ -15,10 +32,10 @@ export default function CadastroPage() {
         <div className="flex-1 flex flex-col justify-center relative z-10">
         <div className="mb-10">
           <h1 className="text-3xl font-extrabold font-headline text-on-surface mb-2">Bem-vindo de volta!</h1>
-          <p className="text-on-surface-variant font-body">Faça login para acessar seu negócio.</p>
+          <p className="text-on-surface-variant font-body">Faça login para continuar.</p>
         </div>
 
-        <form className="space-y-4 mb-8">
+        <form onSubmit={handleLogin} className="space-y-4 mb-8">
           <div>
             <label className="block text-sm font-medium text-on-surface-variant mb-1.5">E-mail</label>
             <div className="relative">
@@ -27,6 +44,9 @@ export default function CadastroPage() {
               </div>
               <input 
                 type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full bg-surface-container border border-outline-variant/20 rounded-xl py-3 pl-11 pr-4 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
                 placeholder="seu@email.com"
               />
@@ -40,7 +60,10 @@ export default function CadastroPage() {
                 <Lock size={20} />
               </div>
               <input 
-                type="password" 
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
                 className="w-full bg-surface-container border border-outline-variant/20 rounded-xl py-3 pl-11 pr-4 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
                 placeholder="••••••••"
               />
@@ -51,8 +74,7 @@ export default function CadastroPage() {
           </div>
 
           <button 
-            type="button" 
-            onClick={() => navigate('/selecao-negocio')}
+            type="submit" 
             className="w-full bg-gradient-primary text-on-primary-fixed font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 mt-4 shadow-[0_10px_20px_rgba(189,157,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             Entrar

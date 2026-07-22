@@ -14,6 +14,7 @@ import MarketplaceHome from './pages/MarketplaceHome';
 import MarketplaceCategory from './pages/MarketplaceCategory';
 import MarketplaceStore from './pages/MarketplaceStore';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { AuthProvider } from './contexts/AuthContext';
 import ThemeSelectorPage from './pages/ThemeSelectorPage';
 import Fundamentos from './pages/Fundamentos';
 
@@ -58,8 +59,9 @@ function MobileLayout({ children }) {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <Router>
+    <AuthProvider>
+      <ThemeProvider>
+        <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/cadastro" element={<CadastroPage />} />
@@ -83,6 +85,7 @@ export default function App() {
           } />
         </Routes>
       </Router>
-    </ThemeProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Search, ShoppingCart, ChevronLeft, ChevronRight, Menu, User } from 'lucide-react';
+import { Search, ShoppingCart, ChevronLeft, ChevronRight, Menu, User, LogOut } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function MarketplaceHome() {
   const navigate = useNavigate();
+  const { user, isAuthenticated, logout } = useAuth();
   const [activeMainCategory, setActiveMainCategory] = useState('Alimentação');
 
   const allCategories = {
@@ -42,21 +44,35 @@ export default function MarketplaceHome() {
           <div className="w-10 h-10 rounded-full bg-hub-primary/20 flex items-center justify-center">
             <User size={20} className="text-hub-primary" />
           </div>
-          <span className="font-semibold hidden sm:block">Olá, Visitante</span>
+          <span className="font-semibold hidden sm:block">
+            {isAuthenticated ? `Olá, ${user.name}` : 'Olá, Visitante'}
+          </span>
         </div>
         <div className="flex gap-space-3">
-          <button 
-            onClick={() => navigate('/cadastro')}
-            className="px-space-4 py-space-2 rounded-pill text-button text-on-surface-variant hover:bg-surface-variant transition-colors"
-          >
-            Entrar
-          </button>
-          <button 
-            onClick={() => navigate('/planos')}
-            className="px-space-4 py-space-2 rounded-pill text-button bg-primary text-on-primary hover:bg-primary-dim transition-colors shadow-md"
-          >
-            Contrate
-          </button>
+          {!isAuthenticated ? (
+            <>
+              <button 
+                onClick={() => navigate('/cadastro', { state: { from: { pathname: '/marketplace' } } })}
+                className="px-space-4 py-space-2 rounded-pill text-button text-on-surface-variant hover:bg-surface-variant transition-colors"
+              >
+                Entrar
+              </button>
+              <button 
+                onClick={() => navigate('/planos')}
+                className="px-space-4 py-space-2 rounded-pill text-button bg-primary text-on-primary hover:bg-primary-dim transition-colors shadow-md"
+              >
+                Contrate
+              </button>
+            </>
+          ) : (
+            <button 
+              onClick={() => logout()}
+              className="flex items-center gap-2 px-space-4 py-space-2 rounded-pill text-button text-red-500 hover:bg-red-50 transition-colors"
+            >
+              <LogOut size={16} />
+              <span className="hidden sm:inline">Sair</span>
+            </button>
+          )}
         </div>
       </header>
 
