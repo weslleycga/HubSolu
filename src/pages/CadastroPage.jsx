@@ -23,23 +23,20 @@ export default function CadastroPage() {
   };
 
   return (
-    <div className="flex justify-center bg-black min-h-screen">
-      <div className="w-full max-w-[480px] bg-[#0e0e11] relative min-h-screen flex flex-col px-6 py-12 overflow-hidden shadow-2xl">
-        {/* Decorative */}
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[80px] pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-secondary/20 rounded-full blur-[60px] pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
+    <div className="flex justify-center bg-[#212529] min-h-screen">
+      <div className="w-full max-w-[480px] bg-[#f8f9fa] relative min-h-screen flex flex-col px-6 py-12 overflow-hidden shadow-2xl transition-colors duration-300">
         
         <div className="flex-1 flex flex-col justify-center relative z-10">
-        <div className="mb-10">
-          <h1 className="text-3xl font-extrabold font-headline text-on-surface mb-2">Bem-vindo de volta!</h1>
-          <p className="text-on-surface-variant font-body">Faça login para continuar.</p>
+        <div className="mb-10 text-center">
+          <h1 className="text-3xl font-extrabold font-headline text-[#212529] mb-2">Bem-vindo de volta!</h1>
+          <p className="text-[#6c757d] font-body">Faça login para continuar.</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4 mb-8">
           <div>
-            <label className="block text-sm font-medium text-on-surface-variant mb-1.5">E-mail</label>
+            <label className="block text-sm font-semibold text-[#495057] uppercase tracking-wider mb-1.5">E-mail</label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline-variant">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#adb5bd]">
                 <Mail size={20} />
               </div>
               <input 
@@ -47,16 +44,16 @@ export default function CadastroPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-surface-container border border-outline-variant/20 rounded-xl py-3 pl-11 pr-4 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
+                className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl py-3 pl-11 pr-4 text-[#212529] placeholder:text-[#adb5bd] focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors"
                 placeholder="seu@email.com"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-on-surface-variant mb-1.5">Senha</label>
+            <label className="block text-sm font-semibold text-[#495057] uppercase tracking-wider mb-1.5">Senha</label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline-variant">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#adb5bd]">
                 <Lock size={20} />
               </div>
               <input 
@@ -64,18 +61,18 @@ export default function CadastroPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-surface-container border border-outline-variant/20 rounded-xl py-3 pl-11 pr-4 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
+                className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl py-3 pl-11 pr-4 text-[#212529] placeholder:text-[#adb5bd] focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors"
                 placeholder="••••••••"
               />
             </div>
             <div className="flex justify-end mt-2">
-              <a href="#" className="text-xs font-medium text-primary hover:text-primary-container transition-colors">Esqueceu a senha?</a>
+              <a href="#" className="text-xs font-semibold text-[#6c757d] hover:text-[#212529] transition-colors">Esqueceu a senha?</a>
             </div>
           </div>
 
           <button 
             type="submit" 
-            className="w-full bg-gradient-primary text-on-primary-fixed font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 mt-4 shadow-[0_10px_20px_rgba(189,157,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+            className="w-full bg-[#343a40] text-[#f8f9fa] font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 mt-4 shadow-sm hover:bg-[#212529] active:scale-[0.98] transition-all"
           >
             Entrar
             <ArrowRight size={18} />
@@ -83,8 +80,8 @@ export default function CadastroPage() {
         </form>
 
         <div className="text-center">
-          <p className="text-sm text-on-surface-variant">
-            Não tem uma conta? <Link to="/selecao-negocio" className="text-primary font-semibold">Crie agora</Link>
+          <p className="text-sm text-[#6c757d]">
+            Não tem uma conta? <Link to="/selecao-negocio" className="text-[#212529] font-bold underline">Crie agora</Link>
           </p>
         </div>
         </div>

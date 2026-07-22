@@ -206,7 +206,7 @@ export default function MarketplaceStore() {
   };
 
   return (
-    <div className={`flex justify-center bg-black min-h-screen ${activeTheme}`}>
+    <div className={`flex justify-center bg-[#212529] min-h-screen ${activeTheme}`}>
       <div className="w-full max-w-[480px] bg-store-bg relative min-h-screen flex flex-col shadow-2xl overflow-hidden font-body pb-20 text-store-text transition-colors duration-500">
       {/* Header */}
       <header className="flex justify-between items-center p-6 border-b border-store-secondary/30 bg-store-bg/80 backdrop-blur-md sticky top-0 z-40">
