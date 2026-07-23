@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, LogOut } from 'lucide-react';
+import { User, LogOut, Pizza, Beer, IceCream, Cake, Utensils, Croissant, Drumstick, ShoppingCart, Shirt, Baby, Footprints, Brush, Sparkles, Droplets, Scissors, Store } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -10,26 +10,26 @@ export default function MarketplaceHome() {
 
   const allCategories = {
     'Alimentação': [
-      { name: 'Pizzaria', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80' },
-      { name: 'Bar', img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500&q=80' },
-      { name: 'Sorveteria', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=500&q=80' },
-      { name: 'Confeitaria', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=500&q=80' },
-      { name: 'Hamburgueria', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80' },
-      { name: 'Padaria', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80' },
-      { name: 'Galeteria', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80' },
-      { name: 'Mercadinho', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=500&q=80' }
+      { name: 'Pizzaria', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80', icon: Pizza },
+      { name: 'Bar', img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500&q=80', icon: Beer },
+      { name: 'Sorveteria', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=500&q=80', icon: IceCream },
+      { name: 'Confeitaria', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=500&q=80', icon: Cake },
+      { name: 'Hamburgueria', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80', icon: Utensils },
+      { name: 'Padaria', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80', icon: Croissant },
+      { name: 'Galeteria', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80', icon: Drumstick },
+      { name: 'Mercadinho', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=500&q=80', icon: ShoppingCart }
     ],
     'Roupas': [
-      { name: 'Moda Masculina', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&q=80' },
-      { name: 'Moda Feminina', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80' },
-      { name: 'Infantil', img: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80' },
-      { name: 'Calçados', img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80' },
+      { name: 'Moda Masculina', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&q=80', icon: Shirt },
+      { name: 'Moda Feminina', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80', icon: Shirt },
+      { name: 'Infantil', img: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80', icon: Baby },
+      { name: 'Calçados', img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80', icon: Footprints },
     ],
     'Cosméticos': [
-      { name: 'Maquiagem', img: 'https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=500' },
-      { name: 'Perfumaria', img: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&q=80' },
-      { name: 'Skincare', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80' },
-      { name: 'Cabelos', img: 'https://images.pexels.com/photos/973401/pexels-photo-973401.jpeg?auto=compress&cs=tinysrgb&w=500' },
+      { name: 'Maquiagem', img: 'https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=500', icon: Brush },
+      { name: 'Perfumaria', img: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&q=80', icon: Sparkles },
+      { name: 'Skincare', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80', icon: Droplets },
+      { name: 'Cabelos', img: 'https://images.pexels.com/photos/973401/pexels-photo-973401.jpeg?auto=compress&cs=tinysrgb&w=500', icon: Scissors },
     ]
   };
 
@@ -112,28 +112,25 @@ export default function MarketplaceHome() {
         </div>
 
         {/* Grid Categories */}
-        <div className="grid grid-cols-2 gap-4">
-          {currentCategories.map((cat, idx) => (
-            <Link 
-              to="/marketplace/category"
-              state={{ categoryName: cat.name, categoryImg: cat.img }}
-              key={idx} 
-              className="group relative rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-[#dee2e6]"
-            >
-              <div className="aspect-[4/3] w-full bg-[#e9ecef]">
-                <img 
-                  src={cat.img} 
-                  alt={cat.name} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#212529]/90 via-[#212529]/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <h3 className="text-[#f8f9fa] font-bold text-lg md:text-xl drop-shadow-lg leading-tight">{cat.name}</h3>
+        <div className="grid grid-cols-4 gap-y-6 gap-x-2 justify-items-center">
+          {currentCategories.map((cat, idx) => {
+            const Icon = cat.icon || Store;
+            return (
+              <Link 
+                to="/marketplace/category"
+                state={{ categoryName: cat.name, categoryImg: cat.img }}
+                key={idx} 
+                className="group flex flex-col items-center gap-2"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#e9ecef] flex items-center justify-center border border-[#ced4da] shadow-sm group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                  <Icon size={24} className="text-[#adb5bd] group-hover:text-[#868e96] transition-colors" />
                 </div>
-              </div>
-            </Link>
-          ))}
+                <h3 className="text-xs font-semibold text-[#495057] text-center leading-tight max-w-[72px] break-words group-hover:text-[#212529] transition-colors">
+                  {cat.name}
+                </h3>
+              </Link>
+            );
+          })}
         </div>
       </main>
       </div>

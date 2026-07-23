@@ -109,11 +109,19 @@ export default function PerfilPage() {
   const handleSaveStoreData = () => alert("Dados da loja salvos com sucesso!");
 
   const handleLogoUpload = (e) => {
-    if (e.target.files && e.target.files[0]) setLogoPreview(URL.createObjectURL(e.target.files[0]));
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      if (file.size > 2 * 1024 * 1024) return alert("A imagem não pode exceder 2MB para poupar memória.");
+      setLogoPreview(URL.createObjectURL(file));
+    }
   };
 
   const handleBannerUpload = (e) => {
-    if (e.target.files && e.target.files[0]) setBannerPreview(URL.createObjectURL(e.target.files[0]));
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      if (file.size > 2 * 1024 * 1024) return alert("A imagem não pode exceder 2MB para poupar memória.");
+      setBannerPreview(URL.createObjectURL(file));
+    }
   };
 
   const openAddProduct = () => {
@@ -723,7 +731,12 @@ export default function PerfilPage() {
                 )}
                 <input type="file" accept="image/*" onChange={(e) => {
                   if (e.target.files && e.target.files[0]) {
-                    setEditingProduct({ ...editingProduct, image: URL.createObjectURL(e.target.files[0]) });
+                    const file = e.target.files[0];
+                    if (file.size > 2 * 1024 * 1024) {
+                      alert("A imagem do produto não pode exceder 2MB para poupar memória.");
+                      return;
+                    }
+                    setEditingProduct({ ...editingProduct, image: URL.createObjectURL(file) });
                   }
                 }} className="hidden" />
               </label>
