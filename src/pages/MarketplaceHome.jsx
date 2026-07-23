@@ -10,25 +10,25 @@ export default function MarketplaceHome() {
 
   const allCategories = {
     'Alimentação': [
-      { name: 'Pizzaria', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80', icon: Pizza },
-      { name: 'Bar', img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=500&q=80', icon: Beer },
-      { name: 'Sorveteria', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=500&q=80', icon: IceCream },
-      { name: 'Confeitaria', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=500&q=80', icon: Cake },
-      { name: 'Hamburgueria', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80', icon: Utensils },
-      { name: 'Padaria', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&q=80', icon: Croissant },
-      { name: 'Galeteria', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=500&q=80', icon: Drumstick },
-      { name: 'Mercadinho', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=500&q=80', icon: ShoppingCart }
+      { name: 'Pizzaria', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&q=50', icon: Pizza },
+      { name: 'Bar', img: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=200&q=50', icon: Beer },
+      { name: 'Sorveteria', img: 'https://images.unsplash.com/photo-1557142046-c704a3adf364?w=200&q=50', icon: IceCream },
+      { name: 'Confeitaria', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=200&q=50', icon: Cake },
+      { name: 'Hamburgueria', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&q=50', icon: Utensils },
+      { name: 'Padaria', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&q=50', icon: Croissant },
+      { name: 'Galeteria', img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?w=200&q=50', icon: Drumstick },
+      { name: 'Mercadinho', img: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=200&q=50', icon: ShoppingCart }
     ],
     'Roupas': [
-      { name: 'Moda Masculina', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&q=80', icon: Shirt },
-      { name: 'Moda Feminina', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80', icon: Shirt },
-      { name: 'Infantil', img: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80', icon: Baby },
-      { name: 'Calçados', img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80', icon: Footprints },
+      { name: 'Moda Masculina', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=200&q=50', icon: Shirt },
+      { name: 'Moda Feminina', img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=50', icon: Shirt },
+      { name: 'Infantil', img: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200&q=50', icon: Baby },
+      { name: 'Calçados', img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=50', icon: Footprints },
     ],
     'Cosméticos': [
       { name: 'Maquiagem', img: 'https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=500', icon: Brush },
-      { name: 'Perfumaria', img: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500&q=80', icon: Sparkles },
-      { name: 'Skincare', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80', icon: Droplets },
+      { name: 'Perfumaria', img: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=200&q=50', icon: Sparkles },
+      { name: 'Skincare', img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&q=50', icon: Droplets },
       { name: 'Cabelos', img: 'https://images.pexels.com/photos/973401/pexels-photo-973401.jpeg?auto=compress&cs=tinysrgb&w=500', icon: Scissors },
     ]
   };
@@ -132,6 +132,8 @@ export default function MarketplaceHome() {
             );
           })}
         </div>
+
+
       </main>
       </div>
     </div>
