@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Search, ChevronLeft, ChevronRight, ArrowLeft, Minus, Plus, Trash2, X } from 'lucide-react';
+import { ShoppingCart, Search, ChevronLeft, ChevronRight, ArrowLeft, Minus, Plus, Trash2, X, Instagram } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -12,6 +12,7 @@ export default function MarketplaceStore() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [currentPage, setCurrentPage] = useState(0);
+  const [storeInstagram, setStoreInstagram] = useState('@joaoburguers');
   
   // Checkout Form State
   const [address, setAddress] = useState('');
@@ -19,6 +20,12 @@ export default function MarketplaceStore() {
   
   useEffect(() => {
     const savedTheme = localStorage.getItem('store_theme');
+    const savedInsta = localStorage.getItem('store_instagram');
+    
+    if (savedInsta) {
+      setStoreInstagram(savedInsta);
+    }
+    
     // Força um tema claro se estiver usando um escuro por acidente, para atender ao pedido
     if (savedTheme === 'theme-food-dark-bbq' || savedTheme === 'theme-beauty-luxury-gold') {
       setActiveTheme('theme-fashion-minimalist');
@@ -214,10 +221,15 @@ export default function MarketplaceStore() {
           <Link to="/marketplace/category" className="p-2 -ml-2 rounded-full hover:bg-store-primary/10 transition-colors text-store-text">
             <ArrowLeft size={24} />
           </Link>
-          <div className="w-10 h-10 rounded-full border border-store-secondary/30 flex items-center justify-center overflow-hidden bg-store-secondary/20">
+          <div className="w-10 h-10 rounded-full border border-store-secondary/30 flex items-center justify-center overflow-hidden bg-store-secondary/20 shrink-0">
             <img src={storeInfo.img} alt={storeInfo.name} className="w-full h-full object-cover"/>
           </div>
-          <h1 className="text-lg font-bold">{storeInfo.name}</h1>
+          <div className="flex flex-col min-w-0">
+            <h1 className="text-lg font-bold leading-tight truncate">{storeInfo.name}</h1>
+            <a href={`https://instagram.com/${storeInstagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[11px] text-store-muted hover:text-store-primary transition-colors mt-0.5 truncate">
+              <Instagram size={12} /> {storeInstagram}
+            </a>
+          </div>
         </div>
         <div className="relative">
           <button 
@@ -250,20 +262,19 @@ export default function MarketplaceStore() {
           </div>
 
           {/* Categories */}
-          <div className="flex gap-space-3 mb-space-6 overflow-x-auto pb-space-2 hide-scrollbar">
-            {categories.map((cat, idx) => (
-              <button 
-                key={idx}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-space-4 py-space-2 rounded-pill text-button whitespace-nowrap transition-all duration-300 ${
-                  activeCategory === cat 
-                    ? 'bg-store-primary text-store-bg shadow-md scale-105' 
-                    : 'bg-store-bg border border-store-secondary/50 text-store-muted hover:text-store-text hover:border-store-primary/50 hover:bg-store-primary/5'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="mb-6 relative">
+            <select 
+              value={activeCategory}
+              onChange={(e) => setActiveCategory(e.target.value)}
+              className="w-full appearance-none bg-store-bg border border-store-secondary/50 rounded-xl py-3 pl-4 pr-10 focus:outline-none focus:border-store-primary focus:ring-1 focus:ring-store-primary transition-all shadow-sm text-store-text text-sm font-semibold cursor-pointer"
+            >
+              {categories.map((cat, idx) => (
+                <option key={idx} value={cat}>{cat}</option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-store-muted">
+              <ChevronRight className="rotate-90" size={16} />
+            </div>
           </div>
 
           {/* Products Grid */}

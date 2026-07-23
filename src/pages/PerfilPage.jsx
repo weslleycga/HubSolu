@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Camera, User, Store, Settings, LogOut, ChevronRight, Palette, Check, 
-  BarChart3, CreditCard, ShoppingBag, Users, Calendar, AlertCircle, ExternalLink, Activity
+  BarChart3, CreditCard, ShoppingBag, Users, Calendar, AlertCircle, ExternalLink, Activity,
+  ChefHat, Clock, Plus, Edit2, Trash2, Image, GripVertical, Save, Eye
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -54,13 +55,93 @@ const invoices = [
   { id: 'inv_121', date: '15/05/2026', amount: 'R$ 149,90', status: 'Pago', url: '#' },
 ];
 
+// Mock Data for Cozinha
+const comandasMock = [
+  { id: 'CMD-001', customer: 'Ana Paula', status: 'fila', time: '10 min', items: [{ name: 'X-Bacon', obs: 'Sem cebola' }, { name: 'Coca-Cola', obs: '' }] },
+  { id: 'CMD-002', customer: 'Carlos Mendes', status: 'preparando', time: '15 min', items: [{ name: 'X-Salada', obs: '' }, { name: 'Batata Frita', obs: 'Bem passada' }] },
+  { id: 'CMD-003', customer: 'Juliana Silva', status: 'pronto', time: '5 min', items: [{ name: 'X-Tudo', obs: '' }] },
+  { id: 'CMD-004', customer: 'Lucas Santos', status: 'fila', time: '20 min', items: [{ name: '2x Hot Dog', obs: 'Sem mostarda' }] }
+];
+
+// Mock Data for Produtos Loja
+const produtosLojaMock = [
+  { id: 1, name: 'X-Bacon', price: 'R$ 25,00', category: 'Lanches' },
+  { id: 2, name: 'X-Salada', price: 'R$ 20,00', category: 'Lanches' },
+  { id: 3, name: 'Coca-Cola 350ml', price: 'R$ 5,00', category: 'Bebidas' }
+];
+
 export default function PerfilPage() {
   const [activeTab, setActiveTab] = useState('visao_geral');
   const [activeCategory, setActiveCategory] = useState('food');
   const [activeTheme, setActiveTheme] = useState('theme-fashion-minimalist');
   const [showStripeModal, setShowStripeModal] = useState(false);
   
+  const [comandas, setComandas] = useState(comandasMock);
+  const [produtos, setProdutos] = useState(produtosLojaMock);
+
+  // --- Novos Estados ---
+  const [userData, setUserData] = useState({
+    name: 'João Silva',
+    email: 'joao.silva@email.com',
+    phone: '(11) 98765-4321',
+    instagram: localStorage.getItem('store_instagram') || '@joaoburguers'
+  });
+
+  const [storeData, setStoreData] = useState({
+    name: "João Burguer's",
+    segment: "Lanchonete / Fast Food",
+    description: "O melhor hambúrguer artesanal da região. Ingredientes frescos e selecionados.",
+    address: "Rua das Flores, 123 - Centro",
+    hours: "Seg a Sáb - 18h às 23h30"
+  });
+
+  const [logoPreview, setLogoPreview] = useState(null);
+  const [bannerPreview, setBannerPreview] = useState(null);
+  
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
+
+  // --- Funções ---
+  const handleSaveUserData = () => {
+    localStorage.setItem('store_instagram', userData.instagram);
+    alert("Dados pessoais salvos com sucesso!");
+  };
+  const handleSaveStoreData = () => alert("Dados da loja salvos com sucesso!");
+
+  const handleLogoUpload = (e) => {
+    if (e.target.files && e.target.files[0]) setLogoPreview(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleBannerUpload = (e) => {
+    if (e.target.files && e.target.files[0]) setBannerPreview(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const openAddProduct = () => {
+    setEditingProduct({ name: '', category: '', price: '', image: null });
+    setIsProductModalOpen(true);
+  };
+
+  const openEditProduct = (produto) => {
+    setEditingProduct({ ...produto });
+    setIsProductModalOpen(true);
+  };
+
+  const saveProduct = () => {
+    if (editingProduct.id) {
+      setProdutos(produtos.map(p => p.id === editingProduct.id ? editingProduct : p));
+    } else {
+      setProdutos([...produtos, { ...editingProduct, id: Date.now() }]);
+    }
+    setIsProductModalOpen(false);
+  };
+
+  const deleteProduct = (id) => setProdutos(produtos.filter(p => p.id !== id));
+
   const navigate = useNavigate();
+
+  const moveComanda = (id, newStatus) => {
+    setComandas(comandas.map(c => c.id === id ? { ...c, status: newStatus } : c));
+  };
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('store_theme');
@@ -98,26 +179,27 @@ export default function PerfilPage() {
         </div>
 
         {/* Minimalist Tabs */}
-        <div className="flex bg-[#e9ecef] rounded-xl p-1 overflow-x-auto hide-scrollbar">
+        <div className="flex justify-center gap-3">
           {[
             { id: 'visao_geral', label: 'Visão Geral', icon: BarChart3 },
+            { id: 'cozinha', label: 'Cozinha', icon: ChefHat },
+            { id: 'loja', label: 'Loja', icon: Store },
             { id: 'assinatura', label: 'Assinatura', icon: CreditCard },
-            { id: 'dados', label: 'Dados', icon: User },
-            { id: 'loja', label: 'Loja', icon: Store }
+            { id: 'dados', label: 'Dados', icon: User }
           ].map((tab) => {
             const Icon = tab.icon;
             return (
               <button 
                 key={tab.id}
+                title={tab.label}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 px-3 text-xs font-semibold rounded-lg transition-all duration-300 ${
+                className={`w-12 h-12 flex items-center justify-center rounded-full transition-all duration-300 shadow-sm shrink-0 ${
                   activeTab === tab.id 
-                    ? 'bg-[#f8f9fa] text-[#212529] shadow-sm' 
-                    : 'text-[#6c757d] hover:text-[#495057]'
+                    ? 'bg-[#343a40] text-[#f8f9fa] scale-105' 
+                    : 'bg-[#e9ecef] text-[#6c757d] hover:bg-[#dee2e6] hover:text-[#495057]'
                 }`}
               >
-                <Icon size={14} />
-                <span className="whitespace-nowrap">{tab.label}</span>
+                <Icon size={20} />
               </button>
             )
           })}
@@ -285,18 +367,22 @@ export default function PerfilPage() {
 
             <div>
               <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Nome Completo</label>
-              <input type="text" defaultValue="João Silva" className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl px-4 py-3.5 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors" />
+              <input type="text" value={userData.name} onChange={e => setUserData({...userData, name: e.target.value})} className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl px-4 py-3.5 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors" />
             </div>
             <div>
               <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">E-mail</label>
-              <input type="email" defaultValue="joao.silva@email.com" className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl px-4 py-3.5 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors" />
+              <input type="email" value={userData.email} onChange={e => setUserData({...userData, email: e.target.value})} className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl px-4 py-3.5 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors" />
             </div>
             <div>
               <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Celular / WhatsApp</label>
-              <input type="tel" defaultValue="(11) 98765-4321" className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl px-4 py-3.5 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors" />
+              <input type="tel" value={userData.phone} onChange={e => setUserData({...userData, phone: e.target.value})} className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl px-4 py-3.5 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors" />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Instagram da Loja</label>
+              <input type="text" value={userData.instagram} onChange={e => setUserData({...userData, instagram: e.target.value})} className="w-full bg-[#f1f3f5] border border-[#ced4da] rounded-xl px-4 py-3.5 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-[#f8f9fa] transition-colors" placeholder="@suamarca" />
             </div>
             
-            <button className="w-full bg-[#343a40] text-[#f8f9fa] font-bold py-4 rounded-xl mt-6 shadow-sm hover:bg-[#212529] transition-colors">
+            <button onClick={handleSaveUserData} className="w-full bg-[#343a40] text-[#f8f9fa] font-bold py-4 rounded-xl mt-6 shadow-sm hover:bg-[#212529] transition-colors">
               Salvar Alterações
             </button>
             
@@ -307,9 +393,195 @@ export default function PerfilPage() {
           </div>
         )}
 
-        {/* ABA: LOJA (TEMA) */}
+        {/* ABA: COZINHA (KANBAN) */}
+        {activeTab === 'cozinha' && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <div className="flex items-center gap-2 mb-6">
+              <ChefHat size={24} className="text-[#212529]" />
+              <h2 className="text-[#212529] font-bold text-xl">Gestão de Comandas</h2>
+            </div>
+            
+            <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar snap-x">
+              {[
+                { id: 'fila', label: 'Na Fila', color: 'bg-[#f1f3f5]', borderColor: 'border-[#ced4da]' },
+                { id: 'preparando', label: 'Preparando', color: 'bg-[#fff4e6]', borderColor: 'border-[#ffd8a8]' },
+                { id: 'pronto', label: 'Pronto', color: 'bg-[#ebfbee]', borderColor: 'border-[#b2f2bb]' }
+              ].map(coluna => (
+                <div key={coluna.id} className={`flex-none w-80 snap-start flex flex-col h-[calc(100vh-280px)] min-h-[400px] bg-[#f8f9fa] rounded-2xl border ${coluna.borderColor} overflow-hidden shadow-sm`}>
+                  <div className={`px-4 py-3 border-b ${coluna.borderColor} ${coluna.color} font-bold text-[#495057] uppercase text-xs tracking-wider flex justify-between items-center`}>
+                    {coluna.label}
+                    <span className="bg-white/50 text-[#495057] px-2 py-0.5 rounded-full text-[10px]">
+                      {comandas.filter(c => c.status === coluna.id).length}
+                    </span>
+                  </div>
+                  
+                  <div className="p-3 flex-1 overflow-y-auto space-y-3">
+                    {comandas.filter(c => c.status === coluna.id).map(comanda => (
+                      <div key={comanda.id} className="bg-white p-4 rounded-xl shadow-sm border border-[#e9ecef] flex flex-col gap-3 transition-transform hover:-translate-y-0.5">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <span className="text-[10px] font-bold text-[#adb5bd] uppercase tracking-wider">{comanda.id}</span>
+                            <h4 className="font-bold text-[#212529] text-sm leading-tight">{comanda.customer}</h4>
+                          </div>
+                          <div className="flex items-center gap-1 text-[#f59e0b] bg-[#fffbeb] px-2 py-1 rounded-md text-[10px] font-bold">
+                            <Clock size={12} />
+                            {comanda.time}
+                          </div>
+                        </div>
+                        
+                        <div className="bg-[#f8f9fa] rounded-lg p-2.5 border border-[#f1f3f5]">
+                          <ul className="space-y-2">
+                            {comanda.items.map((item, idx) => (
+                              <li key={idx} className="text-xs text-[#495057]">
+                                <div className="font-semibold text-[#343a40] flex items-start gap-1">
+                                  <span className="mt-0.5 text-[#adb5bd]">•</span> {item.name}
+                                </div>
+                                {item.obs && (
+                                  <p className="pl-2.5 mt-0.5 text-[#e03131] italic font-medium text-[10px]">
+                                    Obs: {item.obs}
+                                  </p>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="flex gap-2 mt-1">
+                          {coluna.id !== 'fila' && (
+                            <button onClick={() => moveComanda(comanda.id, coluna.id === 'pronto' ? 'preparando' : 'fila')} className="flex-1 py-1.5 text-[10px] font-bold text-[#495057] bg-[#f1f3f5] hover:bg-[#e9ecef] rounded-lg transition-colors">
+                              Voltar
+                            </button>
+                          )}
+                          {coluna.id !== 'pronto' && (
+                            <button onClick={() => moveComanda(comanda.id, coluna.id === 'fila' ? 'preparando' : 'pronto')} className="flex-1 py-1.5 text-[10px] font-bold text-white bg-[#343a40] hover:bg-[#212529] rounded-lg transition-colors shadow-sm">
+                              Avançar
+                            </button>
+                          )}
+                          {coluna.id === 'pronto' && (
+                            <button onClick={() => setComandas(comandas.filter(c => c.id !== comanda.id))} className="flex-1 py-1.5 text-[10px] font-bold text-[#2b8a3e] bg-[#ebfbee] hover:bg-[#d3f9d8] rounded-lg transition-colors">
+                              Entregue
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                    {comandas.filter(c => c.status === coluna.id).length === 0 && (
+                      <div className="h-full flex items-center justify-center">
+                        <p className="text-xs text-[#adb5bd] font-medium text-center">Nenhuma comanda</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ABA: LOJA (EDIÇÃO E TEMA) */}
         {activeTab === 'loja' && (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 space-y-6">
+            
+            {/* Informações Básicas */}
+            <div className="bg-[#f1f3f5] p-5 rounded-2xl border border-[#e9ecef] space-y-4">
+              <h3 className="text-sm font-semibold text-[#495057] uppercase tracking-wider flex items-center gap-2 border-b border-[#dee2e6] pb-3">
+                <Store size={16} />
+                Informações da Loja
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-3 col-span-1 md:col-span-2">
+                  <div className="flex gap-4 items-center">
+                    <label className="w-20 h-20 bg-[#e9ecef] rounded-2xl border border-[#ced4da] flex flex-col items-center justify-center text-[#868e96] cursor-pointer hover:bg-[#dee2e6] transition-colors shrink-0 overflow-hidden relative">
+                      {logoPreview ? (
+                        <img src={logoPreview} alt="Logo" className="w-full h-full object-cover" />
+                      ) : (
+                        <>
+                          <Camera size={24} />
+                          <span className="text-[10px] font-bold mt-1">Logo</span>
+                        </>
+                      )}
+                      <input type="file" accept="image/*" onChange={handleLogoUpload} className="hidden" />
+                    </label>
+                    <label className="flex-1 h-20 bg-[#e9ecef] rounded-2xl border border-[#ced4da] flex flex-col items-center justify-center text-[#868e96] cursor-pointer hover:bg-[#dee2e6] transition-colors overflow-hidden relative">
+                      {bannerPreview ? (
+                        <img src={bannerPreview} alt="Banner" className="w-full h-full object-cover" />
+                      ) : (
+                        <>
+                          <Image size={24} />
+                          <span className="text-[10px] font-bold mt-1">Banner de Capa</span>
+                        </>
+                      )}
+                      <input type="file" accept="image/*" onChange={handleBannerUpload} className="hidden" />
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Nome da Loja</label>
+                  <input type="text" value={storeData.name} onChange={e => setStoreData({...storeData, name: e.target.value})} className="w-full bg-[#f8f9fa] border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-white transition-colors" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Segmento</label>
+                  <input type="text" value={storeData.segment} onChange={e => setStoreData({...storeData, segment: e.target.value})} className="w-full bg-[#f8f9fa] border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-white transition-colors" />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Descrição (Bio)</label>
+                  <textarea rows="3" value={storeData.description} onChange={e => setStoreData({...storeData, description: e.target.value})} className="w-full bg-[#f8f9fa] border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-white transition-colors resize-none"></textarea>
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Endereço de Entrega/Retirada</label>
+                  <input type="text" value={storeData.address} onChange={e => setStoreData({...storeData, address: e.target.value})} className="w-full bg-[#f8f9fa] border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-white transition-colors" />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Horário de Funcionamento</label>
+                  <input type="text" value={storeData.hours} onChange={e => setStoreData({...storeData, hours: e.target.value})} className="w-full bg-[#f8f9fa] border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd] focus:bg-white transition-colors" />
+                </div>
+              </div>
+            </div>
+
+            {/* Gerenciamento de Produtos */}
+            <div className="bg-[#f1f3f5] p-5 rounded-2xl border border-[#e9ecef] space-y-4">
+              <div className="flex items-center justify-between border-b border-[#dee2e6] pb-3">
+                <h3 className="text-sm font-semibold text-[#495057] uppercase tracking-wider flex items-center gap-2">
+                  <ShoppingBag size={16} />
+                  Catálogo de Produtos
+                </h3>
+                <button onClick={openAddProduct} className="bg-[#343a40] text-white p-1.5 rounded-lg hover:bg-[#212529] transition-colors shadow-sm">
+                  <Plus size={16} />
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                {produtos.map(produto => (
+                  <div key={produto.id} className="bg-white p-3 rounded-xl border border-[#e9ecef] shadow-sm flex items-center gap-3">
+                    <div className="text-[#adb5bd] cursor-grab active:cursor-grabbing">
+                      <GripVertical size={16} />
+                    </div>
+                    <div className="w-10 h-10 bg-[#f1f3f5] rounded-lg border border-[#e9ecef] flex items-center justify-center shrink-0 overflow-hidden">
+                      {produto.image ? (
+                        <img src={produto.image} alt={produto.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <Image size={16} className="text-[#adb5bd]" />
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-bold text-[#212529] leading-none">{produto.name}</h4>
+                      <p className="text-[10px] text-[#6c757d] mt-1">{produto.category} • {produto.price}</p>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <button onClick={() => openEditProduct(produto)} className="p-1.5 text-[#495057] hover:bg-[#e9ecef] rounded-lg transition-colors">
+                        <Edit2 size={14} />
+                      </button>
+                      <button onClick={() => deleteProduct(produto.id)} className="p-1.5 text-[#e03131] hover:bg-[#fff5f5] rounded-lg transition-colors">
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tema e Cores (Aproveitando o existente) */}
             <div className="bg-[#f1f3f5] p-5 rounded-2xl border border-[#e9ecef]">
               <h3 className="text-sm font-semibold text-[#495057] uppercase tracking-wider mb-4 flex items-center gap-2">
                 <Palette size={16} />
@@ -334,57 +606,50 @@ export default function PerfilPage() {
               </div>
 
               {/* Swatches */}
-              <div className="grid grid-cols-1 gap-4 mb-4">
+              <div className="grid grid-cols-3 gap-3 mb-4">
                 {themes[activeCategory].map(theme => (
                   <div 
                     key={theme.id}
                     onClick={() => handleSelectTheme(theme.id)}
-                    className={`relative p-[2px] rounded-2xl cursor-pointer transition-all duration-300 ${
-                      activeTheme === theme.id ? 'bg-[#343a40] shadow-md' : 'bg-transparent hover:bg-[#dee2e6]'
+                    className={`flex flex-col items-center gap-2 p-3 rounded-xl cursor-pointer transition-all duration-300 border ${
+                      activeTheme === theme.id ? 'border-[#343a40] bg-[#f8f9fa] shadow-sm' : 'border-transparent hover:bg-[#e9ecef]'
                     }`}
                   >
-                    <div className="bg-[#f8f9fa] rounded-xl p-4 h-full border border-[#e9ecef]">
-                      <div 
-                        className="w-full h-16 rounded-lg mb-3 border border-[#dee2e6] shadow-inner relative overflow-hidden"
-                        style={{ backgroundColor: theme.bg }}
-                      >
-                        <div className="absolute top-2 left-2">
-                          <div className="w-10 h-1.5 rounded" style={{ backgroundColor: theme.text, opacity: 0.8 }}></div>
-                          <div className="w-6 h-1 rounded mt-1" style={{ backgroundColor: theme.text, opacity: 0.4 }}></div>
+                    <span className="text-[10px] font-bold text-center leading-tight text-[#495057]">{theme.name}</span>
+                    <div className="relative w-12 h-12 rounded-full shadow-sm border-2 border-[#dee2e6] shrink-0" style={{ backgroundColor: theme.bg }}>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full" style={{ backgroundColor: theme.primary }}></div>
+                      <div className="absolute bottom-0 right-0 w-4 h-4 rounded-full border border-white" style={{ backgroundColor: theme.secondary }}></div>
+                      {activeTheme === theme.id && (
+                        <div className="absolute inset-0 flex items-center justify-center rounded-full bg-[#343a40]/50 backdrop-blur-[1px]">
+                          <Check size={16} className="text-white" />
                         </div>
-                        <div className="absolute top-2 right-2 w-3 h-3 rounded-full" style={{ backgroundColor: theme.secondary }}></div>
-                        <div className="absolute bottom-2 left-2 right-2 h-4 rounded-[4px] flex items-center justify-center text-[6px] font-bold" style={{ backgroundColor: theme.primary, color: theme.bg }}>
-                          Ação
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="font-bold text-sm text-[#212529]">{theme.name}</h4>
-                          <div className="flex gap-1.5 mt-2">
-                            <div className="w-4 h-4 rounded-full shadow-sm border border-[#dee2e6]" style={{ backgroundColor: theme.primary }}></div>
-                            <div className="w-4 h-4 rounded-full shadow-sm border border-[#dee2e6]" style={{ backgroundColor: theme.secondary }}></div>
-                            <div className="w-4 h-4 rounded-full shadow-sm border border-[#dee2e6]" style={{ backgroundColor: theme.bg }}></div>
-                            <div className="w-4 h-4 rounded-full shadow-sm border border-[#dee2e6]" style={{ backgroundColor: theme.text }}></div>
-                          </div>
-                        </div>
-                        {activeTheme === theme.id && (
-                          <div className="w-6 h-6 rounded-full bg-[#343a40] text-[#f8f9fa] flex items-center justify-center shadow-md">
-                            <Check size={12} />
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <button 
-                onClick={() => navigate('/marketplace/store')}
-                className="w-full py-4 mt-2 bg-[#f8f9fa] text-[#212529] border border-[#ced4da] rounded-xl font-semibold shadow-sm hover:bg-[#e9ecef] transition-colors flex justify-center items-center gap-2"
-              >
-                Visualizar Loja <ExternalLink size={16} />
-              </button>
+              <div className="flex gap-6 mt-8 justify-start">
+                <div className="flex flex-col items-center gap-2">
+                  <button 
+                    onClick={handleSaveStoreData}
+                    className="w-14 h-14 bg-[#343a40] text-white rounded-full flex items-center justify-center shadow-md hover:bg-[#212529] transition-all hover:scale-105"
+                  >
+                    <Save size={24} />
+                  </button>
+                  <span className="text-[10px] font-bold text-[#495057] uppercase tracking-wide">Salvar</span>
+                </div>
+
+                <div className="flex flex-col items-center gap-2">
+                  <button 
+                    onClick={() => navigate('/marketplace/store')}
+                    className="w-14 h-14 bg-[#f8f9fa] text-[#212529] border border-[#ced4da] rounded-full flex items-center justify-center shadow-sm hover:bg-[#e9ecef] transition-all hover:scale-105"
+                  >
+                    <Eye size={24} />
+                  </button>
+                  <span className="text-[10px] font-bold text-[#495057] uppercase tracking-wide">Visualizar</span>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -429,6 +694,83 @@ export default function PerfilPage() {
                 className="w-full py-3 text-[#6c757d] font-semibold text-sm hover:text-[#495057] transition-colors"
               >
                 Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* PRODUCT MODAL */}
+      {isProductModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-[#212529]/60 backdrop-blur-sm animate-in fade-in duration-300"
+            onClick={() => setIsProductModalOpen(false)}
+          ></div>
+          <div className="bg-[#f8f9fa] w-full max-w-sm rounded-2xl shadow-xl relative z-10 p-6 animate-in zoom-in-95 duration-300 space-y-4">
+            <h2 className="text-lg font-bold text-[#212529] mb-4">
+              {editingProduct?.id ? 'Editar Produto' : 'Novo Produto'}
+            </h2>
+            
+            <div className="flex justify-center mb-2">
+              <label className="w-20 h-20 bg-[#e9ecef] rounded-2xl border border-[#ced4da] flex flex-col items-center justify-center text-[#868e96] cursor-pointer hover:bg-[#dee2e6] transition-colors shrink-0 overflow-hidden relative">
+                {editingProduct?.image ? (
+                  <img src={editingProduct.image} alt="Produto" className="w-full h-full object-cover" />
+                ) : (
+                  <>
+                    <Camera size={24} />
+                    <span className="text-[10px] font-bold mt-1">Foto</span>
+                  </>
+                )}
+                <input type="file" accept="image/*" onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    setEditingProduct({ ...editingProduct, image: URL.createObjectURL(e.target.files[0]) });
+                  }
+                }} className="hidden" />
+              </label>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Nome do Produto</label>
+              <input 
+                type="text" 
+                value={editingProduct?.name || ''} 
+                onChange={(e) => setEditingProduct({...editingProduct, name: e.target.value})}
+                className="w-full bg-white border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd]" 
+              />
+            </div>
+            
+            <div>
+              <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Categoria</label>
+              <input 
+                type="text" 
+                value={editingProduct?.category || ''} 
+                onChange={(e) => setEditingProduct({...editingProduct, category: e.target.value})}
+                className="w-full bg-white border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd]" 
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-[#495057] uppercase tracking-wider mb-2">Preço (ex: R$ 20,00)</label>
+              <input 
+                type="text" 
+                value={editingProduct?.price || ''} 
+                onChange={(e) => setEditingProduct({...editingProduct, price: e.target.value})}
+                className="w-full bg-white border border-[#ced4da] rounded-xl px-4 py-3 text-[#212529] text-sm focus:outline-none focus:border-[#adb5bd]" 
+              />
+            </div>
+
+            <div className="flex gap-3 pt-2">
+              <button 
+                onClick={() => setIsProductModalOpen(false)}
+                className="flex-1 py-3 text-[#495057] bg-[#e9ecef] font-bold text-sm rounded-xl hover:bg-[#dee2e6] transition-colors"
+              >
+                Cancelar
+              </button>
+              <button 
+                onClick={saveProduct}
+                className="flex-1 py-3 bg-[#343a40] text-white font-bold text-sm rounded-xl hover:bg-[#212529] transition-colors"
+              >
+                Salvar
               </button>
             </div>
           </div>
